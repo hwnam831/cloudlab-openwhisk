@@ -116,5 +116,21 @@ for i, node in enumerate(nodes[1:]):
 nodes[0].addService(rspec.Execute(shell="bash", command="/local/repository/start.sh primary {}.1 {} {} {} {} {} > /home/cloudlab-openwhisk/start.log 2>&1".format(
   BASE_IP, params.nodeCount, params.startKubernetes, params.deployOpenWhisk, params.numInvokers, params.invokerEngine)))
 
+# We need a link to talk to the remote file system, so make an interface.
+iface = nodes[0].addInterface()
+
+# The remote file system is represented by special node.
+fsnode = request.RemoteBlockstore("fsnode", "/remotedata")
+# This URN is displayed in the web interfaace for your dataset.
+fsnode.dataset = "urn:publicid:IDN+utah.cloudlab.us:mlhrc-pg0+ltdataset+hnam-disk"
+
+# Now we add the link between the node and the special node
+fslink = request.Link("fslink")
+fslink.addInterface(iface)
+fslink.addInterface(fsnode.interface)
+
+# Special attributes for this link that we must use.
+fslink.best_effort = True
+fslink.vlan_tagging = True
 
 pc.printRequestRSpec()
