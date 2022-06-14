@@ -117,7 +117,7 @@ nodes[0].addService(rspec.Execute(shell="bash", command="/local/repository/start
   BASE_IP, params.nodeCount, params.startKubernetes, params.deployOpenWhisk, params.numInvokers, params.invokerEngine)))
 
 # We need a link to talk to the remote file system, so make an interface.
-iface = nodes.interfaces[-1]
+iface = nodes[0].interfaces[-1]
 
 # The remote file system is represented by special node.
 fsnode = request.RemoteBlockstore("fsnode", "/remotedata")
