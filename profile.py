@@ -15,7 +15,7 @@ import geni.rspec.pg as rspec
 
 BASE_IP = "10.10.1"
 BANDWIDTH = 10000000
-IMAGE = 'urn:publicid:IDN+utah.cloudlab.us+image+cu-bison-lab-PG0:openwhiskv2'
+IMAGE = 'urn:publicid:IDN+utah.cloudlab.us+image+mlhrc-PG0:openwhisk.ow1'
 
 # Set up parameters
 pc = portal.Context()
@@ -60,7 +60,7 @@ pc.defineParameter("numInvokers",
 pc.defineParameter("invokerEngine",
                    "Invoker Engine",
                    portal.ParameterType.STRING,
-                   "kubernetes",
+                   "docker",
                    advanced=True,
                    legalValues=[('kubernetes', 'Kubernetes Container Engine'), ('docker', 'Docker Container Engine')],
                    longDescription="Controls how the OpenWhisk invoker creates containers. Using docker indicates that you need one invoker per invoker " \
