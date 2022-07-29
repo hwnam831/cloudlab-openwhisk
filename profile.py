@@ -15,7 +15,7 @@ import geni.rspec.pg as rspec
 
 BASE_IP = "10.10.1"
 BANDWIDTH = 10000000
-IMAGE = 'urn:publicid:IDN+utah.cloudlab.us+image+mlhrc-PG0:openwhisk.ow1'
+IMAGE = 'urn:publicid:IDN+utah.cloudlab.us+image+mlhrc-PG0:openwhisk.ow1_sebs'
 
 # Set up parameters
 pc = portal.Context()
@@ -26,7 +26,7 @@ pc.defineParameter("nodeCount",
 pc.defineParameter("nodeType", 
                    "Node Hardware Type",
                    portal.ParameterType.NODETYPE, 
-                   "m510",
+                   "xl170",
                    longDescription="A specific hardware type to use for all nodes. This profile has primarily been tested with m510 and xl170 nodes.")
 pc.defineParameter("startKubernetes",
                    "Create Kubernetes cluster",
@@ -43,7 +43,7 @@ pc.defineParameter("deployOpenWhisk",
 pc.defineParameter("tempFileSystemSize", 
                    "Temporary Filesystem Size",
                    portal.ParameterType.INTEGER, 
-                   0,
+                   100,
                    advanced=True,
                    longDescription="The size in GB of a temporary file system to mount on each of your " +
                    "nodes. Temporary means that they are deleted when your experiment is terminated. " +
@@ -60,7 +60,7 @@ pc.defineParameter("numInvokers",
 pc.defineParameter("invokerEngine",
                    "Invoker Engine",
                    portal.ParameterType.STRING,
-                   "docker",
+                   "kubernetes",
                    advanced=True,
                    legalValues=[('kubernetes', 'Kubernetes Container Engine'), ('docker', 'Docker Container Engine')],
                    longDescription="Controls how the OpenWhisk invoker creates containers. Using docker indicates that you need one invoker per invoker " \
