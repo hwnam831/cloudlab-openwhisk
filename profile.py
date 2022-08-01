@@ -91,7 +91,10 @@ def create_node(name, nodes, lan):
   bs = node.Blockstore(name + "-bs", "/mydata")
   bs.size = str(params.tempFileSystemSize) + "GB"
   bs.placement = "any"
-  
+  bs2 = nodes[0].Blockstore(name + "-bench-bs", "/benchdata")
+  bs2.dataset = "urn:publicid:IDN+utah.cloudlab.us:mlhrc-pg0+imdataset+sebs-bench"
+  bs2.size = "50GB"
+  bs2.placement = "any"
   # Add to node list
   nodes.append(node)
 
@@ -114,9 +117,6 @@ for i, node in enumerate(nodes[1:]):
 # Start primary node
 nodes[0].addService(rspec.Execute(shell="bash", command="/local/repository/start.sh primary {}.1 {} {} {} {} {} > /home/cloudlab-openwhisk/start.log 2>&1".format(
   BASE_IP, params.nodeCount, params.startKubernetes, params.deployOpenWhisk, params.numInvokers, params.invokerEngine)))
-bs2 = nodes[0].Blockstore("bench-bs", "/benchdata")
-bs2.dataset = "urn:publicid:IDN+utah.cloudlab.us:mlhrc-pg0+imdataset+sebs-bench"
-bs2.size = "50GB"
-bs2.placement = "any"
+
 
 pc.printRequestRSpec()
