@@ -115,6 +115,7 @@ for i, node in enumerate(nodes[1:]):
       BASE_IP, i + 2, params.startKubernetes)))
     node.addService(rspec.Execute(shell="bash", command="sudo mkdir /mydata/workspace; sudo chown hwnam831 /mydata/workspace"))
     node.addService(rspec.Execute(shell="bash", command="git clone https://github.com/hwnam831/jRAPL-percore /mydata/workspace/jrapl"))
+    node.addService(rspec.Execute(shell="bash", command="sudo modprobe msr"))
 
 # Start primary node
 nodes[0].addService(rspec.Execute(shell="bash", command="/local/repository/start.sh primary {}.1 {} {} {} {} {} > /home/cloudlab-openwhisk/start.log 2>&1".format(
