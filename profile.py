@@ -113,10 +113,15 @@ for i in range(params.nodeCount):
 for i, node in enumerate(nodes[1:]):
     node.addService(rspec.Execute(shell="bash", command="/local/repository/start.sh secondary {}.{} {} > /home/cloudlab-openwhisk/start.log 2>&1 &".format(
       BASE_IP, i + 2, params.startKubernetes)))
+    node.addService(rspec.Execute(shell="bash", command="git clone https://github.com/hwnam831/jRAPL-percore ~/jrapl"))
 
 # Start primary node
 nodes[0].addService(rspec.Execute(shell="bash", command="/local/repository/start.sh primary {}.1 {} {} {} {} {} > /home/cloudlab-openwhisk/start.log 2>&1".format(
   BASE_IP, params.nodeCount, params.startKubernetes, params.deployOpenWhisk, params.numInvokers, params.invokerEngine)))
-
+nodes[0].addService(rspec.Execute(shell="bash", command="git clone https://github.com/spcl/serverless-benchmarks ~/sebs"))
+nodes[0].addService(rspec.Execute(shell="bash", command="python3 ~/sebs/install.py --openwhisk"))
+nodes[0].addService(rspec.Execute(shell="bash", command=". ~/sebs/python-venv/bin/activate; \
+  ~/sebs/sebs.py storage start minio --output-json ~/sebs/config/minio.json;\
+  jq --argfile file1 ~/sebs/config/minio.json '.deployment.openwhisk.storage = $file1 ' ~/sebs/config/example.json > ~/sebs/config/ow.json"))
 
 pc.printRequestRSpec()
