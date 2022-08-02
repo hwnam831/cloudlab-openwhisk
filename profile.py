@@ -91,10 +91,10 @@ def create_node(name, nodes, lan):
   bs = node.Blockstore(name + "-bs", "/mydata")
   bs.size = str(params.tempFileSystemSize) + "GB"
   bs.placement = "any"
-  bs2 = node.Blockstore(name + "-bench-bs", "/benchdata")
-  bs2.dataset = "urn:publicid:IDN+utah.cloudlab.us:mlhrc-pg0+imdataset+sebs-bench"
-  bs2.size = "50GB"
-  bs2.placement = "any"
+  #bs2 = node.Blockstore(name + "-bench-bs", "/benchdata")
+  #bs2.dataset = "urn:publicid:IDN+utah.cloudlab.us:mlhrc-pg0+imdataset+sebs-bench"
+  #bs2.size = "50GB"
+  #bs2.placement = "any"
   # Add to node list
   nodes.append(node)
 
