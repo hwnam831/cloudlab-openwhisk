@@ -113,7 +113,7 @@ for i in range(params.nodeCount):
 for i, node in enumerate(nodes[1:]):
     node.addService(rspec.Execute(shell="bash", command="/local/repository/start.sh secondary {}.{} {} > /home/cloudlab-openwhisk/start.log 2>&1 &".format(
       BASE_IP, i + 2, params.startKubernetes)))
-     node.addService(rspec.Execute(shell="bash", command="/local/repository/setup-all.sh"))
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/setup-all.sh"))
     
 
 # Start primary node
