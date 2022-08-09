@@ -3,6 +3,11 @@ whisk:
     type: NodePort
     apiHostName: REPLACE_ME_WITH_IP
     apiHostPort: 31001
+  limits:
+    actionsInvokesPerminute: 120
+    actionsInvokesConcurrent: 60
+    triggersFiresPerminute: 120
+    actionsSequenceMaxlength: 100
 k8s:
   persistence:
     enabled: false
