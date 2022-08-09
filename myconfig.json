@@ -1,0 +1,34 @@
+{
+    "test_name": "example_test",
+    "test_duration_in_seconds": 120,
+    "random_seed": 100,
+    "blocking_cli": false,
+    "instances":{
+        "instance1":{
+            "application": "autocomplete",
+            "distribution": "Poisson",
+            "rate": 15,
+            "activity_window": [5, 10]
+        },
+        "instance2":{
+            "application": "img-resize",
+            "distribution": "Uniform",
+            "rate": 5,
+            "activity_window": [5, 10]
+        },
+        "instance3":{
+            "application": "markdown",
+            "interarrivals_list": [5,0.13,0.15,0.8,0.1,0.13,0.13,0.1,0.4]
+        },
+        "instance4":{
+            "application": "ocr-img",
+            "distribution": "Poisson",
+            "rate": 25,
+            "activity_window": [5, 10]
+        }
+    },
+    "perf_monitoring":{
+        "runtime_script": "monitoring/RuntimeMonitoring.sh",
+        "post_script": null
+    }
+}
