@@ -14,12 +14,13 @@
             "application": "ocr-img",
             "distribution": "Uniform",
             "data_file":"functions/ocr-img/pitontable.jpg",
-            "rate": 5
+            "rate": 15
         },
         "instance3":{
             "application": "markdown2html",
             "param_file": "functions/markdown-to-html/openpiton-readme.json",
-            "interarrivals_list": [5,0.13,0.15,0.8,0.1,0.13,0.13,0.1,0.4]
+            "distribution":, "Uniform",
+            "rate": 5
         },
         "instance4":{
             "application": "img-resize",
