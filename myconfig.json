@@ -5,21 +5,21 @@
     "blocking_cli": false,
     "instances":{
         "instance1":{
-            "application": "autocomplete",
+            "application": "/guest/sentiment",
             "distribution": "Poisson",
             "rate": 15
         },
         "instance2":{
-            "application": "img-resize",
+            "application": "/guest/ocr-img",
             "distribution": "Uniform",
             "rate": 5
         },
         "instance3":{
-            "application": "markdown",
+            "application": "/guest/markdown2html",
             "interarrivals_list": [5,0.13,0.15,0.8,0.1,0.13,0.13,0.1,0.4]
         },
         "instance4":{
-            "application": "ocr-img",
+            "application": "/guest/img-resize",
             "distribution": "Poisson",
             "rate": 25
         }
