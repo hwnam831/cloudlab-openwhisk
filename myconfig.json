@@ -26,6 +26,6 @@
     },
     "perf_monitoring":{
         "runtime_script": "monitoring/RuntimeMonitoring.sh",
-        "post_script": null
+        "post_script": "./WorkloadAnalyzer -r -p"
     }
 }
