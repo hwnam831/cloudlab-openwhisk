@@ -7,14 +7,12 @@
         "instance1":{
             "application": "autocomplete",
             "distribution": "Poisson",
-            "rate": 15,
-            "activity_window": [5, 10]
+            "rate": 15
         },
         "instance2":{
             "application": "img-resize",
             "distribution": "Uniform",
-            "rate": 5,
-            "activity_window": [5, 10]
+            "rate": 5
         },
         "instance3":{
             "application": "markdown",
@@ -23,8 +21,7 @@
         "instance4":{
             "application": "ocr-img",
             "distribution": "Poisson",
-            "rate": 25,
-            "activity_window": [5, 10]
+            "rate": 25
         }
     },
     "perf_monitoring":{
