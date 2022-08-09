@@ -7,20 +7,24 @@
         "instance1":{
             "application": "/guest/sentiment",
             "distribution": "Poisson",
+            "param_file": "functions/sentiment-analysis/declaration.json",
             "rate": 15
         },
         "instance2":{
             "application": "/guest/ocr-img",
             "distribution": "Uniform",
+            "data_file":"functions/ocr-img/pitontable.jpg",
             "rate": 5
         },
         "instance3":{
             "application": "/guest/markdown2html",
+            "param_file": "functions/markdown-to-html/openpiton-readme.json",
             "interarrivals_list": [5,0.13,0.15,0.8,0.1,0.13,0.13,0.1,0.4]
         },
         "instance4":{
             "application": "/guest/img-resize",
             "distribution": "Poisson",
+            "data_file":"functions/ocr-img/pitontable.jpg",
             "rate": 25
         }
     },
