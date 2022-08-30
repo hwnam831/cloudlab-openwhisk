@@ -8,7 +8,7 @@ bash configure.sh
 cd functions/img-resize
 sudo npm install node-zip jimp --save
 zip -r action.zip ./*
-wsk action create img-resize --kind nodejs:12 action.zip --web raw -i
+wsk action create img-resize --kind nodejs:14 action.zip --web raw -i
 cd ../markdown-to-html/
 wsk action create markdown2html markdown2html.py --docker immortalfaas/markdown-to-html --web raw -i
 cd ../ocr-img/
