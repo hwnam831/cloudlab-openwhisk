@@ -15,7 +15,7 @@ import geni.rspec.pg as rspec
 
 BASE_IP = "10.10.1"
 BANDWIDTH = 10000000
-IMAGE = 'urn:publicid:IDN+clemson.cloudlab.us+image+mlhrc-PG0:owimage-ivy'
+IMAGE = 'urn:publicid:IDN+wisc.cloudlab.us+image+mlhrc-PG0:owimagec220'
 
 # Set up parameters
 pc = portal.Context()
@@ -26,7 +26,7 @@ pc.defineParameter("nodeCount",
 pc.defineParameter("nodeType", 
                    "Node Hardware Type",
                    portal.ParameterType.NODETYPE, 
-                   "c8220",
+                   "c220g2",
                    longDescription="A specific hardware type to use for all nodes. This profile has primarily been tested with m510 and xl170 nodes.")
 pc.defineParameter("startKubernetes",
                    "Create Kubernetes cluster",
