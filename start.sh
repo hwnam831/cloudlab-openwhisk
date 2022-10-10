@@ -7,8 +7,8 @@ INSTALL_DIR=/home/cloudlab-openwhisk
 NUM_MIN_ARGS=3
 PRIMARY_ARG="primary"
 SECONDARY_ARG="secondary"
-USAGE=$'Usage:\n\t./start.sh secondary <node_ip> <start_kubernetes>\n\t./start.sh primary <node_ip> <num_nodes> <start_kubernetes> <deploy_openwhisk> <invoker_count> <invoker_engine>'
-NUM_PRIMARY_ARGS=7
+USAGE=$'Usage:\n\t./start.sh secondary <node_ip> <start_kubernetes>\n\t./start.sh primary <node_ip> <num_nodes> <start_kubernetes> <deploy_openwhisk> <invoker_count> <invoker_engine> <scheduler_enabled>'
+NUM_PRIMARY_ARGS=8
 PROFILE_GROUP="profileuser"
 
 configure_docker_storage() {
@@ -104,7 +104,7 @@ apply_calico() {
     fi
     printf "%s: %s\n" "$(date +"%T.%N")" "Loaded helm calico repo"
 
-    helm install calico projectcalico/tigera-operator --version v3.22.0 >> $INSTALL_DIR/calico_install.log 2>&1
+    helm install calico projectcalico/tigera-operator --version v3.24.1 >> $INSTALL_DIR/calico_install.log 2>&1
     if [ $? -ne 0 ]; then
        echo "***Error: Error when installing calico with helm. Log appended to $INSTALL_DIR/calico_install.log"
        exit 1
@@ -164,8 +164,9 @@ add_cluster_nodes() {
 }
 
 prepare_for_openwhisk() {
-    # Args: 1 = IP, 2 = num nodes, 3 = num invokers, 4 = invoker engine
+    # Args: 1 = IP, 2 = num nodes, 3 = num invokers, 4 = invoker engine, 5 = scheduler enabled
 
+    # Use latest version of openwhisk-deploy-kube
     pushd $INSTALL_DIR/openwhisk-deploy-kube
     git pull
     popd
@@ -201,6 +202,7 @@ prepare_for_openwhisk() {
     sed -i.bak "s/REPLACE_ME_WITH_IP/$1/g" $INSTALL_DIR/openwhisk-deploy-kube/mycluster.yaml
     sed -i.bak "s/REPLACE_ME_WITH_INVOKER_ENGINE/$4/g" $INSTALL_DIR/openwhisk-deploy-kube/mycluster.yaml
     sed -i.bak "s/REPLACE_ME_WITH_INVOKER_COUNT/$3/g" $INSTALL_DIR/openwhisk-deploy-kube/mycluster.yaml
+    sed -i.bak "s/REPLACE_ME_WITH_SCHEDULER_ENABLED/$5/g" $INSTALL_DIR/openwhisk-deploy-kube/mycluster.yaml
     sudo chown $USER:$PROFILE_GROUP $INSTALL_DIR/openwhisk-deploy-kube/mycluster.yaml
     sudo chmod -R g+rw $INSTALL_DIR/openwhisk-deploy-kube/mycluster.yaml
     printf "%s: %s\n" "$(date +"%T.%N")" "Updated $INSTALL_DIR/openwhisk-deploy-kube/mycluster.yaml"
@@ -340,8 +342,8 @@ if [ "$5" = "False" ]; then
     exit 0
 fi
 
-# Prepare cluster to deploy OpenWhisk: takes IP, num nodes, invoker num, and invoker engine
-prepare_for_openwhisk $2 $3 $6 $7
+# Prepare cluster to deploy OpenWhisk: takes IP, num nodes, invoker num, invoker engine, and scheduler enabled
+prepare_for_openwhisk $2 $3 $6 $7 $8
 
 # Deploy OpenWhisk via Helm
 # Takes cluster IP
