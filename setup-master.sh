@@ -1,7 +1,7 @@
 #!/bin/bash
-git clone https://github.com/hwnam831/openwhisk-mlcontrol /mydata/workspace/openwhisk
-cd /mydata/workspace/openwhisk
-./gradlew :tools:admin:build
+#git clone https://github.com/hwnam831/openwhisk-mlcontrol /mydata/workspace/openwhisk
+#cd /mydata/workspace/openwhisk
+#./gradlew :tools:admin:build
 git clone https://github.com/PrincetonUniversity/faas-profiler /mydata/workspace/faas-profiler
 cd /mydata/workspace/faas-profiler
 bash configure.sh
