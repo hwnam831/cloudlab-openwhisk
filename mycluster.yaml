@@ -4,9 +4,9 @@ whisk:
     apiHostName: REPLACE_ME_WITH_IP
     apiHostPort: 31001
   limits:
-    actionsInvokesPerminute: 120
+    actionsInvokesPerminute: 1200
     actionsInvokesConcurrent: 60
-    triggersFiresPerminute: 120
+    triggersFiresPerminute: 1200
     actionsSequenceMaxlength: 100
 k8s:
   persistence:
