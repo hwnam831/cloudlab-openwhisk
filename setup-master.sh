@@ -1,8 +1,8 @@
 #!/bin/bash
 sudo apt install ansible
-git clone https://github.com/hwnam831/openwhisk-mlcontrol /mydata/workspace/openwhisk
-cd /mydata/workspace/openwhisk
-sudo ./gradlew distDocker
+#git clone https://github.com/hwnam831/openwhisk-mlcontrol /mydata/workspace/openwhisk
+#cd /mydata/workspace/openwhisk
+#sudo ./gradlew distDocker
 git clone https://github.com/PrincetonUniversity/faas-profiler /mydata/workspace/faas-profiler
 cd /mydata/workspace/faas-profiler
 bash configure.sh
