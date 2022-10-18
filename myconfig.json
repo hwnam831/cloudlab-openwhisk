@@ -26,7 +26,12 @@
             "application": "img-resize",
             "distribution": "Uniform",
             "data_file":"functions/img-resize/libertybell.jpg",
-            "rate": 8
+            "rate": 5
+        }
+        "instance5":{
+            "application": "autocomplete/names",
+            "distribution": "Poisson",
+            "rate": 4
         }
     },
     "perf_monitoring":{
