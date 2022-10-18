@@ -16,6 +16,10 @@ cd ../ocr-img/
 wsk action create ocr-img handler.js --docker immortalfaas/nodejs-tesseract --web raw -i
 cd ../sentiment-analysis
 wsk action create sentiment sentiment.py --docker immortalfaas/sentiment --web raw -i
+cd ../autocomplete
+sed -i 's/nodejs:14/nodejs:6/g' lib/whisk.js
+npm link
+acsetup data/names.txt
 #git clone https://github.com/spcl/serverless-benchmarks /mydata/workspace/sebs
 #cd /mydata/workspace/sebs
 #python3 /mydata/workspace/sebs/install.py --openwhisk
