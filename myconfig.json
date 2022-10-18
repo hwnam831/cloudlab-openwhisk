@@ -8,25 +8,25 @@
             "application": "sentiment",
             "distribution": "Poisson",
             "param_file": "functions/sentiment-analysis/declaration.json",
-            "rate": 30
+            "rate": 4
         },
         "instance2":{
             "application": "ocr-img",
             "distribution": "Uniform",
-            "data_file":"functions/ocr-img/pitontable.jpg",
-            "rate": 40
+            "data_file":"functions/ocr-img/linuxboot.jpg",
+            "rate": 8
         },
         "instance3":{
             "application": "markdown2html",
             "param_file": "functions/markdown-to-html/openpiton-readme.json",
             "distribution": "Uniform",
-            "rate": 20
+            "rate": 2
         },
         "instance4":{
             "application": "img-resize",
             "distribution": "Poisson",
             "data_file":"functions/img-resize/libertybell.jpg",
-            "rate": 30
+            "rate": 6
         }
     },
     "perf_monitoring":{
