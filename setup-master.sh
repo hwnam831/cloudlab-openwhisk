@@ -15,6 +15,7 @@ wsk action create markdown2html markdown2html.py --docker immortalfaas/markdown-
 cd ../ocr-img/
 wsk action create ocr-img handler.js --docker immortalfaas/nodejs-tesseract --web raw -i
 cd ../sentiment-analysis
+wsk action create sentiment sentiment.py --docker immortalfaas/sentiment --web raw -i
 #git clone https://github.com/spcl/serverless-benchmarks /mydata/workspace/sebs
 #cd /mydata/workspace/sebs
 #python3 /mydata/workspace/sebs/install.py --openwhisk
