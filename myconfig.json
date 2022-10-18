@@ -25,7 +25,7 @@
         "instance4":{
             "application": "img-resize",
             "distribution": "Poisson",
-            "data_file":"functions/img-resize/libertybell.jpg",
+            "data_file":"functions/img-resize/piton.jpg",
             "rate": 6
         }
     },
