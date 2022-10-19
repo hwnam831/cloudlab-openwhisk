@@ -18,7 +18,7 @@ cd ../sentiment-analysis
 wsk action create sentiment sentiment.py --docker immortalfaas/sentiment --web raw -i
 cd ../autocomplete
 sed -i 's/nodejs:6/nodejs:14/g' lib/whisk.js
-npm link
+sudo npm link
 acsetup data/names.txt
 #git clone https://github.com/spcl/serverless-benchmarks /mydata/workspace/sebs
 #cd /mydata/workspace/sebs
