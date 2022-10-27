@@ -5,9 +5,9 @@ whisk:
     apiHostPort: 31001
   limits:
     actionsInvokesPerminute: 1200
-    actionsInvokesConcurrent: 60
+    actionsInvokesConcurrent: 120
     triggersFiresPerminute: 1200
-    actionsSequenceMaxlength: 100
+    actionsSequenceMaxlength: 200
 k8s:
   persistence:
     enabled: false
