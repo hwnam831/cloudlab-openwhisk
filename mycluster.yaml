@@ -9,7 +9,7 @@ whisk:
     triggersFiresPerminute: 1200
     actionsSequenceMaxlength: 200
   containerPool:
-    userMemory: "32768m"
+    userMemory: "65536m"
 k8s:
   persistence:
     enabled: false
@@ -20,6 +20,3 @@ invoker:
     impl: "REPLACE_ME_WITH_INVOKER_ENGINE"
     REPLACE_ME_WITH_INVOKER_ENGINE: 
       replicaCount: REPLACE_ME_WITH_INVOKER_COUNT
-  jvmHeapMB: 8192
-    
-numcore: 20
