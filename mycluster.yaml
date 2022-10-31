@@ -7,7 +7,7 @@ whisk:
     actionsInvokesPerminute: 1200
     actionsInvokesConcurrent: 120
     triggersFiresPerminute: 1200
-    actionsSequenceMaxlength: 200
+    actionsSequenceMaxlength: 300
   containerPool:
     userMemory: "65536m"
 k8s:
