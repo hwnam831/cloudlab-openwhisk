@@ -1,0 +1,18 @@
+{
+    "test_name": "example_test",
+    "test_duration_in_seconds": 180,
+    "random_seed": 100,
+    "blocking_cli": false,
+    "instances":{
+        "instance3":{
+            "application": "markdown2html",
+            "param_file": "functions/markdown-to-html/openpiton-readme.json",
+            "distribution": "Poisson",
+            "rate": 20
+        }
+    },
+    "perf_monitoring":{
+        "runtime_script": "monitoring/RuntimeMonitoring.sh",
+        "post_script": "./WorkloadAnalyzer -r -p -s -v"
+    }
+}
