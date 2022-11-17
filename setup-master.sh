@@ -5,6 +5,7 @@ sudo apt install ansible
 #sudo ./gradlew distDocker
 git clone https://github.com/PrincetonUniversity/faas-profiler /mydata/workspace/faas-profiler
 cd /mydata/workspace/faas-profiler
+git reset --hard b6f64dbfa9583e29c5679c1c9859b3818dc21638
 bash configure.sh
 cd functions/img-resize
 sudo npm install node-zip jimp --save
