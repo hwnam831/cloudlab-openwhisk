@@ -3,6 +3,7 @@
     "test_duration_in_seconds": 180,
     "random_seed": 100,
     "blocking_cli": false,
+    "endpoint": "generic",
     "instances":{
         "instance5":{
             "application": "autocomplete/names",
