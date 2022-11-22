@@ -21,6 +21,7 @@ cd ../autocomplete
 sed -i 's/nodejs:6/nodejs:14/g' lib/whisk.js
 sudo npm link
 acsetup data/names.txt
+cp /local/repository/*.json ./
 #git clone https://github.com/spcl/serverless-benchmarks /mydata/workspace/sebs
 #cd /mydata/workspace/sebs
 #python3 /mydata/workspace/sebs/install.py --openwhisk
