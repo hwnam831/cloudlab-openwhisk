@@ -7,6 +7,7 @@ git clone https://github.com/PrincetonUniversity/faas-profiler /mydata/workspace
 cd /mydata/workspace/faas-profiler
 git reset --hard b6f64dbfa9583e29c5679c1c9859b3818dc21638
 bash configure.sh
+cp /local/repository/*.json ./
 cd functions/img-resize
 sudo npm install node-zip jimp --save
 zip -r action.zip ./*
@@ -21,7 +22,6 @@ cd ../autocomplete
 sed -i 's/nodejs:6/nodejs:14/g' lib/whisk.js
 sudo npm link
 acsetup data/names.txt
-cp /local/repository/*.json ./
 #git clone https://github.com/spcl/serverless-benchmarks /mydata/workspace/sebs
 #cd /mydata/workspace/sebs
 #python3 /mydata/workspace/sebs/install.py --openwhisk
