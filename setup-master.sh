@@ -1,5 +1,6 @@
 #!/bin/bash
 wsk property set --apihost localhost:31001
+wsk property set --auth 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP
 sudo apt install ansible
 #git clone https://github.com/hwnam831/openwhisk-mlcontrol /mydata/workspace/openwhisk
 #cd /mydata/workspace/openwhisk
