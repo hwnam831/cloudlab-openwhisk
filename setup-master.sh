@@ -4,7 +4,7 @@ wsk property set --auth 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK
 sudo apt install ansible
 git clone https://github.com/apache/openwhisk-runtime-python /mydata/workspace/openwhisk-runtime-python
 cd /mydata/workspace/openwhisk-runtime-python
-./gradlew core:python3Action:distDocker
+./gradlew core:python36AiAction:distDocker
 git clone https://github.com/PrincetonUniversity/faas-profiler /mydata/workspace/faas-profiler
 cd /mydata/workspace/faas-profiler
 git reset --hard b6f64dbfa9583e29c5679c1c9859b3818dc21638
