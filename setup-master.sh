@@ -2,6 +2,7 @@
 wsk property set --apihost localhost:31001
 wsk property set --auth 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP
 sudo apt install ansible
+bash install.sh
 #git clone https://github.com/apache/openwhisk-runtime-python /mydata/workspace/openwhisk-runtime-python
 #cd /mydata/workspace/openwhisk-runtime-python
 #./gradlew core:python36AiAction:distDocker
@@ -26,6 +27,8 @@ cd ../ocr-img/
 wsk action create ocr-img handler.js --docker immortalfaas/nodejs-tesseract --web raw -i
 cd ../sentiment-analysis
 wsk action create sentiment sentiment.py --docker immortalfaas/sentiment --web raw -i
+cd ../..
+./WorkloadInvoker -c warmup.json
 #git clone https://github.com/spcl/serverless-benchmarks /mydata/workspace/sebs
 #cd /mydata/workspace/sebs
 #python3 /mydata/workspace/sebs/install.py --openwhisk
