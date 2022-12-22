@@ -2,9 +2,13 @@
 wsk property set --apihost localhost:31001
 wsk property set --auth 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP
 sudo apt install ansible
-git clone https://github.com/apache/openwhisk-runtime-python /mydata/workspace/openwhisk-runtime-python
-cd /mydata/workspace/openwhisk-runtime-python
-./gradlew core:python36AiAction:distDocker
+#git clone https://github.com/apache/openwhisk-runtime-python /mydata/workspace/openwhisk-runtime-python
+#cd /mydata/workspace/openwhisk-runtime-python
+#./gradlew core:python36AiAction:distDocker
+#docker run --rm -v "$PWD:/tmp" openwhisk/python3action bash -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
+#zip -r myaction.zip virtualenv __main__.py
+#wsk action create myaction myaction.zip --kind python:3 -i
+#wsk action create myaction myaction.py --docker openwhisk/python3aiaction
 git clone https://github.com/PrincetonUniversity/faas-profiler /mydata/workspace/faas-profiler
 cd /mydata/workspace/faas-profiler
 git reset --hard b6f64dbfa9583e29c5679c1c9859b3818dc21638
