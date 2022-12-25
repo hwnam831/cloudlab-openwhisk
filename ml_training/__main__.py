@@ -23,14 +23,14 @@ def cleanup(sentence):
     sentence = cleanup_re.sub(' ', sentence).strip()
     return sentence
 
-df_name = 'minioDataset.csv'
+df_name = 'reviews10mb.csv'
 df2_name = 'dataset2.csv'
-df_path = 'pulled_' + df_name
+df_path = 'amzn_fine_food_reviews/' + df_name
 df2_path = 'pulled_' + df2_name
 
 def getMinioClient(access, secret):
     return Minio(
-        '172.22.224.2:9000',
+        '10.10.1.1:9000',
         access_key = access,
         secret_key = secret,
         secure = False
@@ -38,7 +38,7 @@ def getMinioClient(access, secret):
 
 minioClient = getMinioClient("minioadmin", "minioadmin")
 
-minioClient.fget_object('testbucket', df_name, df_path)
+minioClient.fget_object('testbucket', df_path, df_name)
 
 df = pd.read_csv(df_path)
 df['train'] = df['Text'].apply(cleanup)
