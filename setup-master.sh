@@ -7,7 +7,7 @@ cd /mydata/workspace
 git clone https://github.com/ddps-lab/serverless-faas-workbench
 wget https://dl.minio.io/server/minio/release/linux-amd64/minio
 chmod +x minio
-sudo ./minio server /minio &
+sudo ./minio server /local/repository/minio/ &
 #git clone https://github.com/apache/openwhisk-runtime-python /mydata/workspace/openwhisk-runtime-python
 #cd /mydata/workspace/openwhisk-runtime-python
 #./gradlew core:python36AiAction:distDocker
