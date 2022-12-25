@@ -3,6 +3,11 @@ wsk property set --apihost localhost:31001
 wsk property set --auth 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP
 sudo apt install ansible
 bash install.sh
+cd /mydata/workspace
+git clone https://github.com/ddps-lab/serverless-faas-workbench
+wget https://dl.minio.io/server/minio/release/linux-amd64/minio
+chmod +x minio
+sudo ./minio server /minio &
 #git clone https://github.com/apache/openwhisk-runtime-python /mydata/workspace/openwhisk-runtime-python
 #cd /mydata/workspace/openwhisk-runtime-python
 #./gradlew core:python36AiAction:distDocker
