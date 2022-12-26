@@ -7,7 +7,7 @@ mkdir minio
 git clone https://github.com/ddps-lab/serverless-faas-workbench
 wget https://dl.minio.io/server/minio/release/linux-amd64/minio
 chmod +x minio
-sudo ./minio server /mydata/workspace/minio/ &
+sudo ./minio server /mydata/workspace/miniostorage/ &
 wget https://dl.minio.io/client/mc/release/linux-amd64/mc
 chmod +x mc
 ./mc config host add minio http://10.10.1.1:9000 minioadmin minioadmin
