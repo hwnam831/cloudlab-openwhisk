@@ -3,10 +3,16 @@ wsk property set --apihost localhost:31001
 wsk property set --auth 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP
 bash install.sh
 cd /mydata/workspace
+mkdir minio
 git clone https://github.com/ddps-lab/serverless-faas-workbench
 wget https://dl.minio.io/server/minio/release/linux-amd64/minio
 chmod +x minio
-sudo ./minio server /local/repository/minio/ &
+sudo ./minio server /mydata/workspace/minio/ &
+wget https://dl.minio.io/client/mc/release/linux-amd64/mc
+chmod +x mc
+./mc config host add minio http://10.10.1.1:9000 minioadmin minioadmin
+./mc mb minio/testbucket
+./mc cp -r serverless-faas-workbench/dataset/* minio/testbucket/
 #git clone https://github.com/apache/openwhisk-runtime-python /mydata/workspace/openwhisk-runtime-python
 #cd /mydata/workspace/openwhisk-runtime-python
 #./gradlew core:python36AiAction:distDocker
