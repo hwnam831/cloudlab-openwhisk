@@ -1,6 +1,6 @@
-FROM openwhisk/python3aiaction:latest
+FROM openwhisk/actionloop-python-v3.6-ai
 RUN apt-get update
-RUN apt-get -y install libjpeg-dev libgl1-mesa-glx libglib2.0-0
+RUN apt-get install -y libsm6 libxext6 libxrender-dev
 RUN pip install --upgrade pip
-RUN pip install opencv-python
-RUN pip install pillow psutil minio
+RUN pip install minio mxnet
+RUN pip install pillow psutil
