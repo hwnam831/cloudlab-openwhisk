@@ -33,25 +33,26 @@ def main(params):
     python_process = psutil.Process(pid)
     memoryUse_old = 0
     t1 = time.time()
-    memoryUse_old = memoryUse
+    
     memoryUse = python_process.memory_info()[0]/2.**30  # memory use in GB...I think
     print('memory use 2:', memoryUse-memoryUse_old)
-
-    memoryUse = python_process.memory_info()[0]/2.**30  # memory use in GB...I think
-    print('memory use 1:', memoryUse-memoryUse_old)
-    t2 = time.time()
     
 
     responses = ["record_response", "replay_response"]
     df_name = 'reviews10mb.csv'
-    df2_name = 'dataset2.csv'
+
     df_path = 'amzn_fine_food_reviews/' + df_name
-    df2_path = 'pulled_' + df2_name
+
     minioClient = getMinioClient("minioadmin", "minioadmin")
 
-    minioClient.fget_object('testbucket', df_path, df_name)
+    minioClient.fget_object('testbucket', df_path, '/tmp/'+df_name)
 
-    df = pd.read_csv(df_path)
+    memoryUse_old = memoryUse
+    memoryUse = python_process.memory_info()[0]/2.**30  # memory use in GB...I think
+    print('memory use 1:', memoryUse-memoryUse_old)
+    t2 = time.time()
+
+    df = pd.read_csv('/tmp/'+df_name)
     df['train'] = df['Text'].apply(cleanup)
 
     t3 = time.time()
@@ -69,4 +70,4 @@ def main(params):
     memoryUse = python_process.memory_info()[0]/2.**30  # memory use in GB...I think
     print('memory use 3:', memoryUse-memoryUse_old)
 
-    return {"Ok":"done"}
+    return {"Ok":"done", 'latency':t4-t1}

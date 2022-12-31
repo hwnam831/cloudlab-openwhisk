@@ -1,13 +1,14 @@
 {
     "test_name": "example_test",
-    "test_duration_in_seconds": 120,
-    "random_seed": 100,
+    "test_duration_in_seconds": 20,
+    "random_seed": 105,
     "blocking_cli": false,
     "instances":{
         "instance5":{
-            "application": "autocomplete/names",
+            "application": "matmul",
             "distribution": "Poisson",
-            "rate": 20
+            "data_file":"matmul_params.json",
+            "rate": 10
         }
     },
     "perf_monitoring":{
