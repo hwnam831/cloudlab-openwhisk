@@ -1,41 +1,44 @@
 import time
 import psutil
 import os
-pid = os.getpid()
-python_process = psutil.Process(pid)
-memoryUse_old = 0
-t1 = time.time()
+
 
 from mxnet import gluon
 import mxnet as mx
 from minio import Minio
 from PIL import Image
 
-t2 = time.time()
-memoryUse = python_process.memory_info()[0]/2.**30
-print('memory use 1:', memoryUse-memoryUse_old)
 
-def getMinioClient(access, secret):
-    return Minio(
-        '172.22.224.2:9000',
-        access_key = access,
-        secret_key = secret,
-        secure = False
-    )
-
-minioClient = getMinioClient("minioadmin", "minioadmin")
-net = gluon.model_zoo.vision.resnet50_v1(pretrained=True, root = '/tmp/')
-net.hybridize(static_alloc=True, static_shape=True)
-lblPath = gluon.utils.download('http://data.mxnet.io/models/imagenet/synset.txt',path='/tmp/')
-with open(lblPath, 'r') as f:
-    labels = [l.rstrip() for l in f]
-t3 = time.time()
-memoryUse_old = memoryUse
-memoryUse = python_process.memory_info()[0]/2.**30
-print('memory use 2:', memoryUse-memoryUse_old)
 
 def main(params):
-    imgName = params["imgName"]
+    pid = os.getpid()
+    python_process = psutil.Process(pid)
+    memoryUse_old = 0
+    t1 = time.time()
+    t2 = time.time()
+    memoryUse = python_process.memory_info()[0]/2.**30
+    print('memory use 1:', memoryUse-memoryUse_old)
+
+    def getMinioClient(access, secret):
+        return Minio(
+            '10.10.1.1:9000',
+            access_key = access,
+            secret_key = secret,
+            secure = False
+        )
+
+    minioClient = getMinioClient("minioadmin", "minioadmin")
+    net = gluon.model_zoo.vision.resnet50_v1(pretrained=True, root = '/tmp/')
+    net.hybridize(static_alloc=True, static_shape=True)
+    lblPath = gluon.utils.download('http://data.mxnet.io/models/imagenet/synset.txt',path='/tmp/')
+    with open(lblPath, 'r') as f:
+        labels = [l.rstrip() for l in f]
+    t3 = time.time()
+    memoryUse_old = memoryUse
+    memoryUse = python_process.memory_info()[0]/2.**30
+    print('memory use 2:', memoryUse-memoryUse_old)
+    #imgName = params["imgName"]
+    imgName = 'image/animal-dog.jpg'
     minioFile = minioClient.get_object('testbucket', imgName)
     image = Image.open(minioFile)
     image.save('tempImage.jpeg')
@@ -65,4 +68,4 @@ def main(params):
     memoryUse = python_process.memory_info()[0]/2.**30  # memory use in GB...I think
     print('memory use 3:', memoryUse-memoryUse_old)
 
-    return inference
+    return {'inference':inference}

@@ -12,9 +12,9 @@ chmod +x minio
 sudo ./minio server /mydata/workspace/miniostorage/ &
 wget https://dl.minio.io/client/mc/release/linux-amd64/mc
 chmod +x mc
-./mc config host add minio http://10.10.1.1:9000 minioadmin minioadmin
-./mc mb minio/testbucket
-./mc cp -r serverless-faas-workbench/dataset/* minio/testbucket/
+./mc alias set myminio/ http://10.10.1.1:9000 minioadmin minioadmin
+./mc mb myminio/testbucket
+./mc cp -r serverless-faas-workbench/dataset/* myminio/testbucket/
 #git clone https://github.com/apache/openwhisk-runtime-python /mydata/workspace/openwhisk-runtime-python
 #cd /mydata/workspace/openwhisk-runtime-python
 #./gradlew core:python36AiAction:distDocker
