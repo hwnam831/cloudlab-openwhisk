@@ -5,7 +5,7 @@ from minio import Minio
 
 def getMinioClient(access, secret):
     return Minio(
-        '172.22.224.2:9000',
+        '10.10.1.1:9000',
         access_key = access,
         secret_key = secret,
         secure = False
@@ -14,7 +14,7 @@ def getMinioClient(access, secret):
 def main(params):
     startTime1 = time.time()
     minioClient = getMinioClient("minioadmin", "minioadmin")
-    minioFile = minioClient.get_object('testbucket', params["inImg"])
+    minioFile = minioClient.get_object('testbucket', 'image/image.jpg')
     image = Image.open(minioFile)
     endTime1 = time.time()
     startTime2 = time.time()
@@ -26,7 +26,7 @@ def main(params):
         startTime3 = time.time()
         minioClient.put_object(
             'testbucket',
-            params["outImg"],
+            'image/newImage.jpg',
             testFile,
             statdata.st_size
         )

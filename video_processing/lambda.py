@@ -1,59 +1,74 @@
 import time
 import psutil
 import os
-pid = os.getpid()
-python_process = psutil.Process(pid)
-memoryUse_old = 0
-t1 = time.time()
 import cv2
+from minio import Minio
 
-memoryUse = python_process.memory_info()[0]/2.**30  # memory use in GB...I think
-print('memory use 1:', memoryUse-memoryUse_old)
-t2 = time.time()
+def video_processing(object_key, video_path):
+    file_name = object_key.split(".")[0]
+    tmp = '/tmp'
+    result_file_path = tmp+file_name+'-output.avi'
 
-tmp = "/tmp/"
+    video = cv2.VideoCapture(video_path)
+    
+    width = int(video.get(3))
+    height = int(video.get(4))
 
-vid1_name = '/home/jovans2/apps/video_processing/vid1.mp4'
-vid2_name = '/home/jovans2/apps/video_processing/vid2.mp4'
+    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    out = cv2.VideoWriter(result_file_path, fourcc, 20.0, (width, height))
 
-result_file_path = tmp + vid2_name
-
-video = cv2.VideoCapture(vid2_name)
-
-width = int(video.get(3))
-height = int(video.get(4))
-fourcc = cv2.VideoWriter_fourcc(*'MPEG')
-out = cv2.VideoWriter('output.avi',fourcc, 20.0, (width, height))
-
-t3 = time.time()
-
-def video_processing():
-    timeO = 0
+    start = time.time()
     while video.isOpened():
         ret, frame = video.read()
-        start = time.time()
+
         if ret:
             gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             tmp_file_path = tmp+'tmp.jpg'
             cv2.imwrite(tmp_file_path, gray_frame)
-            #gray_frame = cv2.imread(tmp_file_path)
-            #out.write(gray_frame)
-            break
+            gray_frame = cv2.imread(tmp_file_path)
+            out.write(gray_frame)
         else:
             break
-        end = time.time()
-        timeO += end - start
+
+    latency = time.time() - start
+
     video.release()
     out.release()
-    return
+    return latency, result_file_path
+
+def getMinioClient(access, secret):
+    return Minio(
+        '10.10.1.1:9000',
+        access_key = access,
+        secret_key = secret,
+        secure = False
+    )
 
 def main(params):
+    pid = os.getpid()
+    python_process = psutil.Process(pid)
+    memoryUse_old = 0
+    t1 = time.time()
+    memoryUse = python_process.memory_info()[0]/2.**30  # memory use in GB...I think
 
     memoryUse_old = memoryUse
     memoryUse = python_process.memory_info()[0]/2.**30  # memory use in GB...I think
     print('memory use 2:', memoryUse-memoryUse_old)
+    tmp = "/tmp/"
 
-    video_processing()
+    vid_name = 'SampleVideo_1280x720_10mb.mp4'
+    minioClient = getMinioClient("minioadmin", "minioadmin")
+
+    minioClient.fget_object('testbucket', 'video/'+vid_name, tmp+vid_name)
+    print('memory use 1:', memoryUse-memoryUse_old)
+    t2 = time.time()
+
+
+
+    latency, result_file = video_processing(vid_name, tmp+vid_name)
+
+    t3 = time.time()
+
 
     t4 = time.time()
     print(t2-t1)
@@ -62,3 +77,4 @@ def main(params):
     memoryUse_old = memoryUse
     memoryUse = python_process.memory_info()[0]/2.**30  # memory use in GB...I think
     print('memory use 3:', memoryUse-memoryUse_old)
+    return {'latency':latency}
