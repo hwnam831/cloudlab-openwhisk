@@ -4,11 +4,20 @@
     "random_seed": 105,
     "blocking_cli": false,
     "instances":{
-        "instance5":{
-            "application": "matmul",
+        "instance1":{
+            "application": "rnn_serving",
             "distribution": "Poisson",
-            "param_file":"matmul_params.json",
-            "rate": 20
+            "rate": 5
+        },
+        "instance2":{
+            "application": "lr_serving",
+            "distribution": "Poisson",
+            "rate": 5
+        },
+        "instance5":{
+            "application": "cnn_serving",
+            "distribution": "Poisson",
+            "rate": 5
         }
     },
     "perf_monitoring":{

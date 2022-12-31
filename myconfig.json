@@ -1,6 +1,6 @@
 {
     "test_name": "example_test",
-    "test_duration_in_seconds": 120,
+    "test_duration_in_seconds": 60,
     "random_seed": 100,
     "blocking_cli": false,
     "instances":{
@@ -8,7 +8,7 @@
             "application": "sentiment",
             "distribution": "Poisson",
             "param_file": "functions/sentiment-analysis/declaration.json",
-            "rate": 4
+            "rate": 1
         },
         "instance2":{
             "application": "ocr-img",
@@ -20,18 +20,18 @@
             "application": "markdown2html",
             "param_file": "functions/markdown-to-html/openpiton-readme.json",
             "distribution": "Poisson",
-            "rate": 3
+            "rate": 1
         },
         "instance4":{
             "application": "img-resize",
             "distribution": "Uniform",
             "data_file":"functions/img-resize/libertybell.jpg",
-            "rate": 2
+            "rate": 0.3
         },
         "instance5":{
             "application": "primes-python",
             "distribution": "Poisson",
-            "rate": 1
+            "rate": 0.3
         },
         "instance6":{
             "application": "matmul",
@@ -48,7 +48,17 @@
         "instance8":{
             "application": "base64-python",
             "distribution": "Poisson",
-            "rate": 3
+            "rate": 1
+        },
+        "instance9":{
+            "application": "image_rotate",
+            "distribution": "Poisson",
+            "rate": 1
+        },
+        "instance10":{
+            "application": "video_processing",
+            "distribution": "Poisson",
+            "rate": 0.1
         }
     },
     "perf_monitoring":{
