@@ -14,7 +14,7 @@
             "application": "ocr-img",
             "distribution": "Uniform",
             "data_file":"functions/ocr-img/linuxboot.jpg",
-            "rate": 1
+            "rate": 0.5
         },
         "instance3":{
             "application": "markdown2html",
