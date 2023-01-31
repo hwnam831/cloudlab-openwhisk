@@ -6,8 +6,8 @@
     "instances":{
         "instance5":{
             "application": "video_processing",
-            "distribution": "Uniform",
-            "rate": 0.5
+            "distribution": "Poisson",
+            "rate": 0.3
         }
     },
     "perf_monitoring":{
