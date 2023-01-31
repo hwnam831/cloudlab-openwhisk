@@ -7,9 +7,12 @@ bash install.sh
 cd /mydata/workspace
 mkdir minio
 git clone https://github.com/ddps-lab/serverless-faas-workbench
-wget https://dl.minio.io/server/minio/release/linux-amd64/minio
-chmod +x minio
-sudo ./minio server /mydata/workspace/miniostorage/ &
+#wget https://dl.minio.io/server/minio/release/linux-amd64/minio
+#chmod +x minio
+#sudo ./minio server /mydata/workspace/miniostorage/ &
+wget https://dl.min.io/server/minio/release/linux-amd64/minio_20230131022419.0.0_amd64.deb
+sudo dpkg -i minio_20230131022419.0.0_amd64.deb
+MINIO_ROOT_USER=minioadmin MINIO_ROOT_PASSWORD=minioadmin minio server /mydata/workspace/miniostorage --console-address ":9001" &
 wget https://dl.minio.io/client/mc/release/linux-amd64/mc
 chmod +x mc
 ./mc alias set myminio/ http://10.10.1.1:9000 minioadmin minioadmin
@@ -48,3 +51,5 @@ cd ../..
 #./sebs.py storage start minio --output-json config/minio.json
 #jq --argfile file1 config/minio.json '.deployment.openwhisk.storage = $file1 ' config/example.json > config/ow.json
 #echo "./sebs.py experiment invoke perf-cost --config config/ow.json --deployment openwhisk --verbose" > perf-cost.sh
+#Check if minio works
+wsk action invoke -i video_processing --result
