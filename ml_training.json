@@ -6,8 +6,8 @@
     "instances":{
         "instance5":{
             "application": "ml_training",
-            "distribution": "Uniform",
-            "rate": 5
+            "distribution": "Poisson",
+            "rate": 3
         }
     },
     "perf_monitoring":{
