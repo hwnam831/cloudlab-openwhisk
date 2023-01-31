@@ -8,7 +8,7 @@
             "application": "matmul",
             "distribution": "Poisson",
             "param_file":"matmul_params.json",
-            "rate": 20
+            "rate": 2.5
         }
     },
     "perf_monitoring":{
