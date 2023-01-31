@@ -1,12 +1,12 @@
 {
     "test_name": "example_test",
-    "test_duration_in_seconds": 60,
+    "test_duration_in_seconds": 90,
     "random_seed": 105,
     "blocking_cli": false,
     "instances":{
         "instance5":{
             "application": "image_rotate",
-            "distribution": "Uniform",
+            "distribution": "Poisson",
             "rate": 20
         }
     },
