@@ -1,64 +1,57 @@
 {
     "test_name": "example_test",
-    "test_duration_in_seconds": 60,
+    "test_duration_in_seconds": 90,
     "random_seed": 100,
     "blocking_cli": false,
     "instances":{
-        "instance1":{
-            "application": "sentiment",
-            "distribution": "Poisson",
-            "param_file": "functions/sentiment-analysis/declaration.json",
-            "rate": 1
-        },
         "instance2":{
             "application": "ocr-img",
-            "distribution": "Uniform",
-            "data_file":"functions/ocr-img/linuxboot.jpg",
-            "rate": 0.5
-        },
-        "instance3":{
-            "application": "markdown2html",
-            "param_file": "functions/markdown-to-html/openpiton-readme.json",
             "distribution": "Poisson",
-            "rate": 1
+            "data_file":"functions/ocr-img/linuxboot.jpg",
+            "rate": 0.1
         },
         "instance4":{
             "application": "img-resize",
-            "distribution": "Uniform",
+            "distribution": "Poisson",
             "data_file":"functions/img-resize/libertybell.jpg",
-            "rate": 0.3
+            "rate": 2
         },
         "instance5":{
             "application": "primes-python",
             "distribution": "Poisson",
-            "rate": 0.3
+            "rate": 0.8
         },
         "instance6":{
             "application": "matmul",
             "distribution": "Uniform",
             "data_file":"matmul_params.json",
-            "rate": 1
+            "rate": 0.3
         },
         "instance7":{
             "application": "linpack",
             "distribution": "Uniform",
             "data_file":"matmul_params.json",
-            "rate": 1
-        },
-        "instance8":{
-            "application": "base64-python",
-            "distribution": "Poisson",
-            "rate": 1
-        },
-        "instance9":{
-            "application": "image_rotate",
-            "distribution": "Poisson",
-            "rate": 1
+            "rate": 0.1
         },
         "instance10":{
             "application": "video_processing",
             "distribution": "Poisson",
             "rate": 0.1
+        },
+        "cnn":{
+            "application": "cnn_serving",
+            "distribution": "Poisson",
+            "rate": 0.1
+        },
+        "lr":{
+            "application": "lr_serving",
+            "distribution": "Poisson",
+            "rate": 0.1
+        },
+        "ml":{
+            "application": "ml_training",
+            "distribution": "Poisson",
+            "rate": 0.3
         }
     },
     "perf_monitoring":{
