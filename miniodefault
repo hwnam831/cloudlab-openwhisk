@@ -1,0 +1,4 @@
+MINIO_VOLUMES="/mydata/workspace/miniostorage/"
+MINIO_OPTS="--console-address :9001"
+MINIO_ROOT_USER=minioadmin
+MINIO_ROOT_PASSWORD=minioadmin
