@@ -41,7 +41,7 @@ def main(params):
     dataset = pd.read_csv('/tmp/'+datafile)
     df_input = pd.DataFrame()
     dataset['train'] = dataset['Text'].apply(cleanup)
-    tfidf_vect = TfidfVectorizer(min_df=100,max_features=2338).fit(dataset['train'])
+    tfidf_vect = TfidfVectorizer(min_df=100,max_features=2022).fit(dataset['train'])
     x = 'The ambiance is magical. The food and service was nice! The lobster and cheese was to die for and our steaks were cooked perfectly.'
     df_input['x'] = [x]
     df_input['x'] = df_input['x'].apply(cleanup)
