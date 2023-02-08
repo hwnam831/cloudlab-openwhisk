@@ -5,14 +5,13 @@ wsk property set --apihost localhost:31001
 wsk property set --auth 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP
 bash install.sh
 cd /mydata/workspace
-mkdir minio
 git clone https://github.com/ddps-lab/serverless-faas-workbench
-#wget https://dl.minio.io/server/minio/release/linux-amd64/minio
-#chmod +x minio
-#sudo ./minio server /mydata/workspace/miniostorage/ &
-wget https://dl.min.io/server/minio/release/linux-amd64/minio_20230131022419.0.0_amd64.deb
-sudo dpkg -i minio_20230131022419.0.0_amd64.deb
-MINIO_ROOT_USER=minioadmin MINIO_ROOT_PASSWORD=minioadmin minio server /mydata/workspace/miniostorage --console-address ":9001" &
+wget https://dl.minio.io/server/minio/release/linux-amd64/minio
+chmod +x minio
+sudo ./minio server /mydata/workspace/miniostorage/ &
+#wget https://dl.min.io/server/minio/release/linux-amd64/minio_20230131022419.0.0_amd64.deb
+#sudo dpkg -i minio_20230131022419.0.0_amd64.deb
+#MINIO_ROOT_USER=minioadmin MINIO_ROOT_PASSWORD=minioadmin ./minio server /mydata/workspace/miniostorage --console-address ":9001" &
 #sudo groupadd -r minio-user
 #sudo useradd -M -r -g minio-user minio-user
 #sudo chown minio-user:minio-user /mydata/workspace/miniostorage
