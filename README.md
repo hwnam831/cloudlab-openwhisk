@@ -61,3 +61,11 @@ Version 2 of this profile is found in the ```v2``` branch (and main).
 ## Image Creation
 
 The [```image_setup.sh```](image_setup.sh) script is how the image was created from the base CloudLab Ubuntu 20.04 image.
+
+## MXContainer
+- make sure the invoker image is also at invoker node, controller image is at controller node
+- uninstall and re-install owdev
+- both invoker and controller
+- pull mxcontainer at invoker node / specify when create the action
+- change invoker engine to docker
+- run nodeController from invoker node in background

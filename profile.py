@@ -60,7 +60,7 @@ pc.defineParameter("numInvokers",
 pc.defineParameter("invokerEngine",
                    "Invoker Engine",
                    portal.ParameterType.STRING,
-                   "kubernetes",
+                   "docker",
                    advanced=True,
                    legalValues=[('kubernetes', 'Kubernetes Container Engine'), ('docker', 'Docker Container Engine')],
                    longDescription="Controls how the OpenWhisk invoker creates containers. Using docker indicates that you need one invoker per invoker " \
