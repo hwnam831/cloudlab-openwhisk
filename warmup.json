@@ -4,29 +4,17 @@
     "random_seed": 100,
     "blocking_cli": false,
     "instances":{
-        "instance1":{
-            "application": "sentiment",
-            "distribution": "Poisson",
-            "param_file": "functions/sentiment-analysis/declaration.json",
-            "rate": 4
-        },
         "instance2":{
             "application": "ocr-img",
             "distribution": "Uniform",
             "data_file":"functions/ocr-img/linuxboot.jpg",
             "rate": 1
         },
-        "instance3":{
-            "application": "markdown2html",
-            "param_file": "functions/markdown-to-html/openpiton-readme.json",
-            "distribution": "Poisson",
-            "rate": 3
-        },
         "instance4":{
             "application": "img-resize",
             "distribution": "Uniform",
             "data_file":"functions/img-resize/libertybell.jpg",
-            "rate": 2
+            "rate": 1
         },
         "instance5":{
             "application": "primes-python",
@@ -45,11 +33,27 @@
             "param_file":"matmul_params.json",
             "rate": 1
         },
-        "instance8":{
-            "application": "base64-python",
+        "instance10":{
+            "application": "video_processing",
             "distribution": "Poisson",
-            "rate": 3
+            "rate": 1
+        },
+        "cnn":{
+            "application": "cnn_serving",
+            "distribution": "Poisson",
+            "rate": 1
+        },
+        "lr":{
+            "application": "lr_serving",
+            "distribution": "Poisson",
+            "rate": 1
+        },
+        "ml":{
+            "application": "ml_training",
+            "distribution": "Poisson",
+            "rate": 1
         }
+        
     },
     "perf_monitoring":{
         "runtime_script": "monitoring/RuntimeMonitoring.sh",
