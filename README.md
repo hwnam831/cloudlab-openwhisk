@@ -69,3 +69,8 @@ The [```image_setup.sh```](image_setup.sh) script is how the image was created f
 - pull mxcontainer at invoker node / specify when create the action
 - change invoker engine to docker
 - run nodeController from invoker node in background
+
+## TODO
+- add nodecontroller
+- fix mxcontainer:latest
+- why only 8 cores?
