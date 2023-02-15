@@ -7,7 +7,7 @@
         "instance5":{
             "application": "ml_training",
             "distribution": "Poisson",
-            "rate": 3
+            "rate": 0.6
         }
     },
     "perf_monitoring":{
