@@ -57,7 +57,7 @@ def main(params):
 
     t3 = time.time()
 
-    model = LogisticRegression()
+    model = LogisticRegression(solver='liblinear')
     tfidf_vector = TfidfVectorizer(min_df=100).fit(df['train'])
     train = tfidf_vector.transform(df['train'])
     model.fit(train, df['Score'])
