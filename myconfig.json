@@ -44,7 +44,7 @@
         "ml":{
             "application": "ml_training",
             "distribution": "Poisson",
-            "rate": 0.3
+            "rate": 0.2
         }
     },
     "perf_monitoring":{
