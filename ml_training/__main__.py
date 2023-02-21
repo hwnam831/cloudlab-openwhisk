@@ -39,7 +39,7 @@ def main(params):
     
 
     responses = ["record_response", "replay_response"]
-    df_name = 'reviews50mb.csv'
+    df_name = 'reviews20mb.csv'
 
     df_path = 'amzn_fine_food_reviews/' + df_name
 
