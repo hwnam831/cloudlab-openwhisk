@@ -5,15 +5,8 @@
     "blocking_cli": false,
     "instances":{
         "instance2":{
-            "application": "ocr-img",
-            "distribution": "Uniform",
-            "data_file":"functions/ocr-img/linuxboot.jpg",
-            "rate": 1
-        },
-        "instance4":{
-            "application": "img-resize",
-            "distribution": "Uniform",
-            "data_file":"functions/img-resize/libertybell.jpg",
+            "application": "image_rotate",
+            "distribution": "Poisson",
             "rate": 1
         },
         "instance5":{
