@@ -8,7 +8,7 @@ unzip libtorch-shared-with-deps-latest.zip
 cd /mydata/workspace/jrapl
 make
 make install
-sudo apt install --yes libpfm4-dev cpufrequtils msr-tools
+sudo apt install --yes libpfm4-dev cpufrequtils msr-tools cmake
 sudo modprobe msr
 #sudo wrmsr --all 0x1a0 0x4000850089
 git config --global user.email "hwnam831@gmail.com"
