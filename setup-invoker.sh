@@ -1,6 +1,8 @@
 #!/bin/bash
 cd /local/repository
 bash setup-all.sh
+tmux new -d -s ctl
+tmux send-keys -t ctl 'python3 owPackageController.py'
 #python3 owPackageController.py &
 git clone https://github.com/hwnam831/jRAPL-percore /mydata/workspace/jrapl
 cd /mydata/workspace
