@@ -8,11 +8,7 @@
             "application": "matmul",
             "distribution": "Poisson",
             "param_file":"matmul_params.json",
-            "rate": 2.5
+            "rate": 1
         }
-    },
-    "perf_monitoring":{
-        "runtime_script": "monitoring/RuntimeMonitoring.sh",
-        "post_script": "./WorkloadAnalyzer -r -p -s -v"
     }
 }

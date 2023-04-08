@@ -7,11 +7,7 @@
         "instance2":{
             "application": "lr_serving",
             "distribution": "Poisson",
-            "rate": 1
+            "rate": 0.5
         }
-    },
-    "perf_monitoring":{
-        "runtime_script": "monitoring/RuntimeMonitoring.sh",
-        "post_script": "./WorkloadAnalyzer -r -p -s -v"
     }
 }

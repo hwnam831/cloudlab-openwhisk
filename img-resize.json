@@ -8,11 +8,7 @@
             "application": "img-resize",
             "distribution": "Poisson",
             "data_file":"functions/img-resize/libertybell.jpg",
-            "rate": 20
+            "rate": 10
         }
-    },
-    "perf_monitoring":{
-        "runtime_script": "monitoring/RuntimeMonitoring.sh",
-        "post_script": "./WorkloadAnalyzer -r -p -s -v"
     }
 }

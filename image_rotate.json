@@ -7,11 +7,7 @@
         "instance5":{
             "application": "image_rotate",
             "distribution": "Poisson",
-            "rate": 20
+            "rate": 10
         }
-    },
-    "perf_monitoring":{
-        "runtime_script": "monitoring/RuntimeMonitoring.sh",
-        "post_script": "./WorkloadAnalyzer -r -p -s -v"
     }
 }
