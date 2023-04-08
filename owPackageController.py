@@ -55,6 +55,18 @@ mapFuncToRegions = {}
 setFreeCores = set()
 # map functions to classes
 mapFuncToClass = {}
+mapFuncToSocket = {
+    'ocr-img':0,
+    'matmul':1,
+    'linpack':0,
+    'primes':1,
+    'ml_training':0,
+    'video_processing':1,
+    'cnn_serving':0,
+    'lr_serving':1,
+    'img-resize':0,
+    'img-rotate':1
+}
 
 lockStatus = threading.Lock()
 
@@ -84,8 +96,11 @@ def delete_func(func):
             setFreeCores.add(core)
     pkg_funcs[pkg].remove(func)
 
-def allocator():
-    return random.randint(0,num_socket-1)
+def allocator(funcName):
+    if funcName in mapFuncToSocket:
+        return mapFuncToSocket[funcName]
+    else:
+        return random.randint(0,num_socket-1)
 
 def checkThread():
 
@@ -177,8 +192,8 @@ def loadBalancer():
         except:
             print("docker update failed?")
             pass
-balancer = threading.Thread(target=loadBalancer)
-balancer.start()
+#balancer = threading.Thread(target=loadBalancer)
+#balancer.start()
 print("wait on requests")
 
 
@@ -214,7 +229,7 @@ while True:
     if funcName in mapFuncToSetCores:
         delete_func(funcName)
     #Naive algorithm: random distribution
-    pkg_id = allocator()
+    pkg_id = allocator(funcName)
     mapFuncToSetCores[funcName] = pkg_to_cpuset[pkg_id]
     mapFuncToContainers[funcName] = containerName
     func_to_pkg[funcName] = pkg_id
