@@ -65,7 +65,9 @@ mapFuncToSocket = {
     'cnn_serving':0,
     'lr_serving':1,
     'img-resize':0,
-    'img-rotate':1
+    'img-rotate':1,
+    'base64':0,
+    'rnn_serving':1
 }
 
 lockStatus = threading.Lock()
