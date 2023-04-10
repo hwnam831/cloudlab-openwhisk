@@ -1,0 +1,18 @@
+{
+    "test_duration_in_seconds": 90,
+    "blocking_cli": false,
+    "random_seed": 78,
+    "test_name": "cnn_serving_rnn_serving",
+    "instances": {
+        "cnn_serving": {
+            "application": "cnn_serving",
+            "distribution": "Poisson",
+            "rate": 0.5
+        },
+        "rnn_serving": {
+            "application": "rnn_serving",
+            "distribution": "Poisson",
+            "rate": 5
+        }
+    }
+}
