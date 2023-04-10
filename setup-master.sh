@@ -34,6 +34,7 @@ cd /mydata/workspace/faas-profiler
 git reset --hard b6f64dbfa9583e29c5679c1c9859b3818dc21638
 bash configure.sh
 cp /local/repository/*.json ./
+cp /local/repository/mxcontainerconfigs/*.json ./
 wsk action create primes-python functions/microbenchmarks/primes/primes-python.py --docker hwnam831/mxcontainer:latest -i
 wsk action create base64-python functions/microbenchmarks/base64/base64-python.py --docker hwnam831/mxcontainer:latest -i
 cd functions/img-resize
