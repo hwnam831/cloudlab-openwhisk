@@ -1,13 +1,13 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 80,
+    "random_seed": 56,
     "test_name": "cnn_serving_image_rotate",
     "instances": {
         "cnn_serving": {
             "application": "cnn_serving",
             "distribution": "Poisson",
-            "rate": 0.5
+            "rate": 2.0
         },
         "image_rotate": {
             "application": "image_rotate",

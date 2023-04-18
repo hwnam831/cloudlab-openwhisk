@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 38,
+    "random_seed": 53,
     "test_name": "ml_training_image_rotate",
     "instances": {
         "ml_training": {

@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 32,
+    "random_seed": 67,
     "test_name": "ml_training_video_processing",
     "instances": {
         "ml_training": {
@@ -12,7 +12,7 @@
         "video_processing": {
             "application": "video_processing",
             "distribution": "Poisson",
-            "rate": 0.1
+            "rate": 0.2
         }
     }
 }

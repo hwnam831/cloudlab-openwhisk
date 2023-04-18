@@ -7,6 +7,7 @@ valset0 = ['linpack']
 valset1 = ['lr_serving', 'primes']
 
 def create_json(name1, name2):
+    dirname = 'mxcontainerconfigs/'
     base_json = {"test_duration_in_seconds": 90,
     "blocking_cli": False}
     base_json["random_seed"] = random.randint(0,100)
@@ -18,7 +19,7 @@ def create_json(name1, name2):
     inst2 = json2["instances"][list(json2["instances"].keys())[0]]
     base_json["instances"][name1] = inst1
     base_json["instances"][name2] = inst2
-    with open(name1+'_'+name2+'.json', 'w', encoding='utf-8') as f:
+    with open(dirname+name1+'_'+name2+'.json', 'w', encoding='utf-8') as f:
         json.dump(base_json, f, ensure_ascii=False, indent=4)
 
 if __name__=='__main__':

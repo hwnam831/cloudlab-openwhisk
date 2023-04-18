@@ -8,17 +8,17 @@
             "application": "linpack",
             "distribution": "Poisson",
             "param_file": "matmul_params.json",
-            "rate": 0.2
+            "rate": 1
         },
         "lr_serving": {
             "application": "lr_serving",
             "distribution": "Poisson",
-            "rate": 0.2
+            "rate": 0.5
         },
         "primes": {
             "application": "primes-python",
             "distribution": "Poisson",
-            "rate": 2
+            "rate": 4
         }
     }
 }
