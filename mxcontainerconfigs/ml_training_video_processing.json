@@ -7,12 +7,12 @@
         "ml_training": {
             "application": "ml_training",
             "distribution": "Poisson",
-            "rate": 0.3
+            "rate": 0.5
         },
         "video_processing": {
             "application": "video_processing",
             "distribution": "Poisson",
-            "rate": 0.2
+            "rate": 0.1
         }
     }
 }
