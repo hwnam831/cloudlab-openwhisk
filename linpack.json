@@ -8,7 +8,7 @@
             "application": "linpack",
             "distribution": "Poisson",
             "param_file":"matmul_params.json",
-            "rate": 0.5
+            "rate": 2
         }
     }
 }
