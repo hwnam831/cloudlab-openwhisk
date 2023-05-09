@@ -11,6 +11,8 @@ bash configure.sh
 cp /local/repository/*.json ./
 wsk action create primes-python functions/microbenchmarks/primes/primes-python.py --docker hwnam831/mxcontainer:latest -i
 wsk action create base64-python functions/microbenchmarks/base64/base64-python.py --docker hwnam831/mxcontainer:latest -i
+wsk action create primes-python1 functions/microbenchmarks/primes/primes-python.py --docker hwnam831/mxcontainer:latest -i
+wsk action create base64-python1 functions/microbenchmarks/base64/base64-python.py --docker hwnam831/mxcontainer:latest -i
 cd functions/img-resize
 sudo npm install node-zip jimp --save
 zip -r action.zip ./*
