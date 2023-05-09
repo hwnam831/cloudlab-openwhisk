@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 39,
+    "random_seed": 57,
     "test_name": "base64_image_rotate",
     "instances": {
         "base64": {
@@ -12,7 +12,7 @@
         "image_rotate": {
             "application": "image_rotate1",
             "distribution": "Poisson",
-            "rate": 10
+            "rate": 2
         }
     }
 }

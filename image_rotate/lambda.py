@@ -19,7 +19,7 @@ def main(params):
     image = Image.open(minioFile)
     endTime1 = time.time()
     startTime2 = time.time()
-    img = image.resize((4000, 4000))
+    img = image.resize((8000, 8000))
     img = img.transpose(Image.ROTATE_90)
     img = img.filter(ImageFilter.SHARPEN)
     img.thumbnail((256,256))

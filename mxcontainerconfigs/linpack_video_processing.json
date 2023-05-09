@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 87,
+    "random_seed": 90,
     "test_name": "linpack_video_processing",
     "instances": {
         "linpack": {
