@@ -7,7 +7,7 @@
         "instance5":{
             "application": "image_rotate",
             "distribution": "Poisson",
-            "rate": 10
+            "rate": 1
         }
     }
 }
