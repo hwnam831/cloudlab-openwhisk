@@ -1,18 +1,18 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 67,
-    "test_name": "ml_training_video_processing",
+    "random_seed": 32,
+    "test_name": "video_processing_primes",
     "instances": {
-        "ml_training": {
-            "application": "ml_training",
-            "distribution": "Poisson",
-            "rate": 0.5
-        },
         "video_processing": {
             "application": "video_processing",
             "distribution": "Poisson",
             "rate": 0.2
+        },
+        "primes": {
+            "application": "primes-python1",
+            "distribution": "Poisson",
+            "rate": 4
         }
     }
 }

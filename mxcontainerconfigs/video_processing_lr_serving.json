@@ -1,14 +1,13 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 90,
-    "test_name": "linpack_lr_serving",
+    "random_seed": 56,
+    "test_name": "video_processing_lr_serving",
     "instances": {
-        "linpack": {
-            "application": "linpack",
+        "video_processing": {
+            "application": "video_processing",
             "distribution": "Poisson",
-            "param_file": "matmul_params.json",
-            "rate": 2
+            "rate": 0.2
         },
         "lr_serving": {
             "application": "lr_serving1",

@@ -1,16 +1,16 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 37,
-    "test_name": "cnn_serving_video_processing",
+    "random_seed": 10,
+    "test_name": "primes_video_processing",
     "instances": {
-        "cnn_serving": {
-            "application": "cnn_serving",
+        "primes": {
+            "application": "primes-python",
             "distribution": "Poisson",
-            "rate": 2.0
+            "rate": 4
         },
         "video_processing": {
-            "application": "video_processing",
+            "application": "video_processing1",
             "distribution": "Poisson",
             "rate": 0.2
         }

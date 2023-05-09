@@ -66,6 +66,8 @@ mapFuncToSocket = {
     'img-rotate':0,
     'base64':0,
     'rnn_serving':0,
+    'sentiment':0,
+    'markdown2html':0,
     'matmul1':1,
     'linpack1':1,
     'primes1':1,
@@ -75,7 +77,9 @@ mapFuncToSocket = {
     'lr_serving1':1,
     'img-rotate1':1,
     'base641':1,
-    'rnn_serving1':1
+    'rnn_serving1':1,
+    'sentiment1':1,
+    'markdown2html1':1,
 }
 
 lockStatus = threading.Lock()

@@ -1,19 +1,19 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 73,
-    "test_name": "linpack_primes",
+    "random_seed": 1,
+    "test_name": "matmul_ml_training",
     "instances": {
-        "linpack": {
-            "application": "linpack",
+        "matmul": {
+            "application": "matmul",
             "distribution": "Poisson",
             "param_file": "matmul_params.json",
-            "rate": 2
+            "rate": 2.0
         },
-        "primes": {
-            "application": "primes-python1",
+        "ml_training": {
+            "application": "ml_training1",
             "distribution": "Poisson",
-            "rate": 4
+            "rate": 0.5
         }
     }
 }

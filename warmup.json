@@ -45,6 +45,68 @@
             "application": "ml_training",
             "distribution": "Poisson",
             "rate": 1
+        },
+        "sentmiment":{
+            "application": "sentiment",
+            "distribution": "Poisson",
+            "rate": 1
+        },
+        "markdown":{
+            "application": "markdown2html",
+            "distribution": "Poisson",
+            "rate": 1
+        },
+        "instance21":{
+            "application": "image_rotate1",
+            "distribution": "Poisson",
+            "rate": 1
+        },
+        "instance51":{
+            "application": "primes-python1",
+            "distribution": "Poisson",
+            "rate": 1
+        },
+        "instance61":{
+            "application": "matmul1",
+            "distribution": "Uniform",
+            "param_file":"matmul_params.json",
+            "rate": 1
+        },
+        "instance71":{
+            "application": "linpack1",
+            "distribution": "Uniform",
+            "param_file":"matmul_params.json",
+            "rate": 1
+        },
+        "instance101":{
+            "application": "video_processing1",
+            "distribution": "Poisson",
+            "rate": 1
+        },
+        "cnn1":{
+            "application": "cnn_serving1",
+            "distribution": "Poisson",
+            "rate": 1
+        },
+        "lr1":{
+            "application": "lr_serving1",
+            "distribution": "Poisson",
+            "rate": 1
+        },
+        "ml1":{
+            "application": "ml_training1",
+            "distribution": "Poisson",
+            "rate": 1
+        },
+        "sentmiment1":{
+            "application": "sentiment1",
+            "distribution": "Poisson",
+            "rate": 1
+        },
+        "markdown1":{
+            "application": "markdown2html1",
+            "distribution": "Poisson",
+            "rate": 1
         }
         
     },

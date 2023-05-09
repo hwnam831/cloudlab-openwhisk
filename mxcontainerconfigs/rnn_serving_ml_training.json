@@ -1,0 +1,18 @@
+{
+    "test_duration_in_seconds": 90,
+    "blocking_cli": false,
+    "random_seed": 0,
+    "test_name": "rnn_serving_ml_training",
+    "instances": {
+        "rnn_serving": {
+            "application": "rnn_serving",
+            "distribution": "Poisson",
+            "rate": 5
+        },
+        "ml_training": {
+            "application": "ml_training1",
+            "distribution": "Poisson",
+            "rate": 0.5
+        }
+    }
+}

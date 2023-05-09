@@ -19,6 +19,8 @@ def main(params):
     endTime1 = time.time()
     startTime2 = time.time()
     img = image.transpose(Image.ROTATE_90)
+    img = img.filter(ImageFilter.SHARPEN)
+    img.thumbnail((128,128))
     endTime2 = time.time()
     img.save('newImage.jpeg')
     with open('newImage.jpeg', 'rb') as testFile:
@@ -30,9 +32,9 @@ def main(params):
             testFile,
             statdata.st_size
         )
-        endTime3 = time.time()
+    endTime3 = time.time()
 
     print("Time 1 = ", endTime1 - startTime1)
     print("Time 2 = ", endTime2 - startTime2)
     print("Time 3 = ", endTime3 - startTime3)
-    return {"Image":"rotated"}
+    return {"Image":"rotated,sharpened,resized", "Time":endTime3-startTime1}

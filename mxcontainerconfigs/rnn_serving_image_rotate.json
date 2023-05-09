@@ -1,13 +1,13 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 39,
-    "test_name": "base64_image_rotate",
+    "random_seed": 48,
+    "test_name": "rnn_serving_image_rotate",
     "instances": {
-        "base64": {
-            "application": "base64-python",
+        "rnn_serving": {
+            "application": "rnn_serving",
             "distribution": "Poisson",
-            "rate": 10
+            "rate": 5
         },
         "image_rotate": {
             "application": "image_rotate1",

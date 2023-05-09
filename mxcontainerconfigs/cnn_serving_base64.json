@@ -1,18 +1,18 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 27,
-    "test_name": "cnn_serving_rnn_serving",
+    "random_seed": 62,
+    "test_name": "cnn_serving_base64",
     "instances": {
         "cnn_serving": {
             "application": "cnn_serving",
             "distribution": "Poisson",
             "rate": 2.0
         },
-        "rnn_serving": {
-            "application": "rnn_serving1",
+        "base64": {
+            "application": "base64-python1",
             "distribution": "Poisson",
-            "rate": 5
+            "rate": 10
         }
     }
 }

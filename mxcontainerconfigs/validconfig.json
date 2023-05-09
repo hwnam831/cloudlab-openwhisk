@@ -5,7 +5,7 @@
     "test_name": "validexp",
     "instances": {
         "linpack": {
-            "application": "linpack",
+            "application": "linpack1",
             "distribution": "Poisson",
             "param_file": "matmul_params.json",
             "rate": 1
@@ -19,6 +19,11 @@
             "application": "primes-python",
             "distribution": "Poisson",
             "rate": 4
+        },
+        "instance10":{
+            "application": "video_processing1",
+            "distribution": "Poisson",
+            "rate": 0.1
         }
     }
 }

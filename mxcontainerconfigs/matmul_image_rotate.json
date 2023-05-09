@@ -1,13 +1,14 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 39,
-    "test_name": "base64_image_rotate",
+    "random_seed": 72,
+    "test_name": "matmul_image_rotate",
     "instances": {
-        "base64": {
-            "application": "base64-python",
+        "matmul": {
+            "application": "matmul",
             "distribution": "Poisson",
-            "rate": 10
+            "param_file": "matmul_params.json",
+            "rate": 2.0
         },
         "image_rotate": {
             "application": "image_rotate1",

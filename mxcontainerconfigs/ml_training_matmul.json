@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 90,
+    "random_seed": 64,
     "test_name": "ml_training_matmul",
     "instances": {
         "ml_training": {
@@ -10,7 +10,7 @@
             "rate": 0.5
         },
         "matmul": {
-            "application": "matmul",
+            "application": "matmul1",
             "distribution": "Poisson",
             "param_file": "matmul_params.json",
             "rate": 2.0

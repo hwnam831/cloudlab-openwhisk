@@ -15,12 +15,8 @@ cd functions/img-resize
 sudo npm install node-zip jimp --save
 zip -r action.zip ./*
 wsk action create img-resize --kind nodejs:14 action.zip --web raw -i -m 4096
-cd ../markdown-to-html/
-wsk action create markdown2html markdown2html.py --docker immortalfaas/markdown-to-html --web raw -i
 cd ../ocr-img/
 wsk action create ocr-img handler.js --docker immortalfaas/nodejs-tesseract --web raw -i -m 4096
-cd ../sentiment-analysis
-wsk action create sentiment sentiment.py --docker immortalfaas/sentiment --web raw -i
 cd ../..
 ./WorkloadInvoker -c warmup.json
 

@@ -1,13 +1,13 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 2,
-    "test_name": "cnn_serving_matmul",
+    "random_seed": 80,
+    "test_name": "rnn_serving_matmul",
     "instances": {
-        "cnn_serving": {
-            "application": "cnn_serving",
+        "rnn_serving": {
+            "application": "rnn_serving",
             "distribution": "Poisson",
-            "rate": 2.0
+            "rate": 5
         },
         "matmul": {
             "application": "matmul1",

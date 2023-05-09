@@ -1,18 +1,18 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 27,
-    "test_name": "cnn_serving_rnn_serving",
+    "random_seed": 65,
+    "test_name": "cnn_serving_ml_training",
     "instances": {
         "cnn_serving": {
             "application": "cnn_serving",
             "distribution": "Poisson",
             "rate": 2.0
         },
-        "rnn_serving": {
-            "application": "rnn_serving1",
+        "ml_training": {
+            "application": "ml_training1",
             "distribution": "Poisson",
-            "rate": 5
+            "rate": 0.5
         }
     }
 }

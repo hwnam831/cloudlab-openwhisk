@@ -1,16 +1,16 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 39,
-    "test_name": "base64_image_rotate",
+    "random_seed": 88,
+    "test_name": "image_rotate_base64",
     "instances": {
-        "base64": {
-            "application": "base64-python",
+        "image_rotate": {
+            "application": "image_rotate",
             "distribution": "Poisson",
             "rate": 10
         },
-        "image_rotate": {
-            "application": "image_rotate1",
+        "base64": {
+            "application": "base64-python1",
             "distribution": "Poisson",
             "rate": 10
         }
