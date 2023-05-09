@@ -20,4 +20,4 @@ wsk action create ocr-img handler.js --docker immortalfaas/nodejs-tesseract --we
 cd ../..
 ./WorkloadInvoker -c warmup.json
 
-wsk action invoke -i video_processing --result
+wsk action invoke -i video_processing -r -v
