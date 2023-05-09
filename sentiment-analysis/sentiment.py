@@ -23,7 +23,7 @@ def main(params):
     retVal["polarity"] = sum([sentence.sentiment.polarity for sentence in analyse.sentences]) / sentences
     retVal["sentences"] = sentences
     endtime = time.time()
-    retVal["time":endtime-starttime]
+    retVal["time"] = endtime-starttime
 
 
     return retVal
