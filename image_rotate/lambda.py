@@ -1,4 +1,5 @@
 from PIL import Image
+from PIL import ImageFilter
 import os
 import time
 from minio import Minio
@@ -18,9 +19,12 @@ def main(params):
     image = Image.open(minioFile)
     endTime1 = time.time()
     startTime2 = time.time()
-    img = image.transpose(Image.ROTATE_90)
+    img = image.resize((4000, 4000))
+    img = img.transpose(Image.ROTATE_90)
     img = img.filter(ImageFilter.SHARPEN)
-    img.thumbnail((128,128))
+    img.thumbnail((256,256))
+    
+    img = img.crop((1000,1000,3000,3000))
     endTime2 = time.time()
     img.save('newImage.jpeg')
     with open('newImage.jpeg', 'rb') as testFile:
