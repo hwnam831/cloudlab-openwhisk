@@ -56,18 +56,26 @@ setFreeCores = set()
 # map functions to classes
 mapFuncToClass = {}
 mapFuncToSocket = {
-    'ocr-img':0,
-    'matmul':1,
+    'matmul':0,
     'linpack':0,
-    'primes':1,
+    'primes':0,
     'ml_training':0,
-    'video_processing':1,
+    'video_processing':0,
     'cnn_serving':0,
-    'lr_serving':1,
-    'img-resize':0,
-    'img-rotate':1,
+    'lr_serving':0,
+    'img-rotate':0,
     'base64':0,
-    'rnn_serving':1
+    'rnn_serving':0,
+    'matmul1':1,
+    'linpack1':1,
+    'primes1':1,
+    'ml_training1':1,
+    'video_processing1':1,
+    'cnn_serving1':1,
+    'lr_serving1':1,
+    'img-rotate1':1,
+    'base641':1,
+    'rnn_serving1':1
 }
 
 lockStatus = threading.Lock()
