@@ -8,7 +8,6 @@ wsk action create -i video_processing video_processing/lambda.py --docker hwnam8
 wsk action create -i rnn_serving rnn_serving/lambda.py --docker hwnam831/mxcontainer:latest -m 2048
 wsk action create -i sentiment sentiment-analysis/sentiment.py --docker hwnam831/mxcontainer:latest -m 2048
 wsk action create -i markdown2html markdown-to-html/markdown2html.py --docker hwnam831/mxcontainer:latest -m 2048
-
 wsk action create -i matmul1 matmul/matmul.py --docker hwnam831/mxcontainer:latest -m 2048
 wsk action create -i linpack1 linpack/linpack.py --docker hwnam831/mxcontainer:latest -m 2048
 wsk action create -i ml_training1 ml_training/__main__.py --docker hwnam831/mxcontainer:latest -m 2048
