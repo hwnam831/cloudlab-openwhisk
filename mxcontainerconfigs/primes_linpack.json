@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 4,
+    "random_seed": 25,
     "test_name": "primes_linpack",
     "instances": {
         "primes": {

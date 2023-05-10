@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 70,
+    "random_seed": 22,
     "test_name": "rnn_serving_cnn_serving",
     "instances": {
         "rnn_serving": {

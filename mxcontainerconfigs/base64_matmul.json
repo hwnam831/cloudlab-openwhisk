@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 7,
+    "random_seed": 6,
     "test_name": "base64_matmul",
     "instances": {
         "base64": {
@@ -13,7 +13,7 @@
             "application": "matmul1",
             "distribution": "Poisson",
             "param_file": "matmul_params.json",
-            "rate": 2.0
+            "rate": 1.0
         }
     }
 }

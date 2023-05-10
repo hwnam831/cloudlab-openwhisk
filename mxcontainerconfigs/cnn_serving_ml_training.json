@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 55,
+    "random_seed": 58,
     "test_name": "cnn_serving_ml_training",
     "instances": {
         "cnn_serving": {

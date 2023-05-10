@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 13,
+    "random_seed": 38,
     "test_name": "image_rotate_matmul",
     "instances": {
         "image_rotate": {
@@ -13,7 +13,7 @@
             "application": "matmul1",
             "distribution": "Poisson",
             "param_file": "matmul_params.json",
-            "rate": 2.0
+            "rate": 1.0
         }
     }
 }
