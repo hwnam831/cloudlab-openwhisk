@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 24,
+    "random_seed": 95,
     "test_name": "matmul_cnn_serving",
     "instances": {
         "matmul": {

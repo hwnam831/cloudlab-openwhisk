@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 46,
+    "random_seed": 60,
     "test_name": "matmul_ml_training",
     "instances": {
         "matmul": {

@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 7,
+    "random_seed": 19,
     "test_name": "image_rotate_cnn_serving",
     "instances": {
         "image_rotate": {
