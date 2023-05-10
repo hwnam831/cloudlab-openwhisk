@@ -1,8 +1,8 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 61,
-    "test_name": "linpack_primes",
+    "random_seed": 80,
+    "test_name": "linpack_image_rotate",
     "instances": {
         "linpack": {
             "application": "linpack",
@@ -10,10 +10,10 @@
             "param_file": "matmul_params.json",
             "rate": 1
         },
-        "primes": {
-            "application": "primes-python1",
+        "image_rotate": {
+            "application": "image_rotate1",
             "distribution": "Poisson",
-            "rate": 4
+            "rate": 1
         }
     }
 }

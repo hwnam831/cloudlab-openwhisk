@@ -1,19 +1,19 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 56,
-    "test_name": "cnn_serving_matmul",
+    "random_seed": 14,
+    "test_name": "rnn_serving_linpack",
     "instances": {
-        "cnn_serving": {
-            "application": "cnn_serving",
+        "rnn_serving": {
+            "application": "rnn_serving",
             "distribution": "Poisson",
-            "rate": 2.0
+            "rate": 5
         },
-        "matmul": {
-            "application": "matmul1",
+        "linpack": {
+            "application": "linpack1",
             "distribution": "Poisson",
             "param_file": "matmul_params.json",
-            "rate": 1.0
+            "rate": 1
         }
     }
 }

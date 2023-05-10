@@ -1,19 +1,19 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 11,
-    "test_name": "rnn_serving_matmul",
+    "random_seed": 72,
+    "test_name": "ml_training_linpack",
     "instances": {
-        "rnn_serving": {
-            "application": "rnn_serving",
+        "ml_training": {
+            "application": "ml_training",
             "distribution": "Poisson",
-            "rate": 5
+            "rate": 0.5
         },
-        "matmul": {
-            "application": "matmul1",
+        "linpack": {
+            "application": "linpack1",
             "distribution": "Poisson",
             "param_file": "matmul_params.json",
-            "rate": 1.0
+            "rate": 1
         }
     }
 }

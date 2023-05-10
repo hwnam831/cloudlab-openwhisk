@@ -1,13 +1,13 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 25,
-    "test_name": "primes_linpack",
+    "random_seed": 4,
+    "test_name": "cnn_serving_linpack",
     "instances": {
-        "primes": {
-            "application": "primes-python",
+        "cnn_serving": {
+            "application": "cnn_serving",
             "distribution": "Poisson",
-            "rate": 4
+            "rate": 2.0
         },
         "linpack": {
             "application": "linpack1",

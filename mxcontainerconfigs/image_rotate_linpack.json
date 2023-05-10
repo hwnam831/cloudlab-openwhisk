@@ -1,18 +1,19 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 31,
-    "test_name": "image_rotate_base64",
+    "random_seed": 43,
+    "test_name": "image_rotate_linpack",
     "instances": {
         "image_rotate": {
             "application": "image_rotate",
             "distribution": "Poisson",
             "rate": 1
         },
-        "base64": {
-            "application": "base64-python1",
+        "linpack": {
+            "application": "linpack1",
             "distribution": "Poisson",
-            "rate": 10
+            "param_file": "matmul_params.json",
+            "rate": 1
         }
     }
 }

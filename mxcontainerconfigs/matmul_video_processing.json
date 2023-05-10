@@ -1,8 +1,8 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 63,
-    "test_name": "matmul_image_rotate",
+    "random_seed": 100,
+    "test_name": "matmul_video_processing",
     "instances": {
         "matmul": {
             "application": "matmul",
@@ -10,10 +10,10 @@
             "param_file": "matmul_params.json",
             "rate": 1.0
         },
-        "image_rotate": {
-            "application": "image_rotate1",
+        "video_processing": {
+            "application": "video_processing1",
             "distribution": "Poisson",
-            "rate": 2
+            "rate": 0.2
         }
     }
 }

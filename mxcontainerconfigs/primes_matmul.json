@@ -1,13 +1,13 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 14,
-    "test_name": "ml_training_matmul",
+    "random_seed": 58,
+    "test_name": "primes_matmul",
     "instances": {
-        "ml_training": {
-            "application": "ml_training",
+        "primes": {
+            "application": "primes-python",
             "distribution": "Poisson",
-            "rate": 0.5
+            "rate": 4
         },
         "matmul": {
             "application": "matmul1",

@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 67,
+    "random_seed": 6,
     "test_name": "lr_serving_primes",
     "instances": {
         "lr_serving": {

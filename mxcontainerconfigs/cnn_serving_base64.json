@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 47,
+    "random_seed": 23,
     "test_name": "cnn_serving_base64",
     "instances": {
         "cnn_serving": {

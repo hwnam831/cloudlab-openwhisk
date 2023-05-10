@@ -1,19 +1,19 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 6,
-    "test_name": "base64_matmul",
+    "random_seed": 88,
+    "test_name": "matmul_primes",
     "instances": {
-        "base64": {
-            "application": "base64-python",
-            "distribution": "Poisson",
-            "rate": 10
-        },
         "matmul": {
-            "application": "matmul1",
+            "application": "matmul",
             "distribution": "Poisson",
             "param_file": "matmul_params.json",
             "rate": 1.0
+        },
+        "primes": {
+            "application": "primes-python1",
+            "distribution": "Poisson",
+            "rate": 4
         }
     }
 }

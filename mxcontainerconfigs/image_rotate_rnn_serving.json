@@ -1,13 +1,13 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 65,
+    "random_seed": 26,
     "test_name": "image_rotate_rnn_serving",
     "instances": {
         "image_rotate": {
             "application": "image_rotate",
             "distribution": "Poisson",
-            "rate": 2
+            "rate": 1
         },
         "rnn_serving": {
             "application": "rnn_serving1",

@@ -1,8 +1,8 @@
 import json
 import random
 
-trainset = ['ml_training', 'cnn_serving', 'base64', 'matmul', 'rnn_serving', 'image_rotate']
-valset = ['linpack', 'lr_serving', 'primes', 'video_processing']
+trainset = ['ml_training', 'cnn_serving', 'base64', 'linpack', 'rnn_serving', 'image_rotate']
+valset = ['matmul', 'lr_serving', 'primes', 'video_processing']
 
 def create_json(name1, name2):
     dirname = 'mxcontainerconfigs/'

@@ -5,10 +5,10 @@
     "test_name": "validexp",
     "instances": {
         "linpack": {
-            "application": "linpack1",
+            "application": "matmul1",
             "distribution": "Poisson",
             "param_file": "matmul_params.json",
-            "rate": 1
+            "rate": 0.5
         },
         "lr_serving": {
             "application": "lr_serving",
