@@ -1,14 +1,14 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 80,
+    "random_seed": 8,
     "test_name": "linpack_ml_training",
     "instances": {
         "linpack": {
             "application": "linpack",
             "distribution": "Poisson",
             "param_file": "matmul_params.json",
-            "rate": 1
+            "rate": 0.5
         },
         "ml_training": {
             "application": "ml_training1",

@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 43,
+    "random_seed": 71,
     "test_name": "image_rotate_linpack",
     "instances": {
         "image_rotate": {
@@ -13,7 +13,7 @@
             "application": "linpack1",
             "distribution": "Poisson",
             "param_file": "matmul_params.json",
-            "rate": 1
+            "rate": 0.5
         }
     }
 }

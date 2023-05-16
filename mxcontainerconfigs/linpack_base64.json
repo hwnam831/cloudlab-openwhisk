@@ -1,14 +1,14 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 36,
+    "random_seed": 48,
     "test_name": "linpack_base64",
     "instances": {
         "linpack": {
             "application": "linpack",
             "distribution": "Poisson",
             "param_file": "matmul_params.json",
-            "rate": 1
+            "rate": 0.5
         },
         "base64": {
             "application": "base64-python1",

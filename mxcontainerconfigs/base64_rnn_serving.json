@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 34,
+    "random_seed": 8,
     "test_name": "base64_rnn_serving",
     "instances": {
         "base64": {

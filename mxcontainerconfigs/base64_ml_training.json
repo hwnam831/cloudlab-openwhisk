@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 100,
+    "random_seed": 59,
     "test_name": "base64_ml_training",
     "instances": {
         "base64": {

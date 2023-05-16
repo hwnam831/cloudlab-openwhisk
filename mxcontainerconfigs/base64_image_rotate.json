@@ -1,7 +1,7 @@
 {
     "test_duration_in_seconds": 90,
     "blocking_cli": false,
-    "random_seed": 8,
+    "random_seed": 39,
     "test_name": "base64_image_rotate",
     "instances": {
         "base64": {
