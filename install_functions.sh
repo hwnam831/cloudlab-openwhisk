@@ -20,6 +20,6 @@ wsk action create img-resize --kind nodejs:14 action.zip --web raw -i -m 4096
 cd ../ocr-img/
 wsk action create ocr-img handler.js --docker immortalfaas/nodejs-tesseract --web raw -i -m 4096
 cd ../..
-./WorkloadInvoker -c warmup.json
+#./WorkloadInvoker -c warmup.json
 
-wsk action invoke -i video_processing -r -v
+#wsk action invoke -i video_processing -r -v
