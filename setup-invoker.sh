@@ -11,3 +11,5 @@ unzip libtorch-shared-with-deps-latest.zip
 cd /mydata/workspace/jrapl
 make
 make install
+bash disable_turbo.sh
+bash set_governor.sh performance
