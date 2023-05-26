@@ -1,0 +1,28 @@
+{
+    "test_name": "low_high",
+    "test_duration_in_seconds": 180,
+    "random_seed": 100,
+    "blocking_cli": false,
+    "instances":{
+        "matmul":{
+            "application": "ml_training",
+            "distribution": "Uniform",
+            "rate": 0.06
+        },
+        "lr":{
+            "application": "primes-python",
+            "distribution": "Poisson",
+            "rate": 1
+        },
+        "primes1": {
+            "application": "linpack1",
+            "distribution": "Poisson",
+            "rate": 0.25
+        },
+        "cnn1":{
+            "application": "cnn_serving1",
+            "distribution": "Uniform",
+            "rate": 0.5
+        }
+    }
+}

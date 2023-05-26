@@ -1,0 +1,28 @@
+{
+    "test_name": "low_high",
+    "test_duration_in_seconds": 180,
+    "random_seed": 100,
+    "blocking_cli": false,
+    "instances":{
+        "matmul":{
+            "application": "cnn_serving",
+            "distribution": "Uniform",
+            "rate": 0.25
+        },
+        "lr":{
+            "application": "image_rotate",
+            "distribution": "Poisson",
+            "rate": 0.125
+        },
+        "primes1": {
+            "application": "video_processing1",
+            "distribution": "Uniform",
+            "rate": 0.1
+        },
+        "cnn1":{
+            "application": "lr_serving1",
+            "distribution": "Poisson",
+            "rate": 0.5
+        }
+    }
+}
