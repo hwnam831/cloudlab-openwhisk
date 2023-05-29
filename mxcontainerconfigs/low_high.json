@@ -7,12 +7,12 @@
         "matmul":{
             "application": "cnn_serving",
             "distribution": "Uniform",
-            "rate": 0.25
+            "rate": 0.2
         },
         "lr":{
             "application": "image_rotate",
             "distribution": "Poisson",
-            "rate": 0.125
+            "rate": 0.1
         },
         "primes1": {
             "application": "video_processing1",
