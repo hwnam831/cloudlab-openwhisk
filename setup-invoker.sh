@@ -13,3 +13,4 @@ make
 make install
 bash disable_turbo.sh
 bash set_governor.sh performance
+pip3 install pandas openpyxl
