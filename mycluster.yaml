@@ -13,6 +13,10 @@ whisk:
         min: "128m"
         max: "4096m"
         std: "256m"
+      time:
+        min: "100ms"
+        max: "5m"
+        std: "5m"
   containerPool:
     userMemory: "65536m"
 k8s:
