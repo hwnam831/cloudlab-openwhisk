@@ -13,13 +13,13 @@ wsk action create primes-python functions/microbenchmarks/primes/primes-python.p
 wsk action create base64-python functions/microbenchmarks/base64/base64-python.py --docker hwnam831/mxcontainer:latest -i
 wsk action create primes-python1 functions/microbenchmarks/primes/primes-python.py --docker hwnam831/mxcontainer:latest -i
 wsk action create base64-python1 functions/microbenchmarks/base64/base64-python.py --docker hwnam831/mxcontainer:latest -i
-cd functions/img-resize
-sudo npm install node-zip jimp --save
-zip -r action.zip ./*
-wsk action create img-resize --kind nodejs:14 action.zip --web raw -i -m 4096
-cd ../ocr-img/
-wsk action create ocr-img handler.js --docker immortalfaas/nodejs-tesseract --web raw -i -m 4096
-cd ../..
-#./WorkloadInvoker -c warmup.json
+#cd functions/img-resize
+#sudo npm install node-zip jimp --save
+#zip -r action.zip ./*
+#wsk action create img-resize --kind nodejs:14 action.zip --web raw -i -m 4096
+#cd ../ocr-img/
+#wsk action create ocr-img handler.js --docker immortalfaas/nodejs-tesseract --web raw -i -m 4096
+#cd ../..
+./WorkloadInvoker -c warmup.json
 
 #wsk action invoke -i video_processing -r -v
