@@ -9,3 +9,6 @@ RUN pip3 install mxnet-mkl==1.6.0
 RUN pip install pillow psutil opencv-python
 RUN pip install torch
 RUN pip install sockets pickle-mixin requests js2py JPype1 redis
+RUN pip install textblob
+RUN python -m textblob.download_corpora
+RUN pip install markdown
