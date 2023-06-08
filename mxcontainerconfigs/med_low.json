@@ -16,7 +16,7 @@
             "rate": 0.125
         },
         "primes1": {
-            "application": "primes-python1",
+            "application": "base64-python1",
             "distribution": "Poisson",
             "rate": 1
         },
