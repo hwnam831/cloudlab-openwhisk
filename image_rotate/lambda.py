@@ -15,8 +15,20 @@ def getMinioClient(access, secret):
 def main(params):
     startTime1 = time.time()
     minioClient = getMinioClient("minioadmin", "minioadmin")
-    minioFile = minioClient.get_object('testbucket', 'image/image.jpg')
-    image = Image.open(minioFile)
+
+    
+    #image = Image.open(minioFile)
+    try:
+        minioFile = minioClient.get_object('testbucket', 'image/image.jpg')
+        with Image.open(minioFile) as image:
+            image.load()
+    # Read data from response.
+    finally:
+        minioFile.close()
+        minioFile.release_conn()
+    
+
+    
     endTime1 = time.time()
     startTime2 = time.time()
     img = image.resize((8000, 8000))
@@ -26,7 +38,8 @@ def main(params):
     
     img = img.crop((1000,1000,3000,3000))
     endTime2 = time.time()
-    img.save('newImage.jpeg')
+    #img.save('newImage.jpeg')
+    '''
     with open('newImage.jpeg', 'rb') as testFile:
         statdata = os.stat('newImage.jpeg')
         startTime3 = time.time()
@@ -36,9 +49,10 @@ def main(params):
             testFile,
             statdata.st_size
         )
+    '''
     endTime3 = time.time()
 
     print("Time 1 = ", endTime1 - startTime1)
     print("Time 2 = ", endTime2 - startTime2)
-    print("Time 3 = ", endTime3 - startTime3)
+    #print("Time 3 = ", endTime3 - startTime3)
     return {"Image":"rotated,sharpened,resized", "Time":endTime3-startTime1}
