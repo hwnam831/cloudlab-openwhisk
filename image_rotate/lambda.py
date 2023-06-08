@@ -18,14 +18,10 @@ def main(params):
 
     
     #image = Image.open(minioFile)
-    try:
-        minioFile = minioClient.get_object('testbucket', 'image/image.jpg')
-        with Image.open(minioFile) as image:
-            image.load()
-    # Read data from response.
-    finally:
-        minioFile.close()
-        minioFile.release_conn()
+    minioFile = minioClient.get_object('testbucket', 'image/image.jpg')
+    with Image.open(minioFile) as image:
+        image.load()
+
     
 
     
