@@ -5,9 +5,9 @@
     "blocking_cli": false,
     "instances":{
         "matmul":{
-            "application": "cnn_serving",
+            "application": "rnn_serving",
             "distribution": "Uniform",
-            "rate": 0.2
+            "rate": 1
         },
         "lr":{
             "application": "image_rotate",
@@ -22,7 +22,7 @@
         "cnn1":{
             "application": "lr_serving1",
             "distribution": "Poisson",
-            "rate": 0.5
+            "rate": 0.2
         }
     }
 }

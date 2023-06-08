@@ -5,9 +5,9 @@
     "blocking_cli": false,
     "instances":{
         "matmul":{
-            "application": "ml_training",
+            "application": "rnn_serving",
             "distribution": "Uniform",
-            "rate": 0.06
+            "rate": 1
         },
         "lr":{
             "application": "base64-python",
@@ -17,7 +17,7 @@
         "primes1": {
             "application": "linpack1",
             "distribution": "Poisson",
-            "rate": 0.25
+            "rate": 0.2
         },
         "cnn1":{
             "application": "cnn_serving1",
