@@ -5,7 +5,7 @@ whisk:
     apiHostPort: 31001
   limits:
     actionsInvokesPerminute: 10000
-    actionsInvokesConcurrent: 1000
+    actionsInvokesConcurrent: 100
     triggersFiresPerminute: 10000
     actionsSequenceMaxlength: 1000
     actions:
