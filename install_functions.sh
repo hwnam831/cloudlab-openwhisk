@@ -20,6 +20,6 @@ wsk action create base64-python1 functions/microbenchmarks/base64/base64-python.
 #cd ../ocr-img/
 #wsk action create ocr-img handler.js --docker immortalfaas/nodejs-tesseract --web raw -i -m 4096
 #cd ../..
-./WorkloadInvoker -c warmup.json
+#./WorkloadInvoker -c warmup.json
 
 #wsk action invoke -i video_processing -r -v
