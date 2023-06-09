@@ -7,7 +7,7 @@
         "instance5":{
             "application": "image_rotate",
             "distribution": "Uniform",
-            "rate": 0.5
+            "rate": 0.8
         }
     }
 }
