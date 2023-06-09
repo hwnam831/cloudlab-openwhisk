@@ -6,7 +6,7 @@
     "instances":{
         "instance5":{
             "application": "primes-python",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 4
         }
     }
