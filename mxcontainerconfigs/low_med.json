@@ -17,6 +17,7 @@
         "primes1": {
             "application": "linpack1",
             "distribution": "Poisson",
+            "param_file":"matmul_params.json",
             "rate": 0.2
         },
         "cnn1":{
