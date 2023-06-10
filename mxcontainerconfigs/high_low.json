@@ -13,7 +13,7 @@
         "lr":{
             "application": "lr_serving",
             "distribution": "Uniform",
-            "rate": 0.2
+            "rate": 0.5
         },
         "primes1": {
             "application": "base64-python1",
