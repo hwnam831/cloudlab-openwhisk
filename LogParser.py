@@ -61,6 +61,6 @@ if __name__=='__main__':
         weightedsum += perfunction[funcname][1]/perfunction[funcname][0] * ratios[funcname]
     
     
-    print(weightedsum)
+    print("Avg response time: {}".format(weightedsum))
     #print('Valid invocations : ' + str(validcount))
     #print('Avg response time : {}'.format(totalduration/validcount))
