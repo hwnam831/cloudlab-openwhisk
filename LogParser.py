@@ -1,9 +1,10 @@
 import re
 import sys
+import json
 
 class ShortRecord():
     def __init__(self, input):
-        pattern = re.compile(r"(\d+\-\d+\-\d+)\s+(\d+\:\d+\:\d+)\s+(.+)\s+(.+)\s+(cold|warm)\s+(.+s)\s+(success|developer error)\s+(.+)")
+        pattern = re.compile(r"(\d+\-\d+\-\d+)\s+(\d+\:\d+\:\d+)\s+(.+)\s+(.+)\s+(cold|warm)\s+(.+s)\s+(success|developer error)\s+guest\/(.+)\:\d\.\d\.\d")
         m = pattern.match(input)
         if not m:
             print('error parsing :' + input)
@@ -26,6 +27,8 @@ class ShortRecord():
 
 if __name__=='__main__':
     fname = sys.argv[1]
+    m = re.match(r".+\_(.+\_.+)\_\d+\.log", fname)
+    assert not m is None
     slist = []
     with open(fname,'r') as f:
         for l in f:
@@ -38,9 +41,26 @@ if __name__=='__main__':
         records.append(s)
     totalduration = 0.0
     validcount = 0
+    perfunction = {}
     for r in records:
         if r.start != 'cold' and r.status != 'developer error':
-            validcount += 1
-            totalduration += r.duration
-    print('Valid invocations : ' + str(validcount))
-    print('Avg response time : {}'.format(totalduration/validcount))
+            if not r.funcname in perfunction:
+                perfunction[r.funcname] = [1, r.duration]
+            else:
+                perfunction[r.funcname][0] += 1
+                perfunction[r.funcname][1] += r.duration
+    configjson = json.load(open("mxcontainerconfigs/"+m.group(1) + '.json','r'))
+    ratios = {}
+    for instance in configjson['instances']:
+        funcname = configjson['instances'][instance]['application']
+        ratios[funcname] = configjson['instances'][instance]['rate']
+    print(ratios)
+    weightedsum = 0.0
+    for funcname in perfunction:
+        print("{}, {}".format(funcname,perfunction[funcname][1]/perfunction[funcname][0]))
+        weightedsum += perfunction[funcname][1]/perfunction[funcname][0] * ratios[funcname]
+    
+    
+    print(weightedsum)
+    #print('Valid invocations : ' + str(validcount))
+    #print('Avg response time : {}'.format(totalduration/validcount))
