@@ -18,6 +18,8 @@ class ShortRecord():
                 self.duration = int(duration[:-2])/1000
             elif re.match(r"\d+\.\d+s",duration):
                 self.duration = float(duration[:-1])
+            elif re.match(r"\d+s",duration):
+                self.duration = float(duration[:-1])
             else:
                 dm = re.match(r"(\d+)m(\d+\.\d+)s",duration)
                 self.duration = float(dm.group(2)) + 60*int(dm.group(1))
