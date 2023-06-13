@@ -53,16 +53,21 @@ if __name__=='__main__':
                 perfunction[r.funcname][1] += r.duration
     configjson = json.load(open("mxcontainerconfigs/"+m.group(1) + '.json','r'))
     ratios = {}
+    ratiosum = 0.0
     for instance in configjson['instances']:
         funcname = configjson['instances'][instance]['application']
         ratios[funcname] = configjson['instances'][instance]['rate']
+        ratiosum += ratios[funcname]
     print(ratios)
     weightedsum = 0.0
+    perfuncsum = 0.0
     for funcname in perfunction:
         print("{}, {}".format(funcname,perfunction[funcname][1]/perfunction[funcname][0]))
-        weightedsum += perfunction[funcname][1]/perfunction[funcname][0] * ratios[funcname]
+        weightedsum += perfunction[funcname][1]/perfunction[funcname][0] * ratios[funcname]/ratiosum
+        perfuncsum += perfunction[funcname][1]/perfunction[funcname][0]/len(perfunction)
     
     
-    print("Avg response time: {}".format(weightedsum))
+    print("Avg invocation time: {}".format(weightedsum))
+    print("Per function time: {}".format(perfuncsum))
     #print('Valid invocations : ' + str(validcount))
     #print('Avg response time : {}'.format(totalduration/validcount))
