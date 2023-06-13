@@ -21,7 +21,7 @@ class ShortRecord():
             elif re.match(r"\d+s",duration):
                 self.duration = float(duration[:-1])
             else:
-                dm = re.match(r"(\d+)m(\d+\.\d+)s",duration)
+                dm = re.match(r"(\d+)m(\d+\.\d+|\d+)s",duration)
                 self.duration = float(dm.group(2)) + 60*int(dm.group(1))
             #print(duration + ' is ' + str(self.duration))
             self.status = m.group(7)
