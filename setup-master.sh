@@ -35,19 +35,21 @@ git reset --hard b6f64dbfa9583e29c5679c1c9859b3818dc21638
 bash configure.sh
 cp /local/repository/*.json ./
 cp /local/repository/mxcontainerconfigs/*.json ./
-wsk action create primes-python functions/microbenchmarks/primes/primes-python.py --docker hwnam831/mxcontainer:latest -i
-wsk action create base64-python functions/microbenchmarks/base64/base64-python.py --docker hwnam831/mxcontainer:latest -i
-cd functions/img-resize
-sudo npm install node-zip jimp --save
-zip -r action.zip ./*
-wsk action create img-resize --kind nodejs:14 action.zip --web raw -i -m 4096
-cd ../markdown-to-html/
-wsk action create markdown2html markdown2html.py --docker immortalfaas/markdown-to-html --web raw -i
-cd ../ocr-img/
-wsk action create ocr-img handler.js --docker immortalfaas/nodejs-tesseract --web raw -i -m 4096
-cd ../sentiment-analysis
-wsk action create sentiment sentiment.py --docker immortalfaas/sentiment --web raw -i
-cd ../..
+wsk action create primes-python functions/microbenchmarks/primes/primes-python.py --docker hwnam831/mxcontainer:latest -m 4096 -i
+wsk action create base64-python functions/microbenchmarks/base64/base64-python.py --docker hwnam831/mxcontainer:latest -m 4096 -i
+wsk action create primes-python1 functions/microbenchmarks/primes/primes-python.py --docker hwnam831/mxcontainer:latest -m 4096 -i
+wsk action create base64-python1 functions/microbenchmarks/base64/base64-python.py --docker hwnam831/mxcontainer:latest -m 4096 -i
+#cd functions/img-resize
+#sudo npm install node-zip jimp --save
+#zip -r action.zip ./*
+#wsk action create img-resize --kind nodejs:14 action.zip --web raw -i -m 4096
+#cd ../markdown-to-html/
+#wsk action create markdown2html markdown2html.py --docker immortalfaas/markdown-to-html --web raw -i
+#cd ../ocr-img/
+#wsk action create ocr-img handler.js --docker immortalfaas/nodejs-tesseract --web raw -i -m 4096
+#cd ../sentiment-analysis
+#wsk action create sentiment sentiment.py --docker immortalfaas/sentiment --web raw -i
+#cd ../..
 ./WorkloadInvoker -c warmup.json
 #git clone https://github.com/spcl/serverless-benchmarks /mydata/workspace/sebs
 #cd /mydata/workspace/sebs
