@@ -27,11 +27,6 @@
             "data_file":"matmul_params.json",
             "rate": 1
         },
-        "instance10":{
-            "application": "video_processing",
-            "distribution": "Poisson",
-            "rate": 0.5
-        },
         "cnn":{
             "application": "cnn_serving",
             "distribution": "Poisson",
