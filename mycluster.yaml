@@ -4,15 +4,19 @@ whisk:
     apiHostName: REPLACE_ME_WITH_IP
     apiHostPort: 31001
   limits:
-    actionsInvokesPerminute: 10000
-    actionsInvokesConcurrent: 1000
-    triggersFiresPerminute: 10000
+    actionsInvokesPerminute: 1000
+    actionsInvokesConcurrent: 100
+    triggersFiresPerminute: 1000
     actionsSequenceMaxlength: 1000
     actions:
       memory:
         min: "128m"
         max: "4096m"
-        std: "256m"
+        std: "512m"
+      time:
+        min: "100ms"
+        max: "20m"
+        std: "10m"
   containerPool:
     userMemory: "65536m"
 k8s:
@@ -20,7 +24,12 @@ k8s:
     enabled: false
 nginx:
   httpsNodePort: 31001
+controller:
+  imageName: "hwnam831/controller"
+  imageTag: "mlcontrol"
 invoker:
+  imageName: "hwnam831/invoker"
+  imageTag: "mlcontrol"
   containerFactory:
     impl: "REPLACE_ME_WITH_INVOKER_ENGINE"
     REPLACE_ME_WITH_INVOKER_ENGINE: 
