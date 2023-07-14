@@ -1,4 +1,5 @@
 from PIL import Image
+from PIL import ImageFilter
 import os
 import time
 from minio import Minio
@@ -14,13 +15,27 @@ def getMinioClient(access, secret):
 def main(params):
     startTime1 = time.time()
     minioClient = getMinioClient("minioadmin", "minioadmin")
+
+    
+    #image = Image.open(minioFile)
     minioFile = minioClient.get_object('testbucket', 'image/image.jpg')
-    image = Image.open(minioFile)
+    with Image.open(minioFile) as image:
+        image.load()
+
+    
+
+    
     endTime1 = time.time()
     startTime2 = time.time()
-    img = image.transpose(Image.ROTATE_90)
+    img = image.resize((6000, 6000))
+    img = img.transpose(Image.ROTATE_90)
+    img = img.filter(ImageFilter.SHARPEN)
+    img.thumbnail((256,256))
+    
+    img = img.crop((1000,1000,3000,3000))
     endTime2 = time.time()
-    img.save('newImage.jpeg')
+    #img.save('newImage.jpeg')
+    '''
     with open('newImage.jpeg', 'rb') as testFile:
         statdata = os.stat('newImage.jpeg')
         startTime3 = time.time()
@@ -30,9 +45,10 @@ def main(params):
             testFile,
             statdata.st_size
         )
-        endTime3 = time.time()
+    '''
+    endTime3 = time.time()
 
     print("Time 1 = ", endTime1 - startTime1)
     print("Time 2 = ", endTime2 - startTime2)
-    print("Time 3 = ", endTime3 - startTime3)
-    return {"Image":"rotated"}
+    #print("Time 3 = ", endTime3 - startTime3)
+    return {"Image":"rotated,sharpened,resized", "Time":endTime3-startTime1}

@@ -1,13 +1,13 @@
 {
     "test_name": "example_test",
-    "test_duration_in_seconds": 90,
-    "random_seed": 105,
+    "test_duration_in_seconds": 20,
+    "random_seed": 22,
     "blocking_cli": false,
     "instances":{
         "instance5":{
             "application": "primes-python",
-            "distribution": "Poisson",
-            "rate": 4
+            "distribution": "Uniform",
+            "rate": 10
         }
     }
 }

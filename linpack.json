@@ -1,14 +1,14 @@
 {
     "test_name": "example_test",
-    "test_duration_in_seconds": 90,
-    "random_seed": 105,
+    "test_duration_in_seconds": 10,
+    "random_seed": 88,
     "blocking_cli": false,
     "instances":{
         "instance5":{
             "application": "linpack",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "param_file":"matmul_params.json",
-            "rate": 0.5
+            "rate": 3
         }
     }
 }
