@@ -1,6 +1,6 @@
 {
     "test_name": "video_processing",
-    "test_duration_in_seconds": 10,
+    "test_duration_in_seconds": 9,
     "random_seed": 123,
     "blocking_cli": false,
     "instances":{

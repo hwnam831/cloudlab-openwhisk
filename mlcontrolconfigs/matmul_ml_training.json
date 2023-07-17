@@ -1,0 +1,19 @@
+{
+    "test_duration_in_seconds": 10,
+    "blocking_cli": false,
+    "random_seed": 72,
+    "test_name": "matmul_ml_training",
+    "instances": {
+        "matmul": {
+            "application": "matmul",
+            "distribution": "Uniform",
+            "param_file": "matmul_params.json",
+            "rate": 8
+        },
+        "ml_training": {
+            "application": "ml_training_socket1",
+            "distribution": "Uniform",
+            "rate": 4
+        }
+    }
+}

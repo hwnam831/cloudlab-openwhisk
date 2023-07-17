@@ -1,0 +1,19 @@
+{
+    "test_duration_in_seconds": 10,
+    "blocking_cli": false,
+    "random_seed": 44,
+    "test_name": "ml_training_ocr-img",
+    "instances": {
+        "ml_training": {
+            "application": "ml_training",
+            "distribution": "Uniform",
+            "rate": 4
+        },
+        "ocr-img": {
+            "application": "ocr-img_socket1",
+            "distribution": "Uniform",
+            "data_file": "functions/ocr-img/linuxboot.jpg",
+            "rate": 5
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "test_duration_in_seconds": 10,
+    "blocking_cli": false,
+    "random_seed": 23,
+    "test_name": "ml_training_video_processing",
+    "instances": {
+        "ml_training": {
+            "application": "ml_training",
+            "distribution": "Uniform",
+            "rate": 4
+        },
+        "video_processing": {
+            "application": "video_processing_socket1",
+            "distribution": "Uniform",
+            "rate": 1
+        }
+    }
+}

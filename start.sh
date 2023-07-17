@@ -201,6 +201,8 @@ prepare_for_openwhisk() {
     sed -i.bak "s/REPLACE_ME_WITH_IP/$1/g" $INSTALL_DIR/openwhisk-deploy-kube/mycluster.yaml
     sed -i.bak "s/REPLACE_ME_WITH_INVOKER_ENGINE/$4/g" $INSTALL_DIR/openwhisk-deploy-kube/mycluster.yaml
     sed -i.bak "s/REPLACE_ME_WITH_INVOKER_COUNT/$3/g" $INSTALL_DIR/openwhisk-deploy-kube/mycluster.yaml
+    CORECNT=$(($3 * `nproc` * 2))
+    sed -i.bak "s/REPLACE_ME_WITH_CORE_COUNT/$CORECNT/g" $INSTALL_DIR/openwhisk-deploy-kube/mycluster.yaml
     sudo chown $USER:$PROFILE_GROUP $INSTALL_DIR/openwhisk-deploy-kube/mycluster.yaml
     sudo chmod -R g+rw $INSTALL_DIR/openwhisk-deploy-kube/mycluster.yaml
     printf "%s: %s\n" "$(date +"%T.%N")" "Updated $INSTALL_DIR/openwhisk-deploy-kube/mycluster.yaml"

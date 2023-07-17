@@ -1,0 +1,19 @@
+{
+    "test_duration_in_seconds": 10,
+    "blocking_cli": false,
+    "random_seed": 53,
+    "test_name": "image_rotate_matmul",
+    "instances": {
+        "image_rotate": {
+            "application": "image_rotate",
+            "distribution": "Uniform",
+            "rate": 20
+        },
+        "matmul": {
+            "application": "matmul_socket1",
+            "distribution": "Uniform",
+            "param_file": "matmul_params.json",
+            "rate": 8
+        }
+    }
+}

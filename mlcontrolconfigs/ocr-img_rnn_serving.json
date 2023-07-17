@@ -1,0 +1,19 @@
+{
+    "test_duration_in_seconds": 10,
+    "blocking_cli": false,
+    "random_seed": 18,
+    "test_name": "ocr-img_rnn_serving",
+    "instances": {
+        "ocr-img": {
+            "application": "ocr-img",
+            "distribution": "Uniform",
+            "data_file": "functions/ocr-img/linuxboot.jpg",
+            "rate": 5
+        },
+        "rnn_serving": {
+            "application": "rnn_serving_socket1",
+            "distribution": "Uniform",
+            "rate": 20
+        }
+    }
+}

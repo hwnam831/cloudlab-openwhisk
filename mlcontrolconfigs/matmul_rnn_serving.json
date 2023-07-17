@@ -1,0 +1,19 @@
+{
+    "test_duration_in_seconds": 10,
+    "blocking_cli": false,
+    "random_seed": 74,
+    "test_name": "matmul_rnn_serving",
+    "instances": {
+        "matmul": {
+            "application": "matmul",
+            "distribution": "Uniform",
+            "param_file": "matmul_params.json",
+            "rate": 8
+        },
+        "rnn_serving": {
+            "application": "rnn_serving_socket1",
+            "distribution": "Uniform",
+            "rate": 20
+        }
+    }
+}

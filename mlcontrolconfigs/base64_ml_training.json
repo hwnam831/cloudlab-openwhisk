@@ -1,0 +1,18 @@
+{
+    "test_duration_in_seconds": 10,
+    "blocking_cli": false,
+    "random_seed": 14,
+    "test_name": "base64_ml_training",
+    "instances": {
+        "base64": {
+            "application": "base64-python",
+            "distribution": "Uniform",
+            "rate": 20
+        },
+        "ml_training": {
+            "application": "ml_training_socket1",
+            "distribution": "Uniform",
+            "rate": 4
+        }
+    }
+}

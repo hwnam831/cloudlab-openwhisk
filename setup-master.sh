@@ -34,5 +34,6 @@ cd /mydata/workspace/faas-profiler
 git reset --hard b6f64dbfa9583e29c5679c1c9859b3818dc21638
 bash configure.sh
 cp /local/repository/*.json ./
+cp /local/repository/mlcontrolconfigs/*.json ./
 cd /local/repository
 bash install_functions.sh

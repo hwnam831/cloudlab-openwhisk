@@ -1,0 +1,19 @@
+{
+    "test_duration_in_seconds": 10,
+    "blocking_cli": false,
+    "random_seed": 70,
+    "test_name": "ocr-img_base64",
+    "instances": {
+        "ocr-img": {
+            "application": "ocr-img",
+            "distribution": "Uniform",
+            "data_file": "functions/ocr-img/linuxboot.jpg",
+            "rate": 5
+        },
+        "base64": {
+            "application": "base64-python_socket1",
+            "distribution": "Uniform",
+            "rate": 20
+        }
+    }
+}

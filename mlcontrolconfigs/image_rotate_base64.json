@@ -1,0 +1,18 @@
+{
+    "test_duration_in_seconds": 10,
+    "blocking_cli": false,
+    "random_seed": 38,
+    "test_name": "image_rotate_base64",
+    "instances": {
+        "image_rotate": {
+            "application": "image_rotate",
+            "distribution": "Uniform",
+            "rate": 20
+        },
+        "base64": {
+            "application": "base64-python_socket1",
+            "distribution": "Uniform",
+            "rate": 20
+        }
+    }
+}

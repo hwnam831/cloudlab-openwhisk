@@ -1,6 +1,6 @@
 {
     "test_name": "example_test",
-    "test_duration_in_seconds": 40,
+    "test_duration_in_seconds": 10,
     "random_seed": 66,
     "blocking_cli": false,
     "instances":{
@@ -8,7 +8,7 @@
             "application": "markdown2html",
             "param_file": "functions/markdown-to-html/openpiton-readme.json",
             "distribution": "Uniform",
-            "rate": 10
+            "rate": 20
         }
     }
 }

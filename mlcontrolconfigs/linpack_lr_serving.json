@@ -1,0 +1,19 @@
+{
+    "test_duration_in_seconds": 10,
+    "blocking_cli": false,
+    "random_seed": 98,
+    "test_name": "linpack_lr_serving",
+    "instances": {
+        "linpack": {
+            "application": "linpack",
+            "distribution": "Uniform",
+            "param_file": "matmul_params.json",
+            "rate": 3
+        },
+        "lr_serving": {
+            "application": "lr_serving_socket1",
+            "distribution": "Uniform",
+            "rate": 4
+        }
+    }
+}

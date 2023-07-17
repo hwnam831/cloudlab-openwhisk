@@ -1,0 +1,18 @@
+{
+    "test_duration_in_seconds": 10,
+    "blocking_cli": false,
+    "random_seed": 80,
+    "test_name": "base64_video_processing",
+    "instances": {
+        "base64": {
+            "application": "base64-python",
+            "distribution": "Uniform",
+            "rate": 20
+        },
+        "video_processing": {
+            "application": "video_processing_socket1",
+            "distribution": "Uniform",
+            "rate": 1
+        }
+    }
+}
