@@ -1,0 +1,35 @@
+{
+    "test_name": "example_test",
+    "test_duration_in_seconds": 10,
+    "random_seed": 11,
+    "blocking_cli": false,
+    "instances":{
+        "ml":{
+            "application": "ml_training_socket1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "lr":{
+            "application": "lr_serving",
+            "distribution": "Uniform",
+            "rate": 2
+        },
+        "video":{
+            "application": "video_processing_socket1",
+            "distribution": "Uniform",
+            "rate": 0.2
+        },
+        "image_rotate": {
+            "application": "image_rotate",
+            "distribution": "Uniform",
+            "rate": 10
+        },
+        "ocrimg":{
+            "application": "ocr-img_socket1",
+            "distribution": "Uniform",
+            "data_file":"functions/ocr-img/linuxboot.jpg",
+            "rate": 1
+        }
+
+    }
+}
