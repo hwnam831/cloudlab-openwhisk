@@ -53,7 +53,7 @@ pc.defineParameter("tempFileSystemSize",
 pc.defineParameter("numInvokers",
                    "Number of Invokers",
                    portal.ParameterType.INTEGER,
-                   1,
+                   2,
                    advanced=True,
                    longDescription="Number of OpenWhisk invokers set in the mycluster.yaml file, and number of nodes labelled as Openwhisk invokers. " \
                            "All nodes which are not invokers will be labelled as OpenWhisk core nodes.")
