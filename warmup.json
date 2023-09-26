@@ -155,6 +155,158 @@
             "param_file": "functions/markdown-to-html/openpiton-readme.json",
             "distribution": "Uniform",
             "rate": 1
+        },
+        "imagerotate_node1":{
+            "application": "image_rotate_node1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "primes_node1":{
+            "application": "primes-python_node1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "mm_node1":{
+            "application": "matmul_node1",
+            "distribution": "Uniform",
+            "param_file":"matmul_params.json",
+            "rate": 1
+        },
+        "linpack_node1":{
+            "application": "linpack_node1",
+            "distribution": "Uniform",
+            "param_file":"matmul_params.json",
+            "rate": 1
+        },
+        "video_node1":{
+            "application": "video_processing_node1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "cnn_node1":{
+            "application": "cnn_serving_node1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "lr_node1":{
+            "application": "lr_serving_node1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "ml_node1":{
+            "application": "ml_training_node1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "ocrimg_node1":{
+            "application": "ocr-img_node1",
+            "distribution": "Uniform",
+            "data_file":"functions/ocr-img/linuxboot.jpg",
+            "rate": 1
+        },
+        "sentiment_node1":{
+            "application": "sentiment_node1",
+            "distribution": "Uniform",
+            "param_file": "functions/sentiment-analysis/declaration.json",
+            "rate": 1
+        },
+        "base64_node1":{
+            "application": "base64-python_node1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "rnn_node1":{
+            "application": "rnn_serving_node1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "imgresize_node1":{
+            "application": "img-resize_node1",
+            "distribution": "Uniform",
+            "data_file":"functions/img-resize/libertybell.jpg",
+            "rate": 1
+        },
+        "markdown_node1":{
+            "application": "markdown2html_node1",
+            "param_file": "functions/markdown-to-html/openpiton-readme.json",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "imagerotate_socket1_node1":{
+            "application": "image_rotate_node1_socket1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "primes_node1_socket1":{
+            "application": "primes-python_node1_socket1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "mm_node1_socket1":{
+            "application": "matmul_node1_socket1",
+            "distribution": "Uniform",
+            "param_file":"matmul_params.json",
+            "rate": 1
+        },
+        "linpack_node1_socket1":{
+            "application": "linpack_node1_socket1",
+            "distribution": "Uniform",
+            "param_file":"matmul_params.json",
+            "rate": 1
+        },
+        "video_node1_socket1":{
+            "application": "video_processing_node1_socket1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "cnn_node1_socket1":{
+            "application": "cnn_serving_node1_socket1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "lr_node1_socket1":{
+            "application": "lr_serving_node1_socket1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "ml_node1_socket1":{
+            "application": "ml_training_node1_socket1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "ocrimg_node1_socket1":{
+            "application": "ocr-img_node1_socket1",
+            "distribution": "Uniform",
+            "data_file":"functions/ocr-img/linuxboot.jpg",
+            "rate": 1
+        },
+        "sentiment_node1_socket1":{
+            "application": "sentiment_node1_socket1",
+            "distribution": "Uniform",
+            "param_file": "functions/sentiment-analysis/declaration.json",
+            "rate": 1
+        },
+        "base64_node1_socket1":{
+            "application": "base64-python_node1_socket1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "rnn_node1_socket1":{
+            "application": "rnn_serving_node1_socket1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "imgresize_node1_socket1":{
+            "application": "img-resize_node1_socket1",
+            "distribution": "Uniform",
+            "data_file":"functions/img-resize/libertybell.jpg",
+            "rate": 1
+        },
+        "markdown_node1_socket1":{
+            "application": "markdown2html_node1_socket1",
+            "param_file": "functions/markdown-to-html/openpiton-readme.json",
+            "distribution": "Uniform",
+            "rate": 1
         }
 
     }
