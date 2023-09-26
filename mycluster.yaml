@@ -19,9 +19,8 @@ whisk:
         std: "10m"
   containerPool:
     userMemory: "65536m"
-loadbalancer:
-  managedFraction: "100%"
-  blackboxFraction: "100%"
+  loadbalancer:
+    blackboxFraction: "100%"
 k8s:
   persistence:
     enabled: false
