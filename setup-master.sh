@@ -4,6 +4,14 @@ bash setup-all.sh
 wsk property set --apihost localhost:31001
 wsk property set --auth 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP
 
+git clone https://github.com/hwnam831/jRAPL-percore /mydata/workspace/jrapl
+cd /mydata/workspace
+wget https://download.pytorch.org/libtorch/nightly/cpu/libtorch-shared-with-deps-latest.zip
+unzip libtorch-shared-with-deps-latest.zip
+cd /mydata/workspace/jrapl
+make
+make install
+
 cd /mydata/workspace
 git clone https://github.com/ddps-lab/serverless-faas-workbench
 wget https://dl.minio.io/server/minio/release/linux-amd64/minio
