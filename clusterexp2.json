@@ -1,16 +1,16 @@
 {
-    "test_name": "two_functions_per_socket",
+    "test_name": "two_function_per_socket_unbalance",
     "test_duration_in_seconds": 60,
     "random_seed": 100,
     "blocking_cli": false,
     "instances":{
         "instance2":{
             "application": "image_rotate",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 3
         },
         "instance5":{
-            "application": "primes-python_socket1",
+            "application": "primes-python_node1_socket1",
             "distribution": "Uniform",
             "rate": 3
         },
@@ -21,25 +21,23 @@
         },
         "instance7":{
             "application": "linpack",
-            "distribution": "Uniform",
-            "data_file":"matmul_params.json",
+            "distribution": "Poisson",
             "rate": 1.5
         },
         "instance10":{
-            "application": "video_processing_node1",
+            "application": "video_processing_socket1",
             "distribution": "Poisson",
             "rate": 0.1
         },
         "cnn":{
             "application": "base64-python_node1",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 3
         },
         "lr":{
-            "application": "matmul_node1_socket1",
+            "application": "rnn_serving_node1",
             "distribution": "Poisson",
-            "data_file":"matmul_params.json",
-            "rate": 1
+            "rate": 3
         },
         "ml":{
             "application": "ml_training_node1_socket1",

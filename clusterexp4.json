@@ -1,0 +1,29 @@
+{
+    "test_name": "one_function_burst",
+    "test_duration_in_seconds": 20,
+    "random_seed": 100,
+    "blocking_cli": false,
+    "instances":{
+        "instance2":{
+            "application": "image_rotate",
+            "distribution": "Uniform",
+            "rate": 10
+        },
+        "instance5":{
+            "application": "primes-python_socket1",
+            "distribution": "Poisson",
+            "rate": 20
+        },
+        "instance10":{
+            "application": "lr_serving_node1",
+            "distribution": "Poisson",
+            "rate": 5
+        },
+        "matmul":{
+            "application": "matmul",
+            "distribution": "Uniform",
+            "param_file":"matmul_params.json",
+            "rate": 8
+        }
+    }
+}
