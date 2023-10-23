@@ -1,0 +1,40 @@
+{
+    "test_name": "one_function_per_socket",
+    "test_duration_in_seconds": 60,
+    "random_seed": 100,
+    "blocking_cli": false,
+    "instances":{
+        "instance2":{
+            "application": "img-resize",
+            "distribution": "Uniform",
+            "rate": 10
+        },
+        "instance5":{
+            "application": "base64-python_socket1",
+            "distribution": "Poisson",
+            "rate": 10
+        },
+        "instance10":{
+            "application": "rnn_serving_node1",
+            "distribution": "Poisson",
+            "rate": 5
+        },
+        "ml":{
+            "application": "ocr-img_node1_socket1",
+            "distribution": "Uniform",
+            "rate": 2
+        },
+        "linpack":{
+            "application": "sentiment",
+            "distribution": "Uniform",
+            "param_file": "functions/sentiment-analysis/declaration.json",
+            "rate": 20
+        },
+        "video":{
+            "application": "matmul_node2",
+            "distribution": "Uniform",
+            "param_file":"matmul_params.json",
+            "rate": 5
+        }
+    }
+}
