@@ -25,7 +25,7 @@
             "rate": 2
         },
         "linpack":{
-            "application": "sentiment",
+            "application": "sentiment_node2_socket1",
             "distribution": "Uniform",
             "param_file": "functions/sentiment-analysis/declaration.json",
             "rate": 20
