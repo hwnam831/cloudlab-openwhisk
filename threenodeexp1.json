@@ -7,12 +7,12 @@
         "instance2":{
             "application": "image_rotate",
             "distribution": "Uniform",
-            "rate": 5
+            "rate": 10
         },
         "instance5":{
             "application": "primes-python_socket1",
             "distribution": "Poisson",
-            "rate": 5
+            "rate": 10
         },
         "instance10":{
             "application": "lr_serving_node1",
@@ -33,7 +33,7 @@
         "video":{
             "application": "video_processing_node2_socket1",
             "distribution": "Uniform",
-            "rate": 0.5
+            "rate": 1
         }
     }
 }
