@@ -1,0 +1,72 @@
+{
+    "test_name": "one_function_per_socket",
+    "test_duration_in_seconds": 60,
+    "random_seed": 100,
+    "blocking_cli": false,
+    "instances":{
+        "resize":{
+            "application": "img-resize_node2",
+            "distribution": "Poisson",
+            "rate": 10
+        },
+        "ocr":{
+            "application": "ocr-img",
+            "distribution": "Uniform",
+            "data_file":"functions/ocr-img/linuxboot.jpg",
+            "rate": 3
+        },
+        "base64":{
+            "application": "base64-python_node2",
+            "distribution": "Poisson",
+            "rate": 10
+        },
+        "matmul":{
+            "application": "matmul_socket1",
+            "distribution": "Uniform",
+            "param_file":"matmul_params.json",
+            "rate": 3
+        },
+        "rnn":{
+            "application": "rnn_serving",
+            "distribution": "Uniform",
+            "rate": 10
+        },
+        "sentiment":{
+            "application": "sentiment_socket1",
+            "distribution": "Poisson",
+            "param_file": "functions/sentiment-analysis/declaration.json",
+            "rate": 10
+        },
+        "instance2":{
+            "application": "image_rotate_node1_socket1",
+            "distribution": "Uniform",
+            "rate": 6
+        },
+        "instance5":{
+            "application": "primes-python_node1_socket1",
+            "distribution": "Poisson",
+            "rate": 6
+        },
+        "instance10":{
+            "application": "lr_serving_node1",
+            "distribution": "Poisson",
+            "rate": 1
+        },
+        "ml":{
+            "application": "ml_training_node1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "linpack":{
+            "application": "linpack_node2_socket1",
+            "distribution": "Uniform",
+            "param_file":"matmul_params.json",
+            "rate": 2
+        },
+        "video":{
+            "application": "video_processing_node2_socket1",
+            "distribution": "Poisson",
+            "rate": 0.5
+        }
+    }
+}
