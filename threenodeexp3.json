@@ -7,6 +7,7 @@
         "resize":{
             "application": "img-resize_node2",
             "distribution": "Poisson",
+            "data_file":"functions/img-resize/libertybell.jpg",
             "rate": 10
         },
         "ocr":{

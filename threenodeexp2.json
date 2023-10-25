@@ -7,6 +7,7 @@
         "instance2":{
             "application": "img-resize",
             "distribution": "Uniform",
+            "data_file":"functions/img-resize/libertybell.jpg",
             "rate": 20
         },
         "instance5":{
