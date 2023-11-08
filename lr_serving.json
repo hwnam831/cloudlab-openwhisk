@@ -1,13 +1,13 @@
 {
     "test_name": "example_test",
-    "test_duration_in_seconds": 10,
+    "test_duration_in_seconds": 30,
     "random_seed": 77,
     "blocking_cli": false,
     "instances":{
         "instance2":{
             "application": "lr_serving",
             "distribution": "Uniform",
-            "rate": 4
+            "rate": 1
         }
     }
 }
