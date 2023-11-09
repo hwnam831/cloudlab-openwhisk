@@ -1,48 +1,52 @@
 {
-    "test_name": "two_function_per_socket_unbalance",
-    "test_duration_in_seconds": 60,
+    "test_name": "one_function_per_socket_unbalanced",
+    "test_duration_in_seconds": 90,
     "random_seed": 100,
     "blocking_cli": false,
     "instances":{
-        "instance2":{
+        "video":{
+            "application": "ml_training",
+            "distribution": "Poisson",
+            "rate": 0.8
+        },
+        "base64":{
+            "application": "base64-python_socket1",
+            "distribution": "Poisson",
+            "rate": 10
+        },
+        "primes":{
+            "application": "primes-python_node1",
+            "distribution": "Uniform",
+            "rate": 0.8
+        },
+        "markdown":{
+            "application": "markdown2html",
+            "param_file": "functions/markdown-to-html/openpiton-readme.json",
+            "distribution": "Poisson",
+            "rate": 30
+        },
+        "linpack":{
+            "application": "linpack_node2",
+            "distribution": "Uniform",
+            "param_file":"matmul_params.json",
+            "rate": 1.5
+        },
+        "matmul":{
+            "application": "matmul_node2_socket1",
+            "distribution": "Poisson",
+            "data_file":"matmul_params.json",
+            "rate": 1.2
+        },
+        "imagerotate":{
             "application": "image_rotate",
             "distribution": "Uniform",
             "rate": 3
         },
-        "instance5":{
-            "application": "primes-python_node1_socket1",
+        "ocr":{
+            "application": "ocr-img_node3_socket1",
             "distribution": "Uniform",
-            "rate": 3
-        },
-        "instance6":{
-            "application": "lr_serving_socket1",
-            "distribution": "Uniform",
+            "data_file":"functions/ocr-img/linuxboot.jpg",
             "rate": 0.8
-        },
-        "instance7":{
-            "application": "linpack",
-            "distribution": "Poisson",
-            "rate": 1.5
-        },
-        "instance10":{
-            "application": "video_processing_socket1",
-            "distribution": "Poisson",
-            "rate": 0.1
-        },
-        "cnn":{
-            "application": "base64-python_node1",
-            "distribution": "Uniform",
-            "rate": 3
-        },
-        "lr":{
-            "application": "rnn_serving_node1",
-            "distribution": "Poisson",
-            "rate": 3
-        },
-        "ml":{
-            "application": "ml_training_node1_socket1",
-            "distribution": "Uniform",
-            "rate": 1
         }
     }
 }

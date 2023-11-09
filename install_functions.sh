@@ -18,6 +18,10 @@ wsk action create primes-python_node2 functions/microbenchmarks/primes/primes-py
 wsk action create base64-python_node2 functions/microbenchmarks/base64/base64-python.py --docker hwnam831/actionloop-python-v3.6-ai:latest -i
 wsk action create primes-python_node2_socket1 functions/microbenchmarks/primes/primes-python.py --docker hwnam831/actionloop-python-v3.6-ai:latest -i
 wsk action create base64-python_node2_socket1 functions/microbenchmarks/base64/base64-python.py --docker hwnam831/actionloop-python-v3.6-ai:latest -i
+wsk action create primes-python_node3 functions/microbenchmarks/primes/primes-python.py --docker hwnam831/actionloop-python-v3.6-ai:latest -i
+wsk action create base64-python_node3 functions/microbenchmarks/base64/base64-python.py --docker hwnam831/actionloop-python-v3.6-ai:latest -i
+wsk action create primes-python_node3_socket1 functions/microbenchmarks/primes/primes-python.py --docker hwnam831/actionloop-python-v3.6-ai:latest -i
+wsk action create base64-python_node3_socket1 functions/microbenchmarks/base64/base64-python.py --docker hwnam831/actionloop-python-v3.6-ai:latest -i
 cd functions/img-resize
 sudo npm install node-zip jimp --save
 zip -r action.zip ./*
@@ -27,6 +31,8 @@ wsk action create img-resize_node1 --kind nodejs:14 action.zip --web raw -i -m 5
 wsk action create img-resize_node1_socket1 --kind nodejs:14 action.zip --web raw -i -m 512
 wsk action create img-resize_node2 --kind nodejs:14 action.zip --web raw -i -m 512
 wsk action create img-resize_node2_socket1 --kind nodejs:14 action.zip --web raw -i -m 512
+wsk action create img-resize_node3 --kind nodejs:14 action.zip --web raw -i -m 512
+wsk action create img-resize_node3_socket1 --kind nodejs:14 action.zip --web raw -i -m 512
 cd ../markdown-to-html/
 wsk action create markdown2html markdown2html.py --docker immortalfaas/markdown-to-html --web raw -i
 wsk action create markdown2html_socket1 markdown2html.py --docker immortalfaas/markdown-to-html --web raw -i
@@ -34,6 +40,8 @@ wsk action create markdown2html_node1 markdown2html.py --docker immortalfaas/mar
 wsk action create markdown2html_node1_socket1 markdown2html.py --docker immortalfaas/markdown-to-html --web raw -i
 wsk action create markdown2html_node2 markdown2html.py --docker immortalfaas/markdown-to-html --web raw -i
 wsk action create markdown2html_node2_socket1 markdown2html.py --docker immortalfaas/markdown-to-html --web raw -i
+wsk action create markdown2html_node3 markdown2html.py --docker immortalfaas/markdown-to-html --web raw -i
+wsk action create markdown2html_node3_socket1 markdown2html.py --docker immortalfaas/markdown-to-html --web raw -i
 cd ../ocr-img/
 wsk action create ocr-img handler.js --docker immortalfaas/nodejs-tesseract --web raw -i -m 512
 wsk action create ocr-img_socket1 handler.js --docker immortalfaas/nodejs-tesseract --web raw -i -m 512
@@ -41,6 +49,8 @@ wsk action create ocr-img_node1 handler.js --docker immortalfaas/nodejs-tesserac
 wsk action create ocr-img_node1_socket1 handler.js --docker immortalfaas/nodejs-tesseract --web raw -i -m 512
 wsk action create ocr-img_node2 handler.js --docker immortalfaas/nodejs-tesseract --web raw -i -m 512
 wsk action create ocr-img_node2_socket1 handler.js --docker immortalfaas/nodejs-tesseract --web raw -i -m 512
+wsk action create ocr-img_node3 handler.js --docker immortalfaas/nodejs-tesseract --web raw -i -m 512
+wsk action create ocr-img_node3_socket1 handler.js --docker immortalfaas/nodejs-tesseract --web raw -i -m 512
 cd ../sentiment-analysis
 wsk action create sentiment sentiment.py --docker immortalfaas/sentiment --web raw -i
 wsk action create sentiment_socket1 sentiment.py --docker immortalfaas/sentiment --web raw -i
@@ -48,6 +58,8 @@ wsk action create sentiment_node1 sentiment.py --docker immortalfaas/sentiment -
 wsk action create sentiment_node1_socket1 sentiment.py --docker immortalfaas/sentiment --web raw -i
 wsk action create sentiment_node2 sentiment.py --docker immortalfaas/sentiment --web raw -i
 wsk action create sentiment_node2_socket1 sentiment.py --docker immortalfaas/sentiment --web raw -i
+wsk action create sentiment_node3 sentiment.py --docker immortalfaas/sentiment --web raw -i
+wsk action create sentiment_node3_socket1 sentiment.py --docker immortalfaas/sentiment --web raw -i
 cd ../..
 
 wsk action invoke -i video_processing --result

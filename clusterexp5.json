@@ -1,48 +1,50 @@
 {
-    "test_name": "two_function_burst",
-    "test_duration_in_seconds": 10,
+    "test_name": "one_function_per_socket_edp",
+    "test_duration_in_seconds": 11,
     "random_seed": 100,
     "blocking_cli": false,
     "instances":{
-        "instance2":{
-            "application": "image_rotate",
+        "video":{
+            "application": "video_processing",
             "distribution": "Uniform",
-            "rate": 10
+            "rate": 2
         },
-        "instance5":{
-            "application": "primes-python_node1_socket1",
+        "base64":{
+            "application": "base64-python_socket1",
             "distribution": "Uniform",
-            "rate": 20
+            "rate": 30
         },
-        "instance6":{
-            "application": "lr_serving_socket1",
+        "lr":{
+            "application": "lr_serving_node1",
             "distribution": "Uniform",
             "rate": 5
         },
-        "instance7":{
-            "application": "linpack",
-            "distribution": "Poisson",
-            "rate": 8
-        },
-        "instance10":{
-            "application": "video_processing_socket1",
-            "distribution": "Poisson",
-            "rate": 1
-        },
-        "cnn":{
-            "application": "base64-python_node1",
+        "rnn":{
+            "application": "image_rotate_node1_socket1",
             "distribution": "Uniform",
             "rate": 20
         },
-        "lr":{
-            "application": "rnn_serving_node1",
-            "distribution": "Poisson",
+        "primes":{
+            "application": "primes-python_node2",
+            "distribution": "Uniform",
             "rate": 20
         },
         "ml":{
-            "application": "ml_training_node1_socket1",
+            "application": "ml_training_node2_socket1",
             "distribution": "Uniform",
-            "rate": 4
+            "rate": 5
+        },
+        "matmul":{
+            "application": "matmul_node3",
+            "distribution": "Uniform",
+            "data_file":"matmul_params.json",
+            "rate": 10
+        },
+        "ocr":{
+            "application": "ocr-img_node3_socket1",
+            "distribution": "Uniform",
+            "data_file":"functions/ocr-img/linuxboot.jpg",
+            "rate": 5
         }
     }
 }
