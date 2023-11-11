@@ -1,0 +1,20 @@
+{
+    "test_name": "one_function_per_socket_edp",
+    "test_duration_in_seconds": 11,
+    "random_seed": 100,
+    "blocking_cli": false,
+    "instances":{
+        "matmul":{
+            "application": "matmul_node3",
+            "distribution": "Uniform",
+            "param_file":"matmul_params.json",
+            "rate": 10
+        },
+        "ocr":{
+            "application": "ocr-img_node3_socket1",
+            "distribution": "Uniform",
+            "data_file":"functions/ocr-img/linuxboot.jpg",
+            "rate": 5
+        }
+    }
+}
