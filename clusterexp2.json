@@ -34,7 +34,7 @@
         "matmul":{
             "application": "matmul_node2_socket1",
             "distribution": "Poisson",
-            "data_file":"matmul_params.json",
+            "param_file":"matmul_params.json",
             "rate": 1.2
         },
         "imagerotate":{
