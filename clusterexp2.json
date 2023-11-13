@@ -5,31 +5,30 @@
     "blocking_cli": false,
     "instances":{
         "video":{
-            "application": "ml_training",
-            "distribution": "Poisson",
-            "rate": 0.8
+            "application": "image_rotate",
+            "distribution": "Uniform",
+            "rate": 3
         },
         "base64":{
             "application": "base64-python_socket1",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 10
         },
         "primes":{
             "application": "primes-python_node1",
             "distribution": "Uniform",
-            "rate": 0.8
-        },
-        "markdown":{
-            "application": "markdown2html_node1_socket1",
-            "param_file": "functions/markdown-to-html/openpiton-readme.json",
-            "distribution": "Poisson",
-            "rate": 30
-        },
-        "linpack":{
-            "application": "linpack_node2",
-            "distribution": "Uniform",
-            "param_file":"matmul_params.json",
             "rate": 1.5
+        },
+        "rnn":{
+            "application": "rnn_serving_node1_socket1",
+            "distribution": "Poisson",
+            "rate": 20
+        },
+        "ocr":{
+            "application": "ocr-img_node2",
+            "distribution": "Uniform",
+            "data_file":"functions/ocr-img/linuxboot.jpg",
+            "rate": 0.6
         },
         "matmul":{
             "application": "matmul_node2_socket1",
@@ -38,15 +37,16 @@
             "rate": 1.2
         },
         "imagerotate":{
-            "application": "image_rotate_node3",
+            "application": "ml_training_node3",
             "distribution": "Uniform",
-            "rate": 3
+            "rate": 0.6
         },
-        "ocr":{
-            "application": "ocr-img_node3_socket1",
-            "distribution": "Uniform",
-            "data_file":"functions/ocr-img/linuxboot.jpg",
-            "rate": 0.8
+        "markdown":{
+            "application": "markdown2html_node3_socket1",
+            "param_file": "functions/markdown-to-html/openpiton-readme.json",
+            "distribution": "Poisson",
+            "rate": 30
         }
+       
     }
 }

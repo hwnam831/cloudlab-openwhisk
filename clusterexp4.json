@@ -4,90 +4,91 @@
     "random_seed": 100,
     "blocking_cli": false,
     "instances":{
-        "matmul":{
-            "application": "matmul",
+        "imagrotate":{
+            "application": "image_rotate",
             "distribution": "Uniform",
-            "param_file":"matmul_params.json",
-            "rate": 0.7
+            "rate": 1.5
         },
-        "ml":{
-            "application": "ml_training",
-            "distribution": "Poisson",
-            "rate": 0.4
-        },
-        "lr":{
-            "application": "lr_serving_socket1",
+        "base64":{
+            "application": "base64-python",
             "distribution": "Uniform",
-            "rate": 0.5
+            "rate": 5
         },
-        "linpack":{
-            "application": "linpack_socket1",
+        "matmulnode0":{
+            "application": "matmul_socket1",
             "distribution": "Uniform",
             "param_file":"matmul_params.json",
             "rate": 0.8
         },
-        "video":{
-            "application": "video_processing_node1",
-            "distribution": "Poisson",
-            "rate": 0.1
+        "lr":{
+            "application": "lr_serving_socket1",
+            "distribution": "Uniform",
+            "rate": 0.4
         },
-        "base64":{
-            "application": "base64-python_node1",
+        "primes":{
+            "application": "primes-python_node1",
+            "distribution": "Uniform",
+            "rate": 1
+        },
+        "rnn":{
+            "application": "rnn_serving_node1",
             "distribution": "Poisson",
-            "rate": 6
+            "rate": 20
+        },
+        "markdownnode1":{
+            "application": "markdown2html_node1_socket1",
+            "param_file": "functions/markdown-to-html/openpiton-readme.json",
+            "distribution": "Uniform",
+            "rate": 20
+        },
+        "imageresize":{
+            "application": "img-resize_node1_socket1",
+            "distribution": "Uniform",
+            "data_file":"functions/img-resize/libertybell.jpg",
+            "rate": 2
         },
         "ocr":{
-            "application": "ocr-img_node1_socket1",
+            "application": "ocr-img_node2",
             "distribution": "Uniform",
             "data_file":"functions/ocr-img/linuxboot.jpg",
             "rate": 0.4
         },
-        "imagerotate":{
-            "application": "image_rotate_node1_socket1",
+        "linpack":{
+            "application": "linpack_node2",
             "distribution": "Uniform",
+            "param_file":"matmul_params.json",
+            "rate": 0.7
+        },
+        "primesnode2":{
+            "application": "primes-python_node2_socket1",
+            "distribution": "Poisson",
             "rate": 1.5
         },
-        "rnn":{
-            "application": "rnn_serving_node2",
-            "distribution": "Poisson",
-            "rate": 20
-        },
-        "primes":{
-            "application": "primes-python_node2",
+        "video":{
+            "application": "video_processing_node2_socket1",
             "distribution": "Uniform",
-            "rate": 2
+            "rate": 0.1
         },
-        "markdown":{
-            "application": "markdown2html_node2_socket1",
-            "param_file": "functions/markdown-to-html/openpiton-readme.json",
-            "distribution": "Poisson",
-            "rate": 20
-        },
-        "imageresize":{
-            "application": "img-resize_node2_socket1",
-            "distribution": "Uniform",
-            "data_file":"functions/img-resize/libertybell.jpg",
-            "rate": 4
-        },
-        "ml3":{
+        "imagerotate":{
             "application": "ml_training_node3",
-            "distribution": "Poisson",
-            "rate": 0.4
-        },
-        "base643":{
-            "application": "base64-python_node3_socket1",
             "distribution": "Uniform",
+            "rate": 0.6
+        },
+        "base64node3":{
+            "application": "base64-python_node3",
+            "distribution": "Poisson",
             "rate": 5
         },
-        "lr3":{
-            "application": "lr_serving_node3",
+        "markdown":{
+            "application": "markdown2html_node3_socket1",
+            "param_file": "functions/markdown-to-html/openpiton-readme.json",
             "distribution": "Uniform",
-            "rate": 0.4
+            "rate": 30
         },
-        "primes3":{
-            "application": "primes-python_node3_socket1",
-            "distribution": "Poisson",
-            "rate": 1.5
+        "rnnnode3":{
+            "application": "rnn_serving_node3_socket1",
+            "distribution": "Uniform",
+            "rate": 20
         }
     }
 }
