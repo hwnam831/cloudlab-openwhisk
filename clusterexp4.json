@@ -79,16 +79,16 @@
             "distribution": "Poisson",
             "rate": 5
         },
-        "markdown":{
-            "application": "markdown2html_node3_socket1",
-            "param_file": "functions/markdown-to-html/openpiton-readme.json",
+        "primes3":{
+            "application": "primes-python_node3_socket1",
             "distribution": "Uniform",
-            "rate": 30
+            "rate": 1
         },
-        "rnnnode3":{
-            "application": "rnn_serving_node3_socket1",
+        "imageresize3":{
+            "application": "img-resize_node3_socket1",
             "distribution": "Uniform",
-            "rate": 20
+            "data_file":"functions/img-resize/libertybell.jpg",
+            "rate": 2
         }
     }
 }
