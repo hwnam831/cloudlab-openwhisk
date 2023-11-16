@@ -6,12 +6,12 @@
     "instances":{
         "video":{
             "application": "video_processing",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 0.1
         },
         "base64":{
             "application": "base64-python",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 6
         },
         "lr":{
@@ -21,7 +21,7 @@
         },
         "rnn":{
             "application": "rnn_serving_socket1",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 20
         },
         "primes":{
@@ -31,7 +31,7 @@
         },
         "ml":{
             "application": "ml_training_node1",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 0.3
         },
         "matmul":{
@@ -49,7 +49,7 @@
         "markdown":{
             "application": "markdown2html_node2_socket1",
             "param_file": "functions/markdown-to-html/openpiton-readme.json",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 20
         },
         "linpack":{
@@ -71,12 +71,12 @@
         },
         "ml3":{
             "application": "ml_training_node3",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 0.3
         },
         "base643":{
             "application": "base64-python_node3",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 6
         },
         "lr3":{
@@ -86,7 +86,7 @@
         },
         "primes3":{
             "application": "primes-python_node3_socket1",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 2
         }
     }

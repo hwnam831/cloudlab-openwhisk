@@ -21,7 +21,7 @@
         },
         "rnn":{
             "application": "rnn_serving_node1_socket1",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 20
         },
         "ocr":{
@@ -32,7 +32,7 @@
         },
         "matmul":{
             "application": "matmul_node2_socket1",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "param_file":"matmul_params.json",
             "rate": 1.2
         },
@@ -44,8 +44,8 @@
         "markdown":{
             "application": "markdown2html_node3_socket1",
             "param_file": "functions/markdown-to-html/openpiton-readme.json",
-            "distribution": "Poisson",
-            "rate": 30
+            "distribution": "Uniform",
+            "rate": 20
         }
        
     }

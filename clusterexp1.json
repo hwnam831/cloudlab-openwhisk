@@ -6,12 +6,12 @@
     "instances":{
         "video":{
             "application": "video_processing",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 0.25
         },
         "base64":{
             "application": "base64-python_socket1",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 10
         },
         "lr":{
@@ -21,8 +21,8 @@
         },
         "rnn":{
             "application": "rnn_serving_node1_socket1",
-            "distribution": "Poisson",
-            "rate": 40
+            "distribution": "Uniform",
+            "rate": 20
         },
         "primes":{
             "application": "primes-python_node2",
@@ -31,7 +31,7 @@
         },
         "ml":{
             "application": "ml_training_node2_socket1",
-            "distribution": "Poisson",
+            "distribution": "Uniform",
             "rate": 0.8
         },
         "matmul":{
