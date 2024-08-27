@@ -31,19 +31,19 @@ pc.defineParameter("nodeType",
 pc.defineParameter("startKubernetes",
                    "Create Kubernetes cluster",
                    portal.ParameterType.BOOLEAN,
-                   True,
+                   False,
                    longDescription="Create a Kubernetes cluster using default image setup (calico networking, etc.)")
 pc.defineParameter("deployOpenWhisk",
                    "Deploy OpenWhisk",
                    portal.ParameterType.BOOLEAN,
-                   True,
+                   False,
                    longDescription="Use helm to deploy OpenWhisk.")
 # Below two options copy/pasted directly from small-lan experiment on CloudLab
 # Optional ephemeral blockstore
 pc.defineParameter("tempFileSystemSize", 
                    "Temporary Filesystem Size",
                    portal.ParameterType.INTEGER, 
-                   100,
+                   0,
                    advanced=True,
                    longDescription="The size in GB of a temporary file system to mount on each of your " +
                    "nodes. Temporary means that they are deleted when your experiment is terminated. " +
