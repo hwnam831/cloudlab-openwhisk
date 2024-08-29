@@ -264,7 +264,15 @@ extra_setup_all() {
     #sudo wrmsr --all 0x1a0 0x4000850089
     git config --global user.email "hwnam831@gmail.com"
     git config --global user.name "Hyoungwook Nam"
+    git clone https://github.com/hwnam831/jRAPL-percore /mydata/workspace/jrapl
+    cd /mydata/workspace
+    wget https://download.pytorch.org/libtorch/nightly/cpu/libtorch-shared-with-deps-latest.zip
+    unzip libtorch-shared-with-deps-latest.zip
+    cd /mydata/workspace/jrapl
+    make
+    make install
 }
+
 
 # Start by recording the arguments
 printf "%s: args=(" "$(date +"%T.%N")"
@@ -310,6 +318,8 @@ sudo chmod -R g+rw $INSTALL_DIR
 
 # Use second argument (node IP) to replace filler in kubeadm configuration
 sudo sed -i.bak "s/REPLACE_ME_WITH_IP/$2/g" /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+
+extra_setup_all
 
 # At this point, a secondary node is fully configured until it is time for the node to join the cluster.
 if [ $1 == $SECONDARY_ARG ] ; then
