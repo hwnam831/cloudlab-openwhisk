@@ -42,11 +42,6 @@ pc.defineParameter("tempFileSystemSize",
                    "temporary files. 0 GB indicates maximum size.")
 params = pc.bindParameters()
 
-# Verify parameters
-if not params.startKubernetes and params.deployOpenWhisk:
-    perr = portal.ParameterWarning("A Kubernetes cluster must be created in order to deploy OpenWhisk",['startKubernetes'])
-    pc.reportError(perr)
-
 pc.verifyParameters()
 request = pc.makeRequestRSpec()
 
