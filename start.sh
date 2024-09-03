@@ -257,8 +257,7 @@ deploy_openwhisk() {
 extra_setup_all() {
     #!/bin/bash
     sudo mkdir /mydata/workspace
-    sudo chown hwnam831 /mydata/workspace
-
+    
     sudo apt install --yes libpfm4-dev cpufrequtils msr-tools cmake
     sudo modprobe msr
     #sudo wrmsr --all 0x1a0 0x4000850089
@@ -271,6 +270,11 @@ extra_setup_all() {
     cd /mydata/workspace/jrapl
     make
     make install
+    sudo chown hwnam831 /mydata/workspace
+    docker pull hwnam831/gnn-training
+    docker pull hwnam831/stable-diffusion
+    docker pull hwnam831/vits-ljs
+    docker pull hwnam831/llama-3.1-8b
 }
 
 
