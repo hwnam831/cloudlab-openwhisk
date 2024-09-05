@@ -256,21 +256,6 @@ deploy_openwhisk() {
 
 extra_setup_all() {
     #!/bin/bash
-    sudo mkdir /mydata/workspace
-    
-    sudo apt install --yes libpfm4-dev cpufrequtils msr-tools cmake
-    sudo modprobe msr
-    #sudo wrmsr --all 0x1a0 0x4000850089
-    git config --global user.email "hwnam831@gmail.com"
-    git config --global user.name "Hyoungwook Nam"
-    git clone https://github.com/hwnam831/jRAPL-percore /mydata/workspace/jrapl
-    cd /mydata/workspace
-    wget https://download.pytorch.org/libtorch/nightly/cpu/libtorch-shared-with-deps-latest.zip
-    unzip libtorch-shared-with-deps-latest.zip
-    cd /mydata/workspace/jrapl
-    make
-    make install
-    sudo chown hwnam831 /mydata/workspace
     docker pull hwnam831/gnn-training
     docker pull hwnam831/stable-diffusion
     docker pull hwnam831/vits-ljs
