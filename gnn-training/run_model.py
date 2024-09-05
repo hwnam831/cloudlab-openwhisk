@@ -29,9 +29,6 @@ endtime = curtime + args.duration
 
 while curtime < endtime:
     if args.workload == 'low':
-        myconfig = configs[0]
-        myscript = scripts[0]
-    elif args.workload == 'med':
         myconfig = configs[1]
         myscript = scripts[1]
     elif args.workload == 'high':

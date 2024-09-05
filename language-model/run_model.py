@@ -25,22 +25,29 @@ prompts = [
         3. Notre-Dame Cathedral: This beautiful cathedral is one of the most famous landmarks in Paris and is known for its Gothic architecture and stunning stained glass windows.
         If I were to plan a three-day trip to Paris, my plan would be
         """,
+        """Antibiotics are a type of medication used to treat bacterial infections. 
+        They work by either killing the bacteria or preventing them from reproducing, 
+        allowing the body’s immune system to fight off the infection. Antibiotics are usually 
+        taken orally in the form of pills, capsules, or liquid solutions, or sometimes administered intravenously. 
+        They are not effective against viral infections, and using them inappropriately can lead to antibiotic resistance.
+        Explain the above in two sentences: """
     ]
 
 configs = [
     {'prompt': prompts[0],
-     'max_new_tokens' : 30
+     'max_new_tokens' : 20
 
     },
     {'prompt': [prompts[1]]*8,
-     'max_new_tokens' : 30
+     'max_new_tokens' : 20
     },
     {'prompt': [prompts[2]]*16,
-     'max_new_tokens' : 30
+     'max_new_tokens' : 20
     },
 ]
 
 if __name__ == "__main__":
+    random.seed(17)
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--workload",
@@ -69,15 +76,16 @@ if __name__ == "__main__":
         endtime = curtime + args.duration
         while curtime < endtime:
             if args.workload == 'low':
-                myconfig = configs[0]
-            elif args.workload == 'med':
-                myconfig = configs[1]
+                myprompt = prompts[random.randint(0,1)]
+                bsize = 4
             elif args.workload == 'high':
-                myconfig = configs[2]
+                myprompt = prompts[random.randint(2,3)]
+                bsize = 16
             else:
-                myconfig = configs[random.randint(0,2)]
-            encodings = tokenizer(myconfig['prompt'], return_tensors="pt")
+                myprompt = configs[random.randint(0,3)]
+                bsize = random.randint(4,16)
+            encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
             with torch.no_grad():
-                output = model.generate(encodings['input_ids'], max_new_tokens=myconfig['max_new_tokens'])
+                output = model.generate(encodings['input_ids'], max_new_tokens=20)
             curtime = time.time()
     

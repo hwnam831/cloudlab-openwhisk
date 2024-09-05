@@ -8,6 +8,7 @@ import scipy
 
 prompts = [
         "VITS is an end-to-end speech synthesis model that predicts a speech waveform conditional on an input text sequence.",
+        "Advancements in technology continue to make our lives easier, transforming the way we communicate, work, and learn every day.",
         """A set of spectrogram-based acoustic features are predicted by the flow-based module, 
         which is formed of a Transformer-based text encoder and multiple coupling layers. 
         The spectrogram is decoded using a stack of transposed convolutional layers, 
@@ -46,6 +47,7 @@ configs = [
 ]
 
 if __name__ == "__main__":
+    random.seed(16)
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--workload",
@@ -73,14 +75,15 @@ if __name__ == "__main__":
         endtime = curtime + args.duration
         while curtime < endtime:
             if args.workload == 'low':
-                myconfig = configs[0]
-            elif args.workload == 'med':
-                myconfig = configs[1]
+                myprompt = prompts[random.randint(0,1)]
+                bsize = 1
             elif args.workload == 'high':
-                myconfig = configs[2]
+                myprompt = prompts[random.randint(2,3)]
+                bsize = 2
             else:
-                myconfig = configs[random.randint(0,2)]
-            encodings = tokenizer(myconfig['prompt'], return_tensors="pt")
+                myprompt = prompts[random.randint(0,3)]
+                bsize = random.randint(1,2)
+            encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
             with torch.no_grad():
                 output = model(**encodings).waveform
             curtime = time.time()
