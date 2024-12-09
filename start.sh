@@ -256,10 +256,10 @@ deploy_openwhisk() {
 
 extra_setup_all() {
     #!/bin/bash
-    docker pull hwnam831/gnn-training
-    docker pull hwnam831/stable-diffusion
-    docker pull hwnam831/vits-ljs
-    docker pull hwnam831/llama-3.1-8b
+    sudo docker pull hwnam831/gnn-training
+    sudo docker pull hwnam831/stable-diffusion
+    sudo docker pull hwnam831/vits-ljs
+    sudo docker pull hwnam831/llama-3.1-8b
 }
 
 
