@@ -1,5 +1,8 @@
-sudo docker pull hwnam831/gnn-training &
-sudo docker pull hwnam831/cnn-serving &
-sudo docker pull hwnam831/stable-diffusion &
-sudo  docker pull hwnam831/vits-ljs &
-sudo docker pull hwnam831/llama-3.1-8b
+bash init_container.sh cnn-serving 0
+bash init_container.sh cnn-serving 1
+bash init_container.sh stable-diffusion 0
+bash init_container.sh stable-diffusion 1
+bash init_container.sh vits-ljs 0
+bash init_container.sh vits-ljs 1
+bash init_container.sh llama-3.1-8b 0
+bash init_container.sh llama-3.1-8b 1
