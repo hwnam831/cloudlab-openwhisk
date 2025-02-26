@@ -46,10 +46,10 @@ if __name__ == "__main__":
         while curtime < endtime:
             myprompt = prompts[random.randint(0,2)]
             if args.workload == 'low':
-                myres = res_low[random.randint(0,2)]
-                steps = 10
+                myres = res_low[2]
+                steps = 5
             elif args.workload == 'high':
-                myres = res_high[random.randint(0,2)]
+                myres = res_high[2]
                 steps = 5
             else:
                 myres = res_high[random.randint(0,2)]
@@ -58,5 +58,7 @@ if __name__ == "__main__":
                             width=myres,
                             height=myres,
                             num_inference_steps=steps)
+            elapsed = time.time() - curtime
+            time.sleep(elapsed*0.1)
             curtime = time.time()
     

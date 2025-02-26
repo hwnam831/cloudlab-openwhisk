@@ -46,6 +46,8 @@ configs = [
     },
 ]
 
+new_tokens=20
+
 if __name__ == "__main__":
     random.seed(17)
     parser = argparse.ArgumentParser()
@@ -76,16 +78,18 @@ if __name__ == "__main__":
         endtime = curtime + args.duration
         while curtime < endtime:
             if args.workload == 'low':
-                myprompt = prompts[random.randint(0,1)]
+                myprompt = prompts[1]
                 bsize = 4
             elif args.workload == 'high':
-                myprompt = prompts[random.randint(2,3)]
-                bsize = 16
+                myprompt = prompts[2]
+                bsize = 6
             else:
                 myprompt = configs[random.randint(0,3)]
                 bsize = random.randint(4,16)
             encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
             with torch.no_grad():
-                output = model.generate(encodings['input_ids'], max_new_tokens=20)
+                output = model.generate(encodings['input_ids'], max_new_tokens=new_tokens)
+            elapsed = time.time() - curtime
+            time.sleep(elapsed*0.1)
             curtime = time.time()
     

@@ -75,10 +75,10 @@ if __name__ == "__main__":
         endtime = curtime + args.duration
         while curtime < endtime:
             if args.workload == 'low':
-                myprompt = prompts[random.randint(0,1)]
+                myprompt = prompts[1]
                 bsize = 1
             elif args.workload == 'high':
-                myprompt = prompts[random.randint(2,3)]
+                myprompt = prompts[3]
                 bsize = 2
             else:
                 myprompt = prompts[random.randint(0,3)]
@@ -86,5 +86,6 @@ if __name__ == "__main__":
             encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
             with torch.no_grad():
                 output = model(**encodings).waveform
+            elapsed = time.time() - curtime
+            time.sleep(elapsed*0.1)
             curtime = time.time()
-    

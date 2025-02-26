@@ -62,8 +62,10 @@ if __name__=='__main__':
         inference = ''
         for i in idx:
             i = int(i.asscalar())
-            print('With prob = %.5f, it contains %s' % (prob[0,i].asscalar(), labels[i]))
+            #print('With prob = %.5f, it contains %s' % (prob[0,i].asscalar(), labels[i]))
             inference = inference + 'With prob = %.5f, it contains %s' % (prob[0,i].asscalar(), labels[i]) + '. '
-        print(time.time()-curtime)
+        elapsed = time.time() - curtime
+        time.sleep(elapsed*0.1)
+        print(elapsed)
         curtime = time.time()
     # format image as (batch, RGB, width, height)
