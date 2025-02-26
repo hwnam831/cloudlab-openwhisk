@@ -37,6 +37,9 @@ if __name__ == "__main__":
         "--downloadonly",
         action="store_true"
     )
+    parser.add_argument(
+        "--idle", type=float, default=0.3, help="idle percentage"
+    )
 
     args = parser.parse_args()
     pipeline = DiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", use_safetensors=True)
@@ -44,14 +47,17 @@ if __name__ == "__main__":
         curtime = time.time()
         endtime = curtime + args.duration
         while curtime < endtime:
-            myprompt = prompts[random.randint(0,2)]
+            
             if args.workload == 'low':
-                myres = res_low[random.randint(0,2)]
+                myprompt = prompts[0]
+                myres = res_low[0]
                 steps = 10
             elif args.workload == 'high':
-                myres = res_high[random.randint(0,2)]
+                myprompt = prompts[2]
+                myres = res_high[2]
                 steps = 5
             else:
+                myprompt = prompts[random.randint(0,2)]
                 myres = res_high[random.randint(0,2)]
                 steps = 5
             image = pipeline(myprompt,
@@ -59,6 +65,6 @@ if __name__ == "__main__":
                             height=myres,
                             num_inference_steps=steps)
             elapsed = time.time() - curtime
-            #time.sleep(elapsed*0.1)
+            time.sleep(elapsed*args.idle)
             curtime = time.time()
     

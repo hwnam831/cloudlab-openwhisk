@@ -63,6 +63,9 @@ if __name__ == "__main__":
         "--downloadonly",
         action="store_true"
     )
+    parser.add_argument(
+        "--idle", type=float, default=0.3, help="idle percentage"
+    )
 
     args = parser.parse_args()
 
@@ -87,5 +90,5 @@ if __name__ == "__main__":
             with torch.no_grad():
                 output = model(**encodings).waveform
             elapsed = time.time() - curtime
-            #time.sleep(elapsed*0.1)
+            time.sleep(elapsed*args.idle)
             curtime = time.time()

@@ -27,6 +27,9 @@ if __name__=='__main__':
         "--downloadonly",
         action="store_true"
     )
+    parser.add_argument(
+        "--idle", type=float, default=0.3, help="idle percentage"
+    )
     args = parser.parse_args()
 
     net = gluon.model_zoo.vision.resnet50_v1(pretrained=True, root = '/tmp/')
@@ -54,7 +57,7 @@ if __name__=='__main__':
         elif args.workload == 'med':
             input = mx.nd.stack(img,img,img,img,axis=0)
         elif args.workload == 'high':
-            input = mx.nd.stack(img,img,img,img,img,img,img,img,axis=0)
+            input = mx.nd.stack(img,img,img,img,img,img,img,img,img,img,img,img,img,img,img,img,axis=0)
         else:
             input = mx.nd.stack(img,img,img,img,axis=0)
         prob = net(input).softmax() # predict and normalize output
@@ -65,7 +68,7 @@ if __name__=='__main__':
             #print('With prob = %.5f, it contains %s' % (prob[0,i].asscalar(), labels[i]))
             inference = inference + 'With prob = %.5f, it contains %s' % (prob[0,i].asscalar(), labels[i]) + '. '
         elapsed = time.time() - curtime
-        #time.sleep(elapsed*0.1)
+        time.sleep(elapsed*args.idle)
         print(elapsed)
         curtime = time.time()
     # format image as (batch, RGB, width, height)

@@ -65,6 +65,9 @@ if __name__ == "__main__":
         "--downloadonly",
         action="store_true"
     )
+    parser.add_argument(
+        "--idle", type=float, default=0.3, help="idle percentage"
+    )
 
     args = parser.parse_args()
     model_id = "meta-llama/Meta-Llama-3.1-8B-Instruct"
@@ -79,10 +82,12 @@ if __name__ == "__main__":
         while curtime < endtime:
             if args.workload == 'low':
                 myprompt = prompts[1]
-                bsize = 4
+                bsize = 2
+                new_tokens=20
             elif args.workload == 'high':
                 myprompt = prompts[2]
                 bsize = 8
+                new_tokens=10
             else:
                 myprompt = configs[random.randint(0,3)]
                 bsize = random.randint(4,16)
@@ -90,6 +95,6 @@ if __name__ == "__main__":
             with torch.no_grad():
                 output = model.generate(encodings['input_ids'], max_new_tokens=new_tokens)
             elapsed = time.time() - curtime
-            #time.sleep(elapsed*0.1)
+            time.sleep(elapsed*args.idle)
             curtime = time.time()
     
