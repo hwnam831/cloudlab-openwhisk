@@ -12,6 +12,7 @@ wget https://download.pytorch.org/libtorch/nightly/cpu/libtorch-shared-with-deps
 unzip libtorch-shared-with-deps-latest.zip
 git clone https://github.com/hwnam831/jRAPL-percore /mydata/workspace/jrapl
 cd /mydata/workspace/jrapl
+bash disable_turbo.sh
 make
 make install
 #docker pull hwnam831/mxcontainer:latest
