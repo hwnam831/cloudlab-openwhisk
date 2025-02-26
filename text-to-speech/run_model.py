@@ -87,5 +87,5 @@ if __name__ == "__main__":
             with torch.no_grad():
                 output = model(**encodings).waveform
             elapsed = time.time() - curtime
-            time.sleep(elapsed*0.1)
+            #time.sleep(elapsed*0.1)
             curtime = time.time()

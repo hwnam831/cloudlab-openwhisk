@@ -46,7 +46,7 @@ configs = [
     },
 ]
 
-new_tokens=20
+new_tokens=10
 
 if __name__ == "__main__":
     random.seed(17)
@@ -82,7 +82,7 @@ if __name__ == "__main__":
                 bsize = 4
             elif args.workload == 'high':
                 myprompt = prompts[2]
-                bsize = 6
+                bsize = 8
             else:
                 myprompt = configs[random.randint(0,3)]
                 bsize = random.randint(4,16)
@@ -90,6 +90,6 @@ if __name__ == "__main__":
             with torch.no_grad():
                 output = model.generate(encodings['input_ids'], max_new_tokens=new_tokens)
             elapsed = time.time() - curtime
-            time.sleep(elapsed*0.1)
+            #time.sleep(elapsed*0.1)
             curtime = time.time()
     
