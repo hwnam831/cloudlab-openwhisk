@@ -94,7 +94,7 @@ if __name__ == "__main__":
             bsize = 8
             new_tokens=10
             arrivals = [0.0, 83.5601924965104, 274.8359527901351, 423.72444415679377,
-                        460.7949043252539, 531.2146274779709]
+                        460.7949043252539]
         else:
             myprompt = prompts[1]
             bsize = 2
@@ -124,7 +124,7 @@ if __name__ == "__main__":
             encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
             with torch.no_grad():
                 output = model.generate(encodings['input_ids'], max_new_tokens=new_tokens)
-            elapsed = time.time() - t
+            elapsed = time.time() - t - begintime
             csvlines.append(f"{curtime},{elapsed}")
 
 
