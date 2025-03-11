@@ -68,6 +68,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "--idle", type=float, default=0.3, help="idle percentage"
     )
+    parser.add_argument(
+        "--tag", type=str, default='default', help="exp tag"
+    )
 
     args = parser.parse_args()
     model_id = "meta-llama/Meta-Llama-3.1-8B-Instruct"
@@ -76,25 +79,55 @@ if __name__ == "__main__":
 	model_id, device_map="cpu", torch_dtype=torch.float32)
     tokenizer = AutoTokenizer.from_pretrained(model_id)
     tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+    csvlines = []
+    csvlines.append("Curtime,Elapsed")
     if (not args.downloadonly):
-        curtime = time.time()
+        if args.workload == 'low':
+            myprompt = prompts[1]
+            bsize = 2
+            new_tokens=20
+            arrivals = [6.60745027896057, 30.631230291225954, 41.482900797976356, 66.21643387635056,
+                        357.79523842525293, 380.0263694473943, 427.31908838509946, 443.533390468069,
+                        456.44177959928464, 497.63406267244085, 501.95826895138515, 528.8322570077066]
+        elif args.workload == 'high':
+            myprompt = prompts[2]
+            bsize = 8
+            new_tokens=10
+            arrivals = [0.0, 83.5601924965104, 274.8359527901351, 423.72444415679377,
+                        460.7949043252539, 531.2146274779709]
+        else:
+            myprompt = prompts[1]
+            bsize = 2
+            new_tokens=20
+            arrivals = [6.60745027896057, 30.631230291225954, 41.482900797976356, 66.21643387635056,
+                        357.79523842525293, 380.0263694473943, 427.31908838509946, 443.533390468069,
+                        456.44177959928464, 497.63406267244085, 501.95826895138515, 528.8322570077066]
+        begintime = time.time()
+        curtime = begintime
         endtime = curtime + args.duration
+        '''
         while curtime < endtime:
-            if args.workload == 'low':
-                myprompt = prompts[1]
-                bsize = 2
-                new_tokens=20
-            elif args.workload == 'high':
-                myprompt = prompts[2]
-                bsize = 8
-                new_tokens=10
-            else:
-                myprompt = configs[random.randint(0,3)]
-                bsize = random.randint(4,16)
             encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
             with torch.no_grad():
                 output = model.generate(encodings['input_ids'], max_new_tokens=new_tokens)
             elapsed = time.time() - curtime
+            csvlines.append(f"{curtime-begintime},{elapsed}")
             time.sleep(elapsed*args.idle)
             curtime = time.time()
-    
+        '''
+        for t in arrivals:
+            curtime = time.time() - begintime
+            if t > args.duration:
+                break
+            if curtime < t:
+                time.sleep(t-curtime)
+            encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
+            with torch.no_grad():
+                output = model.generate(encodings['input_ids'], max_new_tokens=new_tokens)
+            elapsed = time.time() - t
+            csvlines.append(f"{curtime},{elapsed}")
+
+
+        
+        with open(f"/mydata/workspace/jrapl/{args.tag}_llama-3.1-8b_{args.workload}.csv", "w") as f:
+            f.write("\n".join(csvlines))

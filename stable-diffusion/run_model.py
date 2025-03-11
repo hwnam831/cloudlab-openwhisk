@@ -40,12 +40,17 @@ if __name__ == "__main__":
     parser.add_argument(
         "--idle", type=float, default=0.3, help="idle percentage"
     )
-
+    parser.add_argument(
+        "--tag", type=str, default='default', help="exp tag"
+    )
     args = parser.parse_args()
     pipeline = DiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", use_safetensors=True)
     if (not args.downloadonly):
-        curtime = time.time()
+        begintime = time.time()
+        curtime = begintime
         endtime = curtime + args.duration
+        csvlines = []
+        csvlines.append("Curtime,Elapsed")
         while curtime < endtime:
             
             if args.workload == 'low':
@@ -65,6 +70,8 @@ if __name__ == "__main__":
                             height=myres,
                             num_inference_steps=steps)
             elapsed = time.time() - curtime
+            csvlines.append(f"{curtime-begintime},{elapsed}")
             time.sleep(elapsed*args.idle)
             curtime = time.time()
-    
+        with open(f"/mydata/workspace/jrapl/{args.tag}_stable-diffusion_{args.workload}.csv", "w") as f:
+            f.write("\n".join(csvlines))

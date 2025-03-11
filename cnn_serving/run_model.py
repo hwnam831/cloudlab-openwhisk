@@ -30,6 +30,9 @@ if __name__=='__main__':
     parser.add_argument(
         "--idle", type=float, default=0.3, help="idle percentage"
     )
+    parser.add_argument(
+        "--tag", type=str, default='default', help="exp tag"
+    )
     args = parser.parse_args()
 
     net = gluon.model_zoo.vision.resnet50_v1(pretrained=True, root = '/tmp/')
@@ -43,8 +46,11 @@ if __name__=='__main__':
     source = mx.image.imread(imgName)
     
     #img = img.expand_dims(axis=0) # batchify
-    curtime = time.time()
+    begintime = time.time()
+    curtime = begintime
     endtime = curtime + args.duration
+    csvlines = []
+    csvlines.append("Curtime,Elapsed")
     while curtime < endtime and not args.downloadonly:
         #img = mx.image.imread(imgName)
         img = mx.image.imresize(source, 224, 224) # resize
@@ -68,7 +74,9 @@ if __name__=='__main__':
             #print('With prob = %.5f, it contains %s' % (prob[0,i].asscalar(), labels[i]))
             inference = inference + 'With prob = %.5f, it contains %s' % (prob[0,i].asscalar(), labels[i]) + '. '
         elapsed = time.time() - curtime
+        csvlines.append(f"{curtime-begintime},{elapsed}")
         time.sleep(elapsed*args.idle)
-        print(elapsed)
         curtime = time.time()
+    with open(f"/mydata/workspace/jrapl/{args.tag}_cnn-serving_{args.workload}.csv", "w") as f:
+        f.write("\n".join(csvlines))
     # format image as (batch, RGB, width, height)

@@ -66,7 +66,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "--idle", type=float, default=0.3, help="idle percentage"
     )
-
+    parser.add_argument(
+        "--tag", type=str, default='default', help="exp tag"
+    )
     args = parser.parse_args()
 
 
@@ -74,8 +76,11 @@ if __name__ == "__main__":
     tokenizer = AutoTokenizer.from_pretrained("kakao-enterprise/vits-vctk")
     #tokenizer.add_special_tokens({'pad_token': '[PAD]'})
     if (not args.downloadonly):
-        curtime = time.time()
+        begintime = time.time()
+        curtime = begintime
         endtime = curtime + args.duration
+        csvlines = []
+        csvlines.append("Curtime,Elapsed")
         while curtime < endtime:
             if args.workload == 'low':
                 myprompt = prompts[1]
@@ -90,5 +95,8 @@ if __name__ == "__main__":
             with torch.no_grad():
                 output = model(**encodings).waveform
             elapsed = time.time() - curtime
+            csvlines.append(f"{curtime-begintime},{elapsed}")
             time.sleep(elapsed*args.idle)
             curtime = time.time()
+        with open(f"/mydata/workspace/jrapl/{args.tag}_vits-ljs_{args.workload}.csv", "w") as f:
+            f.write("\n".join(csvlines))
