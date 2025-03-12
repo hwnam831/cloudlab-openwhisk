@@ -4,6 +4,7 @@ import argparse
 import time
 import random
 from transformers import AutoModelForCausalLM, AutoTokenizer
+import math
 
 prompts = [
         # For these prompts, the expected answer is the natural continuation of the prompt
@@ -86,22 +87,22 @@ if __name__ == "__main__":
             myprompt = prompts[1]
             bsize = 2
             new_tokens=20
-            arrivals = [6.60745027896057, 30.631230291225954, 41.482900797976356, 66.21643387635056,
-                        357.79523842525293, 380.0263694473943, 427.31908838509946, 443.533390468069,
-                        456.44177959928464, 497.63406267244085, 501.95826895138515, 528.8322570077066]
+            arrivals = [0.0, 88.35571434352617, 89.02003794489113,
+                        132.5127269873638, 174.63380813188067, 321.55113336674253,
+                        543.5219121929915, 564.961992132476]
         elif args.workload == 'high':
             myprompt = prompts[2]
             bsize = 8
             new_tokens=10
-            arrivals = [0.0, 83.5601924965104, 274.8359527901351, 423.72444415679377,
-                        460.7949043252539]
+            arrivals = [0.0, 54.869902600932996, 233.14789809492828,
+                        249.080560505403, 542.5364127881884]
         else:
             myprompt = prompts[1]
             bsize = 2
             new_tokens=20
-            arrivals = [6.60745027896057, 30.631230291225954, 41.482900797976356, 66.21643387635056,
-                        357.79523842525293, 380.0263694473943, 427.31908838509946, 443.533390468069,
-                        456.44177959928464, 497.63406267244085, 501.95826895138515, 528.8322570077066]
+            arrivals = [0.0, 88.35571434352617, 89.02003794489113,
+                        132.5127269873638, 174.63380813188067, 321.55113336674253,
+                        543.5219121929915, 564.961992132476]
         begintime = time.time()
         curtime = begintime
         endtime = curtime + args.duration
@@ -115,6 +116,8 @@ if __name__ == "__main__":
             time.sleep(elapsed*args.idle)
             curtime = time.time()
         '''
+        logsum = 0
+        count = 0
         for t in arrivals:
             curtime = time.time() - begintime
             if t > args.duration:
@@ -125,9 +128,11 @@ if __name__ == "__main__":
             with torch.no_grad():
                 output = model.generate(encodings['input_ids'], max_new_tokens=new_tokens)
             elapsed = time.time() - t - begintime
+            logsum += math.log(elapsed)
+            count += 1
             csvlines.append(f"{curtime},{elapsed}")
-
-
+        gmean = math.exp(logsum/count)
+        csvlines.append(f"Geometric Mean,{gmean}")
         
         with open(f"/mydata/workspace/jrapl/{args.tag}_llama-3.1-8b_{args.workload}.csv", "w") as f:
             f.write("\n".join(csvlines))
