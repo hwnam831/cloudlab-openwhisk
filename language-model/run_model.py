@@ -117,6 +117,7 @@ if __name__ == "__main__":
             curtime = time.time()
         '''
         logsum = 0
+        total = 0
         count = 0
         for t in arrivals:
             curtime = time.time() - begintime
@@ -129,10 +130,11 @@ if __name__ == "__main__":
                 output = model.generate(encodings['input_ids'], max_new_tokens=new_tokens)
             elapsed = time.time() - t - begintime
             logsum += math.log(elapsed)
+            total += elapsed
             count += 1
             csvlines.append(f"{curtime},{elapsed}")
         gmean = math.exp(logsum/count)
         csvlines.append(f"Geometric Mean,{gmean}")
-        
+        csvlines.append(f"Average,{total/count}")
         with open(f"/mydata/workspace/jrapl/{args.tag}_llama-3.1-8b_{args.workload}.csv", "w") as f:
             f.write("\n".join(csvlines))
