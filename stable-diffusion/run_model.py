@@ -63,8 +63,9 @@ if __name__ == "__main__":
         myprompt = prompts[2]
         myres = res_high[2]
         steps = 5
-        arrivals = [28.774393103543197, 55.77128263960971, 162.15597087662746,
-                    353.6182113235427, 547.7951661534263]
+        arrivals = [24.1822, 58.5168, 61.9939, 
+                    147.3740, 293.9903, 328.7430, 
+                    338.8403, 546.3436, 592.0992]
     else:
         myprompt = prompts[random.randint(0,2)]
         myres = res_high[random.randint(0,2)]

@@ -94,8 +94,8 @@ if __name__ == "__main__":
             myprompt = prompts[2]
             bsize = 8
             new_tokens=10
-            arrivals = [0.0, 54.869902600932996, 233.14789809492828,
-                        249.080560505403, 542.5364127881884]
+            arrivals = [8.0313, 192.5857, 354.1262, 
+                        385.5167, 464.6160, 565.5796]
         else:
             myprompt = prompts[1]
             bsize = 2

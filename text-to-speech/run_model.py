@@ -106,7 +106,7 @@ if __name__ == "__main__":
     elif args.workload == 'high':
         myprompt = prompts[3]
         bsize = 2
-        arrivals = [29.326290606546504, 214.21194210880896, 266.7356405120745, 331.53368036541065, 512.5682110586149]
+        arrivals = [105.1399, 299.3093, 311.5389, 347.7571, 368.8147, 412.6155, 448.3597]
     else:
         myprompt = prompts[random.randint(0,3)]
         bsize = random.randint(1,2)
