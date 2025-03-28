@@ -66,6 +66,12 @@ if __name__ == "__main__":
         "--downloadonly",
         action="store_true"
     )
+
+    parser.add_argument(
+        "--continuous",
+        action="store_true"
+    )
+
     parser.add_argument(
         "--idle", type=float, default=0.3, help="idle percentage"
     )
@@ -106,33 +112,35 @@ if __name__ == "__main__":
         begintime = time.time()
         curtime = begintime
         endtime = curtime + args.duration
-        '''
-        while curtime < endtime:
-            encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
-            with torch.no_grad():
-                output = model.generate(encodings['input_ids'], max_new_tokens=new_tokens)
-            elapsed = time.time() - curtime
-            csvlines.append(f"{curtime-begintime},{elapsed}")
-            time.sleep(elapsed*args.idle)
-            curtime = time.time()
-        '''
         logsum = 0
         total = 0
         count = 0
-        for t in arrivals:
-            curtime = time.time() - begintime
-            if t > args.duration:
-                break
-            if curtime < t:
-                time.sleep(t-curtime)
-            encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
-            with torch.no_grad():
-                output = model.generate(encodings['input_ids'], max_new_tokens=new_tokens)
-            elapsed = time.time() - t - begintime
-            logsum += math.log(elapsed)
-            total += elapsed
-            count += 1
-            csvlines.append(f"{curtime},{elapsed}")
+        if args.continuous:
+            while curtime < endtime:
+                encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
+                with torch.no_grad():
+                    output = model.generate(encodings['input_ids'], max_new_tokens=new_tokens)
+                elapsed = time.time() - curtime
+                logsum += math.log(elapsed)
+                total += elapsed
+                count += 1
+                csvlines.append(f"{curtime-begintime},{elapsed}")
+                curtime = time.time()
+        else:
+            for t in arrivals:
+                curtime = time.time() - begintime
+                if t > args.duration:
+                    break
+                if curtime < t:
+                    time.sleep(t-curtime)
+                encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
+                with torch.no_grad():
+                    output = model.generate(encodings['input_ids'], max_new_tokens=new_tokens)
+                elapsed = time.time() - t - begintime
+                logsum += math.log(elapsed)
+                total += elapsed
+                count += 1
+                csvlines.append(f"{curtime},{elapsed}")
         gmean = math.exp(logsum/count)
         csvlines.append(f"Geometric Mean,{gmean}")
         csvlines.append(f"Average,{total/count}")

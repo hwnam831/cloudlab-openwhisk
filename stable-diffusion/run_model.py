@@ -44,6 +44,10 @@ if __name__ == "__main__":
     parser.add_argument(
         "--tag", type=str, default='default', help="exp tag"
     )
+    parser.add_argument(
+        "--continuous",
+        action="store_true"
+    )
     args = parser.parse_args()
     pipeline = DiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", use_safetensors=True)
     if args.workload == 'low':
@@ -92,21 +96,34 @@ if __name__ == "__main__":
         logsum = 0
         total = 0
         count = 0
-        for t in arrivals:
-            curtime = time.time() - begintime
-            if t > args.duration:
-                break
-            if curtime < t:
-                time.sleep(t-curtime)
-            image = pipeline(myprompt,
+        if args.continuous:
+            while curtime < endtime:
+                image = pipeline(myprompt,
                             width=myres,
                             height=myres,
                             num_inference_steps=steps)
-            elapsed = time.time() - t - begintime
-            logsum += math.log(elapsed)
-            total += elapsed
-            count += 1
-            csvlines.append(f"{curtime},{elapsed}")
+                elapsed = time.time() - curtime
+                logsum += math.log(elapsed)
+                total += elapsed
+                count += 1
+                csvlines.append(f"{curtime-begintime},{elapsed}")
+                curtime = time.time()
+        else:
+            for t in arrivals:
+                curtime = time.time() - begintime
+                if t > args.duration:
+                    break
+                if curtime < t:
+                    time.sleep(t-curtime)
+                image = pipeline(myprompt,
+                                width=myres,
+                                height=myres,
+                                num_inference_steps=steps)
+                elapsed = time.time() - t - begintime
+                logsum += math.log(elapsed)
+                total += elapsed
+                count += 1
+                csvlines.append(f"{curtime},{elapsed}")
         gmean = math.exp(logsum/count)
         csvlines.append(f"Geometric Mean,{gmean}")
         csvlines.append(f"Average,{total/count}")

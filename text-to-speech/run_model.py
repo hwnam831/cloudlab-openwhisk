@@ -70,6 +70,10 @@ if __name__ == "__main__":
     parser.add_argument(
         "--tag", type=str, default='default', help="exp tag"
     )
+    parser.add_argument(
+        "--continuous",
+        action="store_true"
+    )
     args = parser.parse_args()
 
 
@@ -130,20 +134,32 @@ if __name__ == "__main__":
         logsum = 0
         total = 0
         count = 0
-        for t in arrivals:
-            curtime = time.time() - begintime
-            if t > args.duration:
-                break
-            if curtime < t:
-                time.sleep(t-curtime)
-            encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
-            with torch.no_grad():
-                output = model(**encodings).waveform
-            elapsed = time.time() - t - begintime
-            logsum += math.log(elapsed)
-            total += elapsed
-            count += 1
-            csvlines.append(f"{curtime},{elapsed}")
+        if args.continuous:
+            while curtime < endtime:
+                encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
+                with torch.no_grad():
+                    output = model(**encodings).waveform
+                elapsed = time.time() - curtime
+                logsum += math.log(elapsed)
+                total += elapsed
+                count += 1
+                csvlines.append(f"{curtime-begintime},{elapsed}")
+                curtime = time.time()
+        else:
+            for t in arrivals:
+                curtime = time.time() - begintime
+                if t > args.duration:
+                    break
+                if curtime < t:
+                    time.sleep(t-curtime)
+                encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
+                with torch.no_grad():
+                    output = model(**encodings).waveform
+                elapsed = time.time() - t - begintime
+                logsum += math.log(elapsed)
+                total += elapsed
+                count += 1
+                csvlines.append(f"{curtime},{elapsed}")
         gmean = math.exp(logsum/count)
         csvlines.append(f"Geometric Mean,{gmean}")
         csvlines.append(f"Average,{total/count}")

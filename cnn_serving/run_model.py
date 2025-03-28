@@ -33,6 +33,10 @@ if __name__=='__main__':
     parser.add_argument(
         "--tag", type=str, default='default', help="exp tag"
     )
+    parser.add_argument(
+        "--continuous",
+        action="store_true"
+    )
     args = parser.parse_args()
 
     net = gluon.model_zoo.vision.resnet50_v1(pretrained=True, root = '/tmp/')
@@ -107,37 +111,66 @@ if __name__=='__main__':
         logsum = 0
         total = 0
         count = 0
-        for t in arrivals:
-            curtime = time.time() - begintime
-            if t > args.duration:
-                break
-            if curtime < t:
-                time.sleep(t-curtime)
-            img = mx.image.imresize(source, 224, 224) # resize
-            img = mx.image.color_normalize(img.astype(dtype='float32')/255,
-                                        mean=mx.nd.array([0.485, 0.456, 0.406]),
-                                        std=mx.nd.array([0.229, 0.224, 0.225])) # normalize
-            img = img.transpose((2, 0, 1)) # channel first
-            if args.workload == 'low':
-                input = mx.nd.stack(img,img,img,img,axis=0)
-            elif args.workload == 'med':
-                input = mx.nd.stack(img,img,img,img,axis=0)
-            elif args.workload == 'high':
-                input = mx.nd.stack(img,img,img,img,img,img,img,img,img,img,img,img,img,img,img,img,axis=0)
-            else:
-                input = mx.nd.stack(img,img,img,img,axis=0)
-            prob = net(input).softmax() # predict and normalize output
-            idx = prob.topk(k=5)[0] # get top 5 result
-            inference = ''
-            for i in idx:
-                i = int(i.asscalar())
-                #print('With prob = %.5f, it contains %s' % (prob[0,i].asscalar(), labels[i]))
-                inference = inference + 'With prob = %.5f, it contains %s' % (prob[0,i].asscalar(), labels[i]) + '. '
-            elapsed = time.time() - t - begintime
-            logsum += math.log(elapsed)
-            total += elapsed
-            count += 1
-            csvlines.append(f"{curtime},{elapsed}")
+        if args.continuous:
+            while curtime < endtime:
+                img = mx.image.imresize(source, 224, 224) # resize
+                img = mx.image.color_normalize(img.astype(dtype='float32')/255,
+                                            mean=mx.nd.array([0.485, 0.456, 0.406]),
+                                            std=mx.nd.array([0.229, 0.224, 0.225])) # normalize
+                img = img.transpose((2, 0, 1)) # channel first
+                if args.workload == 'low':
+                    input = mx.nd.stack(img,img,img,img,axis=0)
+                elif args.workload == 'med':
+                    input = mx.nd.stack(img,img,img,img,axis=0)
+                elif args.workload == 'high':
+                    input = mx.nd.stack(img,img,img,img,img,img,img,img,img,img,img,img,img,img,img,img,axis=0)
+                else:
+                    input = mx.nd.stack(img,img,img,img,axis=0)
+                prob = net(input).softmax() # predict and normalize output
+                idx = prob.topk(k=5)[0] # get top 5 result
+                inference = ''
+                for i in idx:
+                    i = int(i.asscalar())
+                    #print('With prob = %.5f, it contains %s' % (prob[0,i].asscalar(), labels[i]))
+                    inference = inference + 'With prob = %.5f, it contains %s' % (prob[0,i].asscalar(), labels[i]) + '. '
+                elapsed = time.time() - curtime
+                logsum += math.log(elapsed)
+                total += elapsed
+                count += 1
+                csvlines.append(f"{curtime-begintime},{elapsed}")
+                curtime = time.time()
+        else:
+            for t in arrivals:
+                curtime = time.time() - begintime
+                if t > args.duration:
+                    break
+                if curtime < t:
+                    time.sleep(t-curtime)
+                img = mx.image.imresize(source, 224, 224) # resize
+                img = mx.image.color_normalize(img.astype(dtype='float32')/255,
+                                            mean=mx.nd.array([0.485, 0.456, 0.406]),
+                                            std=mx.nd.array([0.229, 0.224, 0.225])) # normalize
+                img = img.transpose((2, 0, 1)) # channel first
+                if args.workload == 'low':
+                    input = mx.nd.stack(img,img,img,img,axis=0)
+                elif args.workload == 'med':
+                    input = mx.nd.stack(img,img,img,img,axis=0)
+                elif args.workload == 'high':
+                    input = mx.nd.stack(img,img,img,img,img,img,img,img,img,img,img,img,img,img,img,img,axis=0)
+                else:
+                    input = mx.nd.stack(img,img,img,img,axis=0)
+                prob = net(input).softmax() # predict and normalize output
+                idx = prob.topk(k=5)[0] # get top 5 result
+                inference = ''
+                for i in idx:
+                    i = int(i.asscalar())
+                    #print('With prob = %.5f, it contains %s' % (prob[0,i].asscalar(), labels[i]))
+                    inference = inference + 'With prob = %.5f, it contains %s' % (prob[0,i].asscalar(), labels[i]) + '. '
+                elapsed = time.time() - t - begintime
+                logsum += math.log(elapsed)
+                total += elapsed
+                count += 1
+                csvlines.append(f"{curtime},{elapsed}")
         gmean = math.exp(logsum/count)
         csvlines.append(f"Geometric Mean,{gmean}")
         csvlines.append(f"Average,{total/count}")
