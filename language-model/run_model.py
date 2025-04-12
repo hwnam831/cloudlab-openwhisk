@@ -47,6 +47,18 @@ configs = [
     },
 ]
 
+patterns = {
+    'high' : [[8.0313, 192.5857, 354.1262, 385.5167, 464.6160, 565.5796],
+              [23.2249, 65.8364, 100.2305, 417.1087, 436.6336, 542.9643, 574.1780],
+              [89.4954, 197.1510, 279.1672, 295.2953, 308.3088, 405.6035, 524.0012],
+              [20.1468, 59.9922, 83.3614, 129.3731, 428.1551, 520.7822, 585.8331]],
+    'low' : [[0.0, 88.35571434352617, 89.02003794489113,132.5127269873638, 
+              174.63380813188067, 321.55113336674253,543.5219121929915, 564.961992132476],
+              [15.8339, 141.1562, 147.5333, 242.5866, 339.0783, 464.7911, 495.2243, 504.9494],
+              [33.9019, 181.5147, 194.2174, 227.4718, 335.7596, 395.4141, 435.7351, 454.0246],
+              [18.4423, 41.7540, 88.1744, 125.8823, 177.1112, 227.2783, 389.7754, 401.6363, 531.8213]]         
+}
+
 new_tokens=10
 
 if __name__ == "__main__":
@@ -61,6 +73,10 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--duration", type=int, default=60, help="Benchmark duration in seconds"
+    )
+
+    parser.add_argument(
+        "--config", type=int, default=1,choices=[1,2,3,4], help="Arrival trace choice"
     )
     parser.add_argument(
         "--downloadonly",
@@ -87,28 +103,28 @@ if __name__ == "__main__":
     tokenizer = AutoTokenizer.from_pretrained(model_id)
     tokenizer.add_special_tokens({'pad_token': '[PAD]'})
     csvlines = []
-    csvlines.append("Curtime,Elapsed")
+    csvlines.append("Curtime,Elapsed,Batchsize")
     if (not args.downloadonly):
         if args.workload == 'low':
             myprompt = prompts[1]
             bsize = 2
             new_tokens=20
-            arrivals = [0.0, 88.35571434352617, 89.02003794489113,
-                        132.5127269873638, 174.63380813188067, 321.55113336674253,
-                        543.5219121929915, 564.961992132476]
+            arrivals = patterns['low'][args.config-1]
         elif args.workload == 'high':
             myprompt = prompts[2]
             bsize = 8
             new_tokens=10
-            arrivals = [8.0313, 192.5857, 354.1262, 
-                        385.5167, 464.6160, 565.5796]
+            arrivals = patterns['high'][args.config-1]
+        elif args.workload == 'med':
+            myprompt = prompts[1]
+            bsize = 2
+            new_tokens=15
+            arrivals = patterns['low'][args.config%4]
         else:
             myprompt = prompts[1]
             bsize = 2
             new_tokens=20
-            arrivals = [0.0, 88.35571434352617, 89.02003794489113,
-                        132.5127269873638, 174.63380813188067, 321.55113336674253,
-                        543.5219121929915, 564.961992132476]
+            arrivals = patterns['low'][args.config-1]
         begintime = time.time()
         curtime = begintime
         endtime = curtime + args.duration
@@ -127,7 +143,10 @@ if __name__ == "__main__":
                 csvlines.append(f"{curtime-begintime},{elapsed}")
                 curtime = time.time()
         else:
-            for t in arrivals:
+            for cnt,t in enumerate(arrivals):
+                if args.workload == 'med':
+                    myprompt = prompts[cnt%3]
+                    bsize = 3 + (cnt%2)*3
                 curtime = time.time() - begintime
                 if t > args.duration:
                     break
@@ -140,9 +159,9 @@ if __name__ == "__main__":
                 logsum += math.log(elapsed)
                 total += elapsed
                 count += 1
-                csvlines.append(f"{curtime},{elapsed}")
+                csvlines.append(f"{curtime},{elapsed},{bsize}")
         gmean = math.exp(logsum/count)
-        csvlines.append(f"Geometric Mean,{gmean}")
-        csvlines.append(f"Average,{total/count}")
+        #csvlines.append(f"Geometric Mean,{gmean}")
+        csvlines.append(f"Average,{total/count},{bsize}")
         with open(f"/mydata/workspace/jrapl/{args.tag}_llama-3.1-8b_{args.workload}.csv", "w") as f:
             f.write("\n".join(csvlines))

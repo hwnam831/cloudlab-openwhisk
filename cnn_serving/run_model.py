@@ -6,8 +6,20 @@ import math
 from mxnet import gluon
 import mxnet as mx
 from PIL import Image
+import numpy as np
 
-
+def PoissonGen(rate, interval, seed=1):
+    n = int(rate*interval)
+    random.seed(seed)
+    arr = [-np.log(random.random())/rate for _ in range(2*n)]
+    acc = 0
+    times = []
+    for t in arr:
+        acc += t
+        if acc > interval:
+            break
+        times.append(acc)
+    return times
 
 if __name__=='__main__':
     random.seed(17)
@@ -37,6 +49,9 @@ if __name__=='__main__':
         "--continuous",
         action="store_true"
     )
+    parser.add_argument(
+        "--config", type=int, default=1,choices=[1,2,3,4], help="Arrival trace choice"
+    )
     args = parser.parse_args()
 
     net = gluon.model_zoo.vision.resnet50_v1(pretrained=True, root = '/tmp/')
@@ -54,31 +69,20 @@ if __name__=='__main__':
     curtime = begintime
     endtime = curtime + args.duration
     csvlines = []
-    csvlines.append("Curtime,Elapsed")
+    csvlines.append("Curtime,Elapsed,Batchsize")
     if args.workload == 'low':
-        basearrivals = [0.31786687633244665, 0.8824637119454146, 1.0981153308313139, 1.2267388262786436, 1.2688335171244307, 
-                        1.9371589204854913, 2.0269040923264123, 2.6701945276952346, 3.5579978738918783, 3.717259000128605, 
-                        3.865525539921863, 4.137571622736609, 4.170420819085454, 4.219260405556031, 4.567611721038872, 
-                        4.951368227680029, 5.01741793619966, 5.2255969337154795, 5.359001164508471, 5.709109465385991, 
-                        5.729813944808159, 5.7660348771308625, 6.121232024152087, 6.739492939253424, 6.821919545776627, 
-                        7.123959436512459, 7.386541614626432, 7.466147685784314, 7.620030066742997, 7.624045986727392, 
-                        7.812593334689636, 8.083043543613925, 8.908919665696441, 9.000137005884026, 9.576461517424619, 
-                        9.58511421217015, 9.6279491879051, 9.768063092040034, 9.845171989563081, 9.893774054647064]
-        arrivals = []
-        for i in range(0, 600, 10):
-            newarrival = [x + i for x in basearrivals]
-            arrivals += newarrival
+        arrivals = PoissonGen(2, args.duration, args.config)
+        bsize = 4
+    elif args.workload == 'med':
+        arrivals = PoissonGen(1.5, args.duration, args.config)
+        bsize = 8
+    elif args.workload == 'high':
+        arrivals = PoissonGen(1, args.duration, args.config)
+        bsize = 16
     else: # high
-        basearrivals = [2.7865,2.9773,7.6845,7.9531,8.6556,8.7947,12.2326,13.0931,15.1450,15.4685,
-                        17.0592,17.5455,18.1255,19.4414,21.2518,21.3868,21.8187,22.0535,22.0949,22.6710,
-                        22.7138,23.5038,23.5164,23.5826,24.8095,24.9589,29.1470,32.2082,33.2337,33.2604,
-                        34.2029,35.4035,36.0422,36.5392,36.5418,36.6284,36.9903,37.5806,37.6283,41.3977,
-                        41.9061,42.0104,42.0992,43.0657,44.7805,45.7724,46.2945,47.2361,47.9904,48.4634,
-                        49.6561,49.6867,51.7621,52.5625,53.6336,54.2249,56.0161,57.4434,57.7935,58.9945,59.5861]
-        arrivals = []
-        for i in range(0, 600, 60):
-            newarrival = [x + i for x in basearrivals]
-            arrivals += newarrival
+        arrivals = PoissonGen(1, args.duration, args.config)
+        bsize = 4
+        
     '''
     while curtime < endtime and not args.downloadonly:
         #img = mx.image.imread(imgName)
@@ -121,7 +125,7 @@ if __name__=='__main__':
                 if args.workload == 'low':
                     input = mx.nd.stack(img,img,img,img,axis=0)
                 elif args.workload == 'med':
-                    input = mx.nd.stack(img,img,img,img,axis=0)
+                    input = mx.nd.stack(img,img,img,img,img,img,img,img,axis=0)
                 elif args.workload == 'high':
                     input = mx.nd.stack(img,img,img,img,img,img,img,img,img,img,img,img,img,img,img,img,axis=0)
                 else:
@@ -154,7 +158,7 @@ if __name__=='__main__':
                 if args.workload == 'low':
                     input = mx.nd.stack(img,img,img,img,axis=0)
                 elif args.workload == 'med':
-                    input = mx.nd.stack(img,img,img,img,axis=0)
+                    input = mx.nd.stack(img,img,img,img,img,img,img,img,axis=0)
                 elif args.workload == 'high':
                     input = mx.nd.stack(img,img,img,img,img,img,img,img,img,img,img,img,img,img,img,img,axis=0)
                 else:
@@ -170,10 +174,10 @@ if __name__=='__main__':
                 logsum += math.log(elapsed)
                 total += elapsed
                 count += 1
-                csvlines.append(f"{curtime},{elapsed}")
+                csvlines.append(f"{curtime},{elapsed},{bsize}")
         gmean = math.exp(logsum/count)
-        csvlines.append(f"Geometric Mean,{gmean}")
-        csvlines.append(f"Average,{total/count}")
+        #csvlines.append(f"Geometric Mean,{gmean}")
+        csvlines.append(f"Average,{total/count},{bsize}")
     with open(f"/mydata/workspace/jrapl/{args.tag}_cnn-serving_{args.workload}.csv", "w") as f:
         f.write("\n".join(csvlines))
     # format image as (batch, RGB, width, height)

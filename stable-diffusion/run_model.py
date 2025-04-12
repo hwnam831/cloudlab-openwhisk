@@ -4,6 +4,20 @@ import argparse
 import time
 import random
 import math
+import numpy as np
+
+def PoissonGen(rate, interval, seed=1):
+    n = int(rate*interval)
+    random.seed(seed)
+    arr = [-np.log(random.random())/rate for _ in range(2*n)]
+    acc = 0
+    times = []
+    for t in arr:
+        acc += t
+        if acc > interval:
+            break
+        times.append(acc)
+    return times
 
 prompts = ['realistic medieval castle downtown with soldiers and knights',
             'higly detailed, majestic royal tall ship on a calm sea,realistic painting, \
@@ -19,7 +33,12 @@ prompts = ['realistic medieval castle downtown with soldiers and knights',
 res_low = [64, 96, 128]
 res_high = [256, 384, 512]
 
-
+patterns = {
+    'high' : [[0.0, 24.1822, 58.5168, 61.9939, 147.3740, 293.9903, 328.7430, 338.8403, 546.3436, 592.0992],
+              [1.5996, 40.1941, 272.3170, 301.6533, 317.9071, 353.9856, 446.4671, 460.7184, 487.1172, 533.4843],
+              [27.0417, 60.0327, 90.4605, 153.9525, 355.9670, 398.3473, 419.6466, 440.7745, 560.7427, 590.3304],
+              [29.4346, 66.0883, 95.4533, 105.0176, 154.9749, 251.4679, 380.0509, 382.5629, 472.0273, 516.0084, 584.4252]],       
+}
 
 if __name__ == "__main__":
     random.seed(74)
@@ -39,6 +58,9 @@ if __name__ == "__main__":
         action="store_true"
     )
     parser.add_argument(
+        "--config", type=int, default=1,choices=[1,2,3,4], help="Arrival trace choice"
+    )
+    parser.add_argument(
         "--idle", type=float, default=0.3, help="idle percentage"
     )
     parser.add_argument(
@@ -54,22 +76,17 @@ if __name__ == "__main__":
         myprompt = prompts[0]
         myres = res_low[0]
         steps = 10
-        arrivals = [0.0, 14.079019926956557, 20.21188621509486, 32.73587849403652,
-                    41.91358630783891, 99.21233244629681, 162.5987408251167, 196.06716880038928,
-                    210.89409933305262, 227.98369242544203, 237.35931849642836, 244.40616795859367,
-                    255.69254566908424, 268.19301239076356, 280.1921241532026, 291.29750439343707,
-                    320.8850211761088, 335.81933862987455, 353.9010340535836, 371.6544130462701,
-                    374.1089278203828, 387.03256750204366, 387.53430820156825, 393.8648542868814,
-                    401.151599459538, 407.29729689513937, 415.70429737935484, 431.47368326373044,
-                    432.5365363402964, 437.42021755167525, 466.23249052883085, 488.1839171516043,
-                    491.25963972227913, 508.1832846249064, 510.30833267986054, 560.019955813888, 575.3665743896685]
+        arrivals = PoissonGen(0.05, args.duration, args.config)
     elif args.workload == 'high':
         myprompt = prompts[2]
         myres = res_high[2]
         steps = 5
-        arrivals = [24.1822, 58.5168, 61.9939, 
-                    147.3740, 293.9903, 328.7430, 
-                    338.8403, 546.3436, 592.0992]
+        arrivals = patterns['high'][args.config-1]
+    elif args.workload == 'med':
+        myprompt = prompts[1]
+        myres = res_high[0]
+        steps = 5
+        arrivals = PoissonGen(0.04, args.duration, args.config+1)
     else:
         myprompt = prompts[random.randint(0,2)]
         myres = res_high[random.randint(0,2)]
@@ -81,7 +98,7 @@ if __name__ == "__main__":
         curtime = begintime
         endtime = curtime + args.duration
         csvlines = []
-        csvlines.append("Curtime,Elapsed")
+        csvlines.append("Curtime,Elapsed,Batchsize")
         '''
         while curtime < endtime:
             image = pipeline(myprompt,
@@ -109,7 +126,10 @@ if __name__ == "__main__":
                 csvlines.append(f"{curtime-begintime},{elapsed}")
                 curtime = time.time()
         else:
-            for t in arrivals:
+            for cnt,t in enumerate(arrivals):
+                if args.workload == 'med':
+                    myprompt = prompts[cnt%3]
+                    myres = res_high[cnt%2]
                 curtime = time.time() - begintime
                 if t > args.duration:
                     break
@@ -123,9 +143,9 @@ if __name__ == "__main__":
                 logsum += math.log(elapsed)
                 total += elapsed
                 count += 1
-                csvlines.append(f"{curtime},{elapsed}")
+                csvlines.append(f"{curtime},{elapsed},1")
         gmean = math.exp(logsum/count)
-        csvlines.append(f"Geometric Mean,{gmean}")
-        csvlines.append(f"Average,{total/count}")
+        #csvlines.append(f"Geometric Mean,{gmean}")
+        csvlines.append(f"Average,{total/count},1")
         with open(f"/mydata/workspace/jrapl/{args.tag}_stable-diffusion_{args.workload}.csv", "w") as f:
             f.write("\n".join(csvlines))
