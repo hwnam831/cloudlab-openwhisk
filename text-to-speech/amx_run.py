@@ -109,13 +109,13 @@ if __name__ == "__main__":
     model = VitsModel.from_pretrained("kakao-enterprise/vits-vctk")
     tokenizer = AutoTokenizer.from_pretrained("kakao-enterprise/vits-vctk")
     #tokenizer.add_special_tokens({'pad_token': '[PAD]'})
-    if args.workload == 'low':
+    if args.workload == 'high':
         myprompt = prompts[1]
-        bsize = 1
+        bsize = 2
         arrivals = PoissonGen(0.2, args.duration, args.config)
-    elif args.workload == 'high':
-        myprompt = prompts[-1]
-        bsize = 4
+    elif args.workload == 'low':
+        myprompt = prompts[3]
+        bsize = 1
         arrivals = patterns['high'][args.config-1]
     elif args.workload == 'med':
         myprompt = prompts[2]
