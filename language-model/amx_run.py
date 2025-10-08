@@ -6,6 +6,19 @@ import random
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import math
 
+def PoissonGen(rate, interval, seed=1):
+    n = int(rate*interval)
+    random.seed(seed)
+    arr = [-math.log(random.random())/rate for _ in range(2*n)]
+    acc = 0
+    times = []
+    for t in arr:
+        acc += t
+        if acc > interval:
+            break
+        times.append(acc)
+    return times
+
 prompts = [
         # For these prompts, the expected answer is the natural continuation of the prompt
         "I believe the meaning of life is",
@@ -107,14 +120,14 @@ if __name__ == "__main__":
     if (not args.downloadonly):
         if args.workload == 'low':
             myprompt = prompts[1]
-            bsize = 2
-            new_tokens=20
-            arrivals = patterns['low'][args.config-1]
+            bsize = 4
+            new_tokens=30
+            arrivals = PoissonGen(0.1, args.duration, args.config)
         elif args.workload == 'high':
             myprompt = prompts[2]
             bsize = 16
-            new_tokens=30
-            arrivals = patterns['high'][args.config-1]
+            new_tokens=40
+            arrivals = PoissonGen(0.05, args.duration, args.config)
         elif args.workload == 'med':
             myprompt = prompts[1]
             bsize = 2

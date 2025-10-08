@@ -110,17 +110,17 @@ if __name__ == "__main__":
     tokenizer = AutoTokenizer.from_pretrained("kakao-enterprise/vits-vctk")
     #tokenizer.add_special_tokens({'pad_token': '[PAD]'})
     if args.workload == 'high':
-        myprompt = prompts[1]
-        bsize = 2
-        arrivals = PoissonGen(0.2, args.duration, args.config)
-    elif args.workload == 'low':
         myprompt = prompts[3]
+        bsize = 2
+        arrivals = PoissonGen(0.03, args.duration, args.config+13)
+    elif args.workload == 'low':
+        myprompt = prompts[2]
         bsize = 1
-        arrivals = patterns['high'][args.config-1]
+        arrivals = PoissonGen(0.2, args.duration, args.config+13)
     elif args.workload == 'med':
         myprompt = prompts[2]
         bsize = 1
-        arrivals = PoissonGen(0.03, args.duration, args.config)
+        arrivals = PoissonGen(0.03, args.duration, args.config+13)
     else:
         myprompt = prompts[random.randint(0,3)]
         bsize = random.randint(1,2)

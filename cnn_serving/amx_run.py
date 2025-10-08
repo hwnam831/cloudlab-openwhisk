@@ -71,14 +71,14 @@ if __name__=='__main__':
     csvlines = []
     csvlines.append("Curtime,Elapsed,Batchsize")
     if args.workload == 'low':
-        arrivals = PoissonGen(2, args.duration, args.config)
-        bsize = 4
+        arrivals = PoissonGen(4, args.duration, args.config)
+        bsize = 8
     elif args.workload == 'med':
         arrivals = PoissonGen(1.5, args.duration, args.config)
         bsize = 8
     elif args.workload == 'high':
-        arrivals = PoissonGen(1, args.duration, args.config)
-        bsize = 16
+        arrivals = PoissonGen(2, args.duration, args.config)
+        bsize = 32
     else: # high
         arrivals = PoissonGen(1, args.duration, args.config)
         bsize = 4
@@ -123,7 +123,7 @@ if __name__=='__main__':
                                             std=mx.nd.array([0.229, 0.224, 0.225])) # normalize
                 img = img.transpose((2, 0, 1)) # channel first
                 if args.workload == 'low':
-                    input = mx.nd.stack(img,img,img,img,axis=0)
+                    input = mx.nd.stack(img,img,img,img,img,img,img,img,axis=0)
                 elif args.workload == 'med':
                     input = mx.nd.stack(img,img,img,img,img,img,img,img,axis=0)
                 elif args.workload == 'high':
