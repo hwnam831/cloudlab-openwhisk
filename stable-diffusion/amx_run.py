@@ -74,9 +74,9 @@ if __name__ == "__main__":
     pipeline = DiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", use_safetensors=True, torch_dtype=torch.bfloat16)
     if args.workload == 'low':
         myprompt = prompts[1]
-        myres = res_high[1]
+        myres = res_high[2]
         steps = 10
-        arrivals = PoissonGen(0.2, args.duration, args.config+17)
+        arrivals = PoissonGen(0.1, args.duration, args.config+17)
     elif args.workload == 'high':
         myprompt = prompts[2]
         myres = res_high[3]

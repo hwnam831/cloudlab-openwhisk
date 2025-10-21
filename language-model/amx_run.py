@@ -121,7 +121,7 @@ if __name__ == "__main__":
         if args.workload == 'low':
             myprompt = prompts[1]
             bsize = 4
-            new_tokens=30
+            new_tokens=50
             arrivals = PoissonGen(0.1, args.duration, args.config)
         elif args.workload == 'high':
             myprompt = prompts[2]
