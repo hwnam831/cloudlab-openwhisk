@@ -120,14 +120,14 @@ if __name__ == "__main__":
     if (not args.downloadonly):
         if args.workload == 'low':
             myprompt = prompts[1]
-            bsize = 4
-            new_tokens=50
+            bsize = 8
+            new_tokens=40
             arrivals = PoissonGen(0.1, args.duration, args.config)
         elif args.workload == 'high':
             myprompt = prompts[2]
-            bsize = 16
-            new_tokens=40
-            arrivals = PoissonGen(0.05, args.duration, args.config)
+            bsize = 32
+            new_tokens=30
+            arrivals = PoissonGen(0.04, args.duration, args.config)
         elif args.workload == 'med':
             myprompt = prompts[1]
             bsize = 2

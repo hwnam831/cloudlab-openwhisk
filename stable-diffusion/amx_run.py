@@ -80,8 +80,8 @@ if __name__ == "__main__":
     elif args.workload == 'high':
         myprompt = prompts[2]
         myres = res_high[3]
-        steps = 4
-        arrivals = PoissonGen(0.03, args.duration, args.config+17)
+        steps = 5
+        arrivals = PoissonGen(0.04, args.duration, args.config+17)
     elif args.workload == 'med':
         myprompt = prompts[1]
         myres = res_high[0]

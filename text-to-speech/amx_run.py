@@ -112,11 +112,11 @@ if __name__ == "__main__":
     if args.workload == 'high':
         myprompt = prompts[3]
         bsize = 2
-        arrivals = PoissonGen(0.03, args.duration, args.config+13)
+        arrivals = PoissonGen(0.02, args.duration, args.config+13)
     elif args.workload == 'low':
         myprompt = prompts[2]
         bsize = 1
-        arrivals = PoissonGen(0.2, args.duration, args.config+13)
+        arrivals = PoissonGen(0.1, args.duration, args.config+13)
     elif args.workload == 'med':
         myprompt = prompts[2]
         bsize = 1
@@ -147,7 +147,7 @@ if __name__ == "__main__":
         if args.continuous:
             while curtime < endtime:
                 encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
-                with torch.no_grad():
+                with torch.autocast(device_type="cpu", dtype=torch.bfloat16):
                     output = model(**encodings).waveform
                 elapsed = time.time() - curtime
                 logsum += math.log(elapsed)
@@ -163,7 +163,7 @@ if __name__ == "__main__":
                 if curtime < t:
                     time.sleep(t-curtime)
                 encodings = tokenizer([myprompt]*bsize, return_tensors="pt")
-                with torch.no_grad():
+                with torch.autocast(device_type="cpu", dtype=torch.bfloat16):
                     output = model(**encodings).waveform
                 elapsed = time.time() - t - begintime
                 logsum += math.log(elapsed)
