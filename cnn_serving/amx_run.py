@@ -71,13 +71,13 @@ if __name__=='__main__':
     csvlines = []
     csvlines.append("Curtime,Elapsed,Batchsize")
     if args.workload == 'low':
-        arrivals = PoissonGen(4, args.duration, args.config)
+        arrivals = PoissonGen(5, args.duration, args.config)
         bsize = 8
     elif args.workload == 'med':
         arrivals = PoissonGen(1.5, args.duration, args.config)
         bsize = 8
     elif args.workload == 'high':
-        arrivals = PoissonGen(1.5, args.duration, args.config)
+        arrivals = PoissonGen(2, args.duration, args.config)
         bsize = 32
     else: # high
         arrivals = PoissonGen(1, args.duration, args.config)

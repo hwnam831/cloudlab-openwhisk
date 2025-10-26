@@ -112,7 +112,7 @@ if __name__ == "__main__":
     if args.workload == 'high':
         myprompt = prompts[3]
         bsize = 2
-        arrivals = PoissonGen(0.02, args.duration, args.config+13)
+        arrivals = PoissonGen(0.04, args.duration, args.config+13)
     elif args.workload == 'low':
         myprompt = prompts[2]
         bsize = 1
